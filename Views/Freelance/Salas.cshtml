@@ -1,0 +1,44 @@
+﻿@model AngularView.Models.ViewModels.SalasView
+@{
+    ViewData["Title"] = "Salas";
+}
+
+<h1>Salas</h1>
+<div class="col-12">
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Sala 1 (@Model.SalaUno cajones)</h4>
+                </div>
+                <div class="card-body">
+                    <h5>Disponibles @Model.salas[0].Caja.Where(d => d.Ocupado == 0).Count().ToString() </h5>
+                    <a class="btn btn-outline-success" asp-action="CajonesDiponibles" asp-route-id="1">Ver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Sala VIP (@Model.SalaDos cajones) </h4>
+                </div>
+                <div class="card-body">
+                    <h5>Disponibles @Model.salas[1].Caja.Where(d => d.Ocupado == 0).Count().ToString() </h5>
+                    <a class="btn btn-outline-warning" asp-action="CajonesDiponibles" asp-route-id="2">Ver</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Sala 1 (@Model.SalaTres cajones)</h4>
+                </div>
+                <div class="card-body">
+                    <h5>Disponibles @Model.salas[2].Caja.Where(d => d.Ocupado == 0).Count().ToString() </h5>
+                    <a class="btn btn-outline-success" asp-action="CajonesDiponibles" asp-route-id="3">Ver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

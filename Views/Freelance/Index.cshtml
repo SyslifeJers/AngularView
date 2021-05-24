@@ -1,0 +1,96 @@
+﻿@model AngularView.Models.Vendedores
+
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> - AngularView</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Freelance" asp-action="Index">AngularView</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Iniciar Sessión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Vendedores" asp-action="Create">Registrarme</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Bienvenido @Model.Nombre</h5>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Ver mis ventas </h3>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-info">
+                                    Ver
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" col-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Nueva venta </h3>
+                            </div>
+                            <div class="card-body">
+                                <a href="@Url.ActionLink("Create","Expositors")" class="btn btn-success">
+                                    Agregar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Tu comision actual</h3>
+                            </div>
+                            <div class="card-body">
+                              $  @Model.Comision.ToString();
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - AngularView - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+</html>
+

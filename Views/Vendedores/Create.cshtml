@@ -1,0 +1,54 @@
+﻿@model AngularView.Models.ViewModels.LoginFreeModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Registro para Freelance</h1>
+
+<h4>Llena todos los campos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Nombre completo</label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo" class="control-label"></label>
+                <input asp-for="Correo" class="form-control" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Contraseña</label>
+                <input asp-for="Passworsd" class="form-control" />
+                <span asp-validation-for="Passworsd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Confirmar contraseña</label>
+                <input asp-for="ConfirmPassworsd" class="form-control" />
+                <span asp-validation-for="ConfirmPassworsd" class="text-danger"></span>
+            </div>
+            @if (Model != null)
+            {
+                if (!String.IsNullOrEmpty(Model.Respuestas))
+                {
+                    <div class="form-group">
+                        <label class="alert-danger">@Model.Respuestas</label>
+                    </div>
+                }
+            }
+            <div class="form-group">
+                <input type="submit" value="Registrarme" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Home">Cancelar</a>
+</div>
+

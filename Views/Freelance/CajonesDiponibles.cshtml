@@ -1,0 +1,74 @@
+﻿@model IEnumerable<AngularView.Models.Caja>
+
+@{
+    ViewData["Title"] = "CajonesDiponibles";
+}
+
+<h1>CajonesDiponibles</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modificado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Costo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ocupado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEventoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdSalaNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modificado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Costo)
+            </td>
+            <td>
+                @{
+                    if (item.Ocupado == 0)
+                    {
+                        <p>Disponible</p>
+                    }
+                    if (item.Ocupado == 0)
+                    {
+                        <p>Apartado</p>
+                    }
+                    if (item.Ocupado == 0)
+                    {
+                        <p>Ocupado</p>
+                    }
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEventoNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSalaNavigation.Nombre)
+            </td>
+            <td>
+                <a class="btn btn-outline-info" asp-action="TomarCaja" asp-route-id="@item.Id">tomar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
