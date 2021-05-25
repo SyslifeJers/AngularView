@@ -1,0 +1,60 @@
+﻿@model AngularView.Models.ViewModels.ProcesoVentaModel
+
+@{
+    ViewData["Title"] = "TomarCajon";
+    Layout = "_LayoutVendedor";
+}
+
+<h1>TomarCajon</h1>
+
+<h4>Expositor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="TomarCajon">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id_Cajon" value="@Model.Id_Cajon" class="form-control" />
+            <input type="hidden" asp-for="Costo" value="@Model.Costo" class="form-control" />
+            <div class="form-group">
+                <label asp-for="Correo" class="control-label"></label>
+                <input asp-for="Correo" class="form-control" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellidos" class="control-label"></label>
+                <input asp-for="Apellidos" class="form-control" />
+                <span asp-validation-for="Apellidos" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Celular" class="control-label"></label>
+                <input asp-for="Celular" class="form-control" />
+                <span asp-validation-for="Celular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Negocio" class="control-label"></label>
+                <input asp-for="Negocio" class="form-control" />
+                <span asp-validation-for="Negocio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Procesar" class="btn btn-primary" />
+            </div>
+            @if (Model != null)
+            {
+                if (!String.IsNullOrEmpty(Model.Respuesta))
+                {
+                    <div class="form-group">
+                        <label class="alert-danger">@Model.Respuesta</label>
+                    </div>
+                }
+            }
+        </form>
+    </div>
+</div>
+

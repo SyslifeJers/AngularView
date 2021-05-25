@@ -1,6 +1,7 @@
 using AngularView.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,11 @@ namespace AngularView
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(240); });
+            services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(240);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddDbContext<AngularViewContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

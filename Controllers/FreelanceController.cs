@@ -13,7 +13,7 @@ namespace AngularView.Controllers
     public class FreelanceController : Controller
     {
         private readonly AngularViewContext _context;
-
+        
         public FreelanceController(AngularViewContext context)
         {
             _context = context;
@@ -47,9 +47,10 @@ namespace AngularView.Controllers
         {                 
             if (String.IsNullOrEmpty(HttpContext.Session.GetString("nombre")))
             {
-                Redirect(Url.ActionLink("Index", "Home"));
+                return Redirect(Url.ActionLink("Index", "Home"));
             }
-            return View();
+            int id = Convert.ToInt32(HttpContext.Session.GetString("id"));
+            return View(_context.Vendedores.Find(id));
         }
         [HttpPost]
         public JsonResult Alta(Repuesta repuesta)

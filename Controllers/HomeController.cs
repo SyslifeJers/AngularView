@@ -24,12 +24,19 @@ namespace AngularView.Controllers
 
         public IActionResult Index()
         {
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("nombre")))
+            {
+                return Redirect(Url.ActionLink("Index", "Freelance"));
+            }
             return View();
         }
 
         public IActionResult Login()
         {
-
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("nombre")))
+            {
+                return Redirect(Url.ActionLink("Index", "Freelance"));
+            }
             return View();
         }
         [HttpPost]

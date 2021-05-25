@@ -15,7 +15,10 @@ namespace AngularView
             CreateMap<LoginFreeModel, Vendedores>();
             CreateMap<Vendedores, LoginFreeModel>();
 
-           // CreateMap<Enfermera, ModelEnfermera>().ForMember(dest => dest.Latitud, opt => opt.MapFrom(src => src.UltLat)).ForMember(dest => dest.Longitud, opt => opt.MapFrom(src => src.UltLon));
+            CreateMap<ProcesoVentaModel, Expositor>();
+            CreateMap<Expositor, ProcesoVentaModel>();
+
+            // CreateMap<Enfermera, ModelEnfermera>().ForMember(dest => dest.Latitud, opt => opt.MapFrom(src => src.UltLat)).ForMember(dest => dest.Longitud, opt => opt.MapFrom(src => src.UltLon));
 
 
         }

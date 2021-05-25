@@ -15,6 +15,7 @@ namespace AngularView.Models
         public DateTime? Fecha { get; set; }
         public int? IdVendedor { get; set; }
         public decimal? Total { get; set; }
+        public int? Estatus { get; set; }
 
         public virtual Caja IdCajonNavigation { get; set; }
         public virtual Expositor IdExpositorNavigation { get; set; }

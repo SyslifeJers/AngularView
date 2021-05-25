@@ -21,7 +21,9 @@ namespace AngularView.Models
         public bool? Activo { get; set; }
         public DateTime? Modificado { get; set; }
         public int? Espacios { get; set; }
+        public int? IdEvento { get; set; }
 
+        public virtual Evento IdEventoNavigation { get; set; }
         public virtual ICollection<Caja> Caja { get; set; }
     }
 }

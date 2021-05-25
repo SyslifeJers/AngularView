@@ -168,11 +168,18 @@ namespace AngularView.Models
 
             modelBuilder.Entity<Sala>(entity =>
             {
+                entity.Property(e => e.IdEvento).HasColumnName("Id_Evento");
+
                 entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.Nombre).HasMaxLength(250);
 
                 entity.Property(e => e.NumeroSala).HasMaxLength(50);
+
+                entity.HasOne(d => d.IdEventoNavigation)
+                    .WithMany(p => p.Sala)
+                    .HasForeignKey(d => d.IdEvento)
+                    .HasConstraintName("FK_Sala_Evento");
             });
 
             modelBuilder.Entity<Usuarios>(entity =>

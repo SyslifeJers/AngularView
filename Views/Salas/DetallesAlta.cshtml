@@ -1,0 +1,55 @@
+﻿@model IEnumerable<AngularView.Models.VentaEspacio>
+
+@{
+    ViewData["Title"] = "DetallesAlta";
+    Layout = "_LayoutVendedor";
+}
+
+<h4>La comision se vera reflejada una vez autorizado el pago</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Negocio</th>
+            <th>Cajon</th>
+            <th>Estatus</th>
+
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Negocio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCajonNavigation.Descripcion)
+                </td>
+                <td>
+                    @{
+                        if (item.Estatus == 1)
+                        {
+                            <p>En espera de pago</p>
+                        }
+                        else
+                        {
+                            if (item.Estatus == 2)
+                            {
+                                <p>En Pagado</p>
+                            }
+                            else
+                            {
+                                <p>No pagado</p>
+                            }
+                        }
+                    }
+                </td>
+                
+                <td>
+                    @item.Fecha
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

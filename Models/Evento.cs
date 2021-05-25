@@ -12,11 +12,13 @@ namespace AngularView.Models
         public Evento()
         {
             Caja = new HashSet<Caja>();
+            Sala = new HashSet<Sala>();
         }
 
         public int Id { get; set; }
         public string Nombre { get; set; }
 
         public virtual ICollection<Caja> Caja { get; set; }
+        public virtual ICollection<Sala> Sala { get; set; }
     }
 }
