@@ -21,6 +21,7 @@ namespace AngularView.Controllers
         // GET: AltaExpositors
         public async Task<IActionResult> Index()
         {
+
             var angularViewContext = _context.AltaExpositor.Include(a => a.IdExpositorNavigation).Include(a => a.IdVendedorNavigation);
             return View(await angularViewContext.ToListAsync());
         }

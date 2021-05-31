@@ -43,6 +43,7 @@ namespace AngularView.Controllers
             return View(liscaja);
         }
 
+
         public IActionResult Index()
         {                 
             if (String.IsNullOrEmpty(HttpContext.Session.GetString("nombre")))
@@ -52,8 +53,8 @@ namespace AngularView.Controllers
             int id = Convert.ToInt32(HttpContext.Session.GetString("id"));
             return View(_context.Vendedores.Find(id));
         }
-        [HttpPost]
-        public JsonResult Alta(Repuesta repuesta)
+
+        public IActionResult Alta(string id, string nombre)
         {
 
             try
@@ -61,33 +62,118 @@ namespace AngularView.Controllers
                 byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
                 byte[] key = Guid.NewGuid().ToByteArray();
                 string token = Convert.ToBase64String(time.Concat(key).ToArray());
-                repuesta.Token = token;
-                List<Vendedores> vendedores = _context.Vendedores.Where(d => d.IdFreelance == repuesta.id).ToList();
+                //repuesta.Token = token;
+                List<Vendedores> vendedores = _context.Vendedores.Where(d => d.IdFreelance == id).ToList();
                 if (vendedores.Count > 0)
                 {
 
-                    HttpContext.Session.SetString("id", repuesta.id);
-                    HttpContext.Session.SetString("nombre", repuesta.nombre);
-                    repuesta.repuesta = true;
+                    HttpContext.Session.SetString("id", vendedores[0].Id.ToString());
+                    HttpContext.Session.SetString("nombre", vendedores[0].Nombre);
+                  //  repuesta.repuesta = true;
                     _context.Update(vendedores[0]);
                     _context.SaveChanges();
+
+                    return Redirect(Url.ActionLink("Index", "Freelance"));
                 }
                 else
                 {
-                    Vendedores agregar = new Vendedores() { IdFreelance = repuesta.id, Nombre = repuesta.nombre, Token = token };
+                    Vendedores agregar = new Vendedores() { IdFreelance = id, Nombre = nombre, Token = token, Comision = 0,Activo = true,FechaCaducidad = DateTime.Now.AddDays(5),Modificado = DateTime.Now, };
                     _context.Vendedores.Add(agregar);
                     _context.SaveChanges();
 
-                    repuesta.repuesta = true;
+                    HttpContext.Session.SetString("id", agregar.Id.ToString());
+                    HttpContext.Session.SetString("nombre", agregar.Nombre);
+                    return Redirect(Url.ActionLink("Index", "Freelance"));
+                    //repuesta = true;
                 }
             }
             catch (Exception)
             {
 
-                repuesta.repuesta = false;
+                //repuesta = false;
             }
 
-            return Json(repuesta);
+            return View();
         }
+        public async Task<IActionResult> AltaVenta(string id, string nombre,string CorreoExpo,string EmpresaExpo,string nombreExpo, string CelularExpo)
+        {
+
+            try
+            {
+                byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
+                byte[] key = Guid.NewGuid().ToByteArray();
+                string token = Convert.ToBase64String(time.Concat(key).ToArray());
+                //repuesta.Token = token;
+                List<Vendedores> vendedores = _context.Vendedores.Where(d => d.IdFreelance == id).ToList();
+                if (vendedores.Count > 0)
+                {
+
+                    HttpContext.Session.SetString("id", vendedores[0].Id.ToString());
+                    HttpContext.Session.SetString("nombre", vendedores[0].Nombre);
+                    //  repuesta.repuesta = true;
+                    _context.Update(vendedores[0]);
+                    _context.SaveChanges();
+
+
+                }
+                else
+                {
+                    Vendedores agregar = new Vendedores() { IdFreelance = id, Nombre = nombre, Token = token, Comision = 0, Activo = true, FechaCaducidad = DateTime.Now.AddDays(5), Modificado = DateTime.Now, };
+                    _context.Vendedores.Add(agregar);
+                    _context.SaveChanges();
+
+                    HttpContext.Session.SetString("id", agregar.Id.ToString());
+                    HttpContext.Session.SetString("nombre", agregar.Nombre);
+                }
+            }
+            catch (Exception)
+            {
+
+                //repuesta = false;
+            }
+            var altaexpo = await _context.Expositor.Where(f => f.Correo.Equals(CorreoExpo)).ToListAsync();
+            if (altaexpo.Count==0)
+            {
+                AltaExpoFreelance altaExpoFreelance = new AltaExpoFreelance()
+                {
+                    Correo = CorreoExpo,
+                    Negocio = EmpresaExpo,
+                    Celular = CelularExpo,
+                    Nombre = nombreExpo,
+                    Registrado = false
+                };
+                Expositor expositor = new Expositor()
+                {
+                    Activo = true,
+                    Modificado = DateTime.Now,
+                    Celular = CelularExpo,
+                    Correo = CorreoExpo,
+                    Negocio = EmpresaExpo,
+                    Nombre = nombreExpo,
+                    Registro = DateTime.Now,
+                   
+                 
+                };
+                _context.Expositor.Add(expositor);
+                await _context.SaveChangesAsync();
+                altaExpoFreelance.Id = expositor.Id;
+                altaExpoFreelance.Registrado = true;
+                altaExpoFreelance.vendedores = expositor;
+                return View(altaExpoFreelance);
+            }
+            else
+            {
+                AltaExpoFreelance altaExpoFreelance = new AltaExpoFreelance()
+                {
+                    Id = altaexpo[0].Id,
+                    vendedores = altaexpo[0],
+                    Registrado = true
+                };
+                return View(altaExpoFreelance);
+            }
+
+
+        }
+
     }
 }

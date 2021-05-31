@@ -1,0 +1,123 @@
+﻿@model AngularView.Models.ViewModels.ModelListadoVentas
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Administrador";
+}
+
+<h2>Administrador</h2>
+
+<a asp-action="ListaVentas" class="btn btn-outline-info">Ver ventas realizadas</a>
+<div class="">
+    <table class="table table-responsive-sm">
+        <thead>
+            <tr>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    Total de la venta
+                </th>
+                <th>
+                    Estatus
+                </th>
+                <th>
+                    Nombre de cajon / Sala
+                </th>
+                <th>
+                    Negocio y nombre de contacto
+                </th>
+                <th>
+                    Contacto Vendedor
+                </th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ventaEspacios)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        Espera de pago
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCajonNavigation.Descripcion)
+                        @Html.DisplayFor(modelItem => item.IdCajonNavigation.IdSalaNavigation.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Negocio)/
+                        @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Nombre) /
+                        @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Correo) /
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdVendedorNavigation.Correo)
+                    </td>
+                    <td>
+                        <a asp-action="DeleteEspaci" asp-route-id="@item.Id">Cancelar</a> |
+                        <a asp-action="ConfirmEspacio" asp-route-id="@item.Id">Confirmar pago</a> 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<h3>Lista de vendedores</h3>
+<table class="table  table-responsive-sm">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Comision
+            </th>
+            <th>
+                Acceso
+            </th>
+            <th>
+                Correo
+            </th>
+            <th>
+                Corte por inactividad
+            </th>
+            <th>
+                Opciones
+            </th>
+ 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Vendedores)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comision)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCaducidad)
+                </td>
+
+                <td>
+
+                    <a asp-action="Activar" asp-route-id="@item.Id">Activar/Desactivar</a> |
+                    <a asp-action="Detalle" asp-route-id="@item.Id">Saber mas</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

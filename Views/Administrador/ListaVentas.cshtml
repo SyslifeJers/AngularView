@@ -1,0 +1,68 @@
+﻿@model AngularView.Models.ViewModels.ModelListadoVentas
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Administrador";
+}
+
+<h2>Administrador</h2>
+
+<a action></a>
+<div class="">
+    <table class="table table-responsive-sm">
+        <thead>
+            <tr>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    Total de la venta
+                </th>
+                <th>
+                    Estatus
+                </th>
+                <th>
+                    Nombre de cajon / Sala
+                </th>
+                <th>
+                    Negocio y nombre de contacto
+                </th>
+                <th>
+                    Contacto Vendedor
+                </th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ventaEspacios)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        Espera de pago
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCajonNavigation.Descripcion)
+                        @Html.DisplayFor(modelItem => item.IdCajonNavigation.IdSalaNavigation.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Negocio)/
+                        @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Nombre) /
+                        @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Correo) /
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdVendedorNavigation.Correo)
+                    </td>
+                    <td>
+                        <a asp-action="Confirmreenvio" asp-route-id="@item.Id">Reenviar Confirmacion</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

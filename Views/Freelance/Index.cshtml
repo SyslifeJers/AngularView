@@ -13,9 +13,9 @@
                                 <h3>Ver mis ventas </h3>
                             </div>
                             <div class="card-body">
-                                <button class="btn btn-info">
+                                <a asp-controller="Salas" asp-action="DetallesAlta" class="btn btn-info">
                                     Ver
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                                 <h3>Tu comision actual</h3>
                             </div>
                             <div class="card-body">
-                              $  @Model.Comision.ToString();
+                                <h4>$  @Model.Comision.ToString() </h4>  
                             </div>
                         </div>
                     </div>

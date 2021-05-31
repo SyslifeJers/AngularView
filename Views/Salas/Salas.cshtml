@@ -19,17 +19,17 @@
                 </div>
                 <div class="card-body">
 
-                    <a class="btn btn-outline-info" href="@Url.ActionLink("Salas","Salas")">Ver salas</a>
+                    <a class="btn btn-outline-info" asp-action="Cajas" asp-controller="Salas" asp-route-id="@item.Id">Ver espacios</a>
                 </div>
             </div>
         }
         else
         {
             <div class="card  col-3" style="margin-right:1em; margin-left:1em;">
-                <div class="card-header text-white bg-warning"> <h4>@item.Nombre <small> con @item.Caja.Where(e=>e.Ocupado==0).Count() cajones disponibles</small> </h4></div>
+                <div class="card-header bg-warning"> <h4>@item.Nombre <small> con @item.Caja.Where(e=>e.Ocupado==0).Count() espacios disponibles</small> </h4></div>
                 <div class="card-body">
 
-                    <a class="btn btn-warning" asp-action="Cajas" asp-controller="Salas" asp-route-id="@item.Id">Ver cajones</a>
+                    <a class="btn btn-warning" asp-action="Cajas" asp-controller="Salas" asp-route-id="@item.Id">Ver espacios</a>
                 </div>
             </div>
 

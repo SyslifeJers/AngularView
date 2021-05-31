@@ -21,7 +21,7 @@ namespace AngularView.Models.ViewModels
         [DataType(DataType.PhoneNumber)]
         [Required]
         public string Celular { get; set; }
-        [StringLength(18, ErrorMessage = "{0} Tamaño {2} y {1}.", MinimumLength = 8)]
+        [StringLength(18, ErrorMessage = "{0} Tamaño {2} y {1}.", MinimumLength = 3)]
         public string Negocio { get; set; }
         public string Costo { get; set; }
         public string NombreCajon { get; set; }

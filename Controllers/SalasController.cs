@@ -9,6 +9,7 @@ using AngularView.Models;
 using Microsoft.AspNetCore.Http;
 using AngularView.Models.ViewModels;
 using AutoMapper;
+using System.Net.Mail;
 
 namespace AngularView.Controllers
 {
@@ -94,6 +95,9 @@ namespace AngularView.Controllers
                 _context.VentaEspacio.Add(ventaEspacio);
                 _context.AltaExpositor.Add(altaExpositor);
                 _context.SaveChanges();
+
+                Herramientas.Correo(expositor.Correo, "Pago de espacio en AngularView", cuerpo(model));
+
                 return View("DetallesAlta", _context.VentaEspacio.Include(
                     d => d.IdExpositorNavigation).Include(d => d.IdCajonNavigation).Where(l => l.IdVendedor == id).ToList().OrderBy(f => f.Fecha));
             }
@@ -124,7 +128,26 @@ namespace AngularView.Controllers
             {
                 return Redirect(Url.ActionLink("Index", "Home"));
             }
-            return View(await _context.Caja.Where(f=>f.IdSala==id).OrderBy(d=>d.Descripcion).ToListAsync());
+            var list = await _context.Caja.Where(f => f.IdSala == id).OrderBy(d => d.Descripcion).ToListAsync();
+            List<Caja> cajas = new List<Caja>();
+            List<int> cvr = new List<int>();
+
+            foreach (var item in list)
+            {
+                cvr.Add(Convert.ToInt32(item.Descripcion));
+            }
+            var lisorede = cvr.OrderBy(d => d).ToList();
+            for (int i = 0; i < list.Count; i++)
+            {
+                foreach (var item in list)
+                {
+                    if (lisorede[i].ToString().Equals(item.Descripcion))
+                    {
+                        cajas.Add(item);
+                    }
+                } 
+            }
+            return View(cajas);
         }
 
         // GET: Salas/Details/5
@@ -146,26 +169,40 @@ namespace AngularView.Controllers
         }
 
         // GET: Salas/Create
-        public IActionResult Create()
+        private string cuerpo(ProcesoVentaModel model)
         {
-            return View();
+            string cuper = "<!DOCTYPE html> " +
+                "<html>" +
+                "<head>" +
+                    "<title>Email</title>" +
+                "</head>" +
+                "<body style=\"font-family:'Century Gothic'\">" +
+                    "<h1 style=\"text-align:center;\"> ¡Hola " + model.Nombre + "!</h1>" +
+                    "< BR >< BR > <P> Los vendedores en ningun momento pediran anticipo</ P > " +
+                    $"<h3>Tu reserva del espacio es "+model.NombreCajon+"</h3>" +
+                        $"Correo : {model.Correo}  <br />" +
+                        "Contraseña : Se le enviara un link inteligente para generar su contraseña una vez confirmado el pago<br />" +
+                        $"Empresa : {model.Negocio} <br />" +
+                        $"<h3>Intruciones de pago</h3>" +
+                           $"<p>El pago es por tranferencia bancaria </p>" +
+  "<P> Banco: BBVA </ P >" +
+       "<P> Clave: 012 580 00135237556 6 </ P >" +
+        "    <P> Tarjeta: 4152 3134 7441 0128 </ P >" +
+                "    <P> Nombre: JORGE ABRAHAM ALVARADO DANIEL </ P >" +
+         "        <P>" +
+          "        </P>" +
+           "       <P> Una vez realizado el pago deberá enviar el ticket de compra, al correo jorge.alvarado@aldacomp.com" +
+                            "para su validación y activación a su perfil al expo. Recibirá un"+
+"correo donde se le dará acceso para dar de alta sus productos.</ P >"+
+"< BR >< BR > <P><a href=\"https://www.aldacomp.com/Facturacion/\" class=\"btn btn-info\" > ¿Requieres facturación?</ P > " +
+                "</body>" +
+                "</html>";
+            return cuper;
         }
 
         // POST: Salas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumeroSala,Nombre,TipoSala,Activo,Modificado,Espacios")] Sala sala)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(sala);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(sala);
-        }
 
         // GET: Salas/Edit/5
         public async Task<IActionResult> Edit(int? id)

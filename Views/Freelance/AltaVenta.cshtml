@@ -1,0 +1,24 @@
+﻿@model AngularView.Models.ViewModels.AltaExpoFreelance
+@{
+    ViewData["Title"] = "AltaVenta";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+
+<h1>Alta Venta</h1>
+
+<div>
+
+    @if (Model.Registrado)
+    {
+        <h3>Este expositor ya fue registrado en AngularView</h3>
+        <p>Empresa: @Model.vendedores.Negocio</p>
+        <p>Correo: @Model.vendedores.Correo</p>
+        <p>Nombre: @Model.vendedores.Nombre</p>
+    }
+<hr />
+    <h4>De click en continuar para seguir el procese de reservar en un espacio en Angular View</h4>
+    <form asp-action="Index" asp-controller="Eventoes" >
+    <input type="hidden" name="Id" value="@Model.Id" />
+        <button class="btn btn-primary" type="submit">Continuar</button>
+    </form>
+</div>

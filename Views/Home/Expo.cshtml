@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AngularView</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-4">Bienvenidos</h1>
+            <video src="~/Img/Angularview.mp4" style=" width: 100%;  margin: 2em;" controls></video>
+            <p></p>
+        </div>
+
+        <div class="text-center">
+            <h2>Reservar mi lugar </h2>
+            <a class="btn btn-outline-dark">Proximamente...</a>
+
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            © 2021 - Copyright © ALDA Networks 
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+</html>

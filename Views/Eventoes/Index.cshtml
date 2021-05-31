@@ -1,0 +1,25 @@
+﻿@model AngularView.Models.ViewModels.AltaExpoFreelance
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+
+<h1>Eventos actuales</h1>
+
+@foreach (var item in Model.GetEventos)
+{
+    <div class="card col-6">
+        <div class="card-header">
+            <h4>@item.Nombre <small> con 200 espacios</small> </h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Salas">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="idevento" value="@item.Id" />
+                <button type="submit" class="btn btn-info">Ver Salas</button>
+            </form>
+            
+        </div>
+    </div>
+}

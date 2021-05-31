@@ -26,6 +26,7 @@ namespace AngularView.Models
         public virtual DbSet<Expositor> Expositor { get; set; }
         public virtual DbSet<ExpositorPago> ExpositorPago { get; set; }
         public virtual DbSet<MetodoDePago> MetodoDePago { get; set; }
+        public virtual DbSet<PagosComision> PagosComision { get; set; }
         public virtual DbSet<ProductoServicio> ProductoServicio { get; set; }
         public virtual DbSet<Sala> Sala { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
@@ -146,6 +147,20 @@ namespace AngularView.Models
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.TpoDePago).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<PagosComision>(entity =>
+            {
+                entity.Property(e => e.Fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.IdVendedor).HasColumnName("Id_Vendedor");
+
+                entity.Property(e => e.Pago).HasColumnType("decimal(28, 4)");
+
+                entity.HasOne(d => d.IdVendedorNavigation)
+                    .WithMany(p => p.PagosComision)
+                    .HasForeignKey(d => d.IdVendedor)
+                    .HasConstraintName("FK_PagosComision_Vendedores");
             });
 
             modelBuilder.Entity<ProductoServicio>(entity =>

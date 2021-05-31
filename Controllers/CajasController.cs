@@ -78,9 +78,6 @@ namespace AngularView.Controllers
                 return View(caja);
             }
 
-            ViewData["IdEvento"] = new SelectList(_context.Evento, "Id", "Id", caja.IdEvento);
-            ViewData["IdSala"] = new SelectList(_context.Sala, "Id", "Id", caja.IdSala);
-            return View(caja);
         }
 
         // GET: Cajas/Edit/5

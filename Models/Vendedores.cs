@@ -12,6 +12,7 @@ namespace AngularView.Models
         public Vendedores()
         {
             AltaExpositor = new HashSet<AltaExpositor>();
+            PagosComision = new HashSet<PagosComision>();
             VentaEspacio = new HashSet<VentaEspacio>();
         }
 
@@ -27,6 +28,7 @@ namespace AngularView.Models
         public decimal? Comision { get; set; }
 
         public virtual ICollection<AltaExpositor> AltaExpositor { get; set; }
+        public virtual ICollection<PagosComision> PagosComision { get; set; }
         public virtual ICollection<VentaEspacio> VentaEspacio { get; set; }
     }
 }

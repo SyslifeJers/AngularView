@@ -31,6 +31,11 @@ namespace AngularView.Controllers
             return View();
         }
 
+        public IActionResult Expo()
+        {
+            return View();
+        }
+
         public IActionResult Login()
         {
             if (!String.IsNullOrEmpty(HttpContext.Session.GetString("nombre")))
@@ -45,7 +50,7 @@ namespace AngularView.Controllers
         {
            if(ModelState.IsValid)
                 {
-                var logi = await _context.Vendedores.Where(d => d.Correo.Equals(loginModel.Correo)).ToListAsync();
+                var logi = await _context.Vendedores.Where(d => d.Correo.Equals(loginModel.Correo)&&d.Activo==true).ToListAsync();
                 if (logi.Count == 1)
                 {
                     if (logi[0].Passworsd.Equals(loginModel.Passworsd))
@@ -61,7 +66,7 @@ namespace AngularView.Controllers
                     }
                 }
                 else
-                    loginModel.Respuesta = "Este correo es no existe";
+                    loginModel.Respuesta = "Este correo es no existe o esta en espera de activacion";
             }
             return View(loginModel);
         }
