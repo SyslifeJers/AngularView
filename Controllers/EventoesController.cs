@@ -8,14 +8,15 @@ using Microsoft.EntityFrameworkCore;
 using AngularView.Models;
 using Microsoft.AspNetCore.Http;
 using AngularView.Models.ViewModels;
+using AngularView.Models.Context;
 
 namespace AngularView.Controllers
 {
     public class EventoesController : Controller
     {
-        private readonly AngularViewContext _context;
+        private readonly u535755128_AngularviewContext _context;
 
-        public EventoesController(AngularViewContext context)
+        public EventoesController(u535755128_AngularviewContext context)
         {
             _context = context;
         }

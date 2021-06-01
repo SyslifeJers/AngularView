@@ -10,14 +10,15 @@ using Microsoft.AspNetCore.Http;
 using AngularView.Models.ViewModels;
 using AutoMapper;
 using System.Net.Mail;
+using AngularView.Models.Context;
 
 namespace AngularView.Controllers
 {
     public class SalasController : Controller
     {
-        private readonly AngularViewContext _context;
+        private readonly u535755128_AngularviewContext _context;
         private readonly IMapper _mapper;
-        public SalasController(AngularViewContext context, IMapper mapper)
+        public SalasController(u535755128_AngularviewContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -72,14 +73,14 @@ namespace AngularView.Controllers
 
                 Expositor expositor = new Expositor();
                 expositor = _mapper.Map<Expositor>(model);
-                expositor.Activo = false;
+                expositor.Activo = 0;
                 expositor.Modificado = DateTime.Now;
                 expositor.Registro = DateTime.Now;
                 _context.Expositor.Add(expositor);
                 _context.SaveChanges();
 
                 AltaExpositor altaExpositor = new AltaExpositor();
-                altaExpositor.Activo = true;
+                altaExpositor.Activo = 1;
                 altaExpositor.IdExpositor = expositor.Id;
                 altaExpositor.Fecha = DateTime.Now;
                 altaExpositor.Modificado = DateTime.Now;

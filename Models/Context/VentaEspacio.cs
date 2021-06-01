@@ -5,16 +5,20 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace AngularView.Models
+namespace AngularView.Models.Context
 {
-    public partial class PagosComision
+    public partial class VentaEspacio
     {
         public int Id { get; set; }
-        public decimal? Pago { get; set; }
+        public int? IdExpositor { get; set; }
+        public int? IdCajon { get; set; }
         public DateTime? Fecha { get; set; }
-        public bool? Activo { get; set; }
         public int? IdVendedor { get; set; }
+        public decimal? Total { get; set; }
+        public int? Estatus { get; set; }
 
+        public virtual Caja IdCajonNavigation { get; set; }
+        public virtual Expositor IdExpositorNavigation { get; set; }
         public virtual Vendedores IdVendedorNavigation { get; set; }
     }
 }

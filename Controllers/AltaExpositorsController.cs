@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AngularView.Models;
+using AngularView.Models.Context;
 
 namespace AngularView.Controllers
 {
     public class AltaExpositorsController : Controller
     {
-        private readonly AngularViewContext _context;
+        private readonly u535755128_AngularviewContext _context;
 
-        public AltaExpositorsController(AngularViewContext context)
+        public AltaExpositorsController(u535755128_AngularviewContext context)
         {
             _context = context;
         }

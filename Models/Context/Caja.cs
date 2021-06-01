@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace AngularView.Models
+namespace AngularView.Models.Context
 {
     public partial class Caja
     {
@@ -19,7 +19,7 @@ namespace AngularView.Models
         public int? IdSala { get; set; }
         public int? IdEvento { get; set; }
         public int? Tipo { get; set; }
-        public bool? Activo { get; set; }
+        public int? Activo { get; set; }
         public DateTime? Modificado { get; set; }
         public string Costo { get; set; }
         public int? Ocupado { get; set; }

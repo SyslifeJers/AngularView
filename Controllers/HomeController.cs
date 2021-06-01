@@ -1,4 +1,5 @@
 ﻿using AngularView.Models;
+using AngularView.Models.Context;
 using AngularView.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,8 +16,8 @@ namespace AngularView.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly AngularViewContext _context;
-        public HomeController(ILogger<HomeController> logger,AngularViewContext context)
+        private readonly u535755128_AngularviewContext _context;
+        public HomeController(ILogger<HomeController> logger,u535755128_AngularviewContext context)
         {
             _logger = logger;
             _context = context;
@@ -50,7 +51,7 @@ namespace AngularView.Controllers
         {
            if(ModelState.IsValid)
                 {
-                var logi = await _context.Vendedores.Where(d => d.Correo.Equals(loginModel.Correo)&&d.Activo==true).ToListAsync();
+                var logi = await _context.Vendedores.Where(d => d.Correo.Equals(loginModel.Correo)&&d.Activo==1).ToListAsync();
                 if (logi.Count == 1)
                 {
                     if (logi[0].Passworsd.Equals(loginModel.Passworsd))

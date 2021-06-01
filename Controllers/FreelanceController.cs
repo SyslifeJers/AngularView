@@ -1,4 +1,5 @@
 ﻿using AngularView.Models;
+using AngularView.Models.Context;
 using AngularView.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,9 @@ namespace AngularView.Controllers
 {
     public class FreelanceController : Controller
     {
-        private readonly AngularViewContext _context;
+        private readonly u535755128_AngularviewContext _context;
         
-        public FreelanceController(AngularViewContext context)
+        public FreelanceController(u535755128_AngularviewContext context)
         {
             _context = context;
         }
@@ -77,7 +78,7 @@ namespace AngularView.Controllers
                 }
                 else
                 {
-                    Vendedores agregar = new Vendedores() { IdFreelance = id, Nombre = nombre, Token = token, Comision = 0,Activo = true,FechaCaducidad = DateTime.Now.AddDays(5),Modificado = DateTime.Now, };
+                    Vendedores agregar = new Vendedores() { IdFreelance = id, Nombre = nombre, Token = token, Comision = 0,Activo = 1,FechaCaducidad = DateTime.Now.AddDays(5),Modificado = DateTime.Now, };
                     _context.Vendedores.Add(agregar);
                     _context.SaveChanges();
 
@@ -118,7 +119,7 @@ namespace AngularView.Controllers
                 }
                 else
                 {
-                    Vendedores agregar = new Vendedores() { IdFreelance = id, Nombre = nombre, Token = token, Comision = 0, Activo = true, FechaCaducidad = DateTime.Now.AddDays(5), Modificado = DateTime.Now, };
+                    Vendedores agregar = new Vendedores() { IdFreelance = id, Nombre = nombre, Token = token, Comision = 0, Activo = 1, FechaCaducidad = DateTime.Now.AddDays(5), Modificado = DateTime.Now, };
                     _context.Vendedores.Add(agregar);
                     _context.SaveChanges();
 
@@ -144,7 +145,7 @@ namespace AngularView.Controllers
                 };
                 Expositor expositor = new Expositor()
                 {
-                    Activo = true,
+                    Activo = 1,
                     Modificado = DateTime.Now,
                     Celular = CelularExpo,
                     Correo = CorreoExpo,

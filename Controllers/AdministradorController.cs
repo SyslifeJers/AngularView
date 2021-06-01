@@ -1,4 +1,5 @@
-﻿using AngularView.Models;
+﻿
+using AngularView.Models.Context;
 using AngularView.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,8 +13,8 @@ namespace AngularView.Controllers
 {
     public class AdministradorController : Controller
     {
-        private readonly AngularViewContext _context;
-        public AdministradorController(AngularViewContext context)
+        private readonly u535755128_AngularviewContext _context;
+        public AdministradorController(u535755128_AngularviewContext context)
         {
             _context = context;
         }
@@ -28,7 +29,7 @@ namespace AngularView.Controllers
             await _context.SaveChangesAsync();
 
             ModelListadoVentas model = new ModelListadoVentas();
-            model.Vendedores = _context.Vendedores.Include(d => d.AltaExpositor).ToList();
+            model.Vendedores = await _context.Vendedores.ToListAsync();
             model.ventaEspacios = _context.VentaEspacio.Where(d => d.Estatus == 1).Include(d => d.IdExpositorNavigation).Include(d => d.IdCajonNavigation).Include(d => d.IdVendedorNavigation).Include(d => d.IdCajonNavigation.IdSalaNavigation).ToList();
             return View("Index",model);
         }
@@ -132,13 +133,13 @@ namespace AngularView.Controllers
             try
             {
                 Vendedores vendedores = await _context.Vendedores.FindAsync(id);
-                if ((bool)vendedores.Activo)
+                if (vendedores.Activo==1)
                 {
-                    vendedores.Activo = false;
+                    vendedores.Activo = 0;
                 }
                 else
                 {
-                    vendedores.Activo = true;
+                    vendedores.Activo = 1;
                     vendedores.FechaCaducidad = DateTime.Now.AddDays(15);
                 }
                 _context.Update(vendedores);

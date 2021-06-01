@@ -1,4 +1,5 @@
 using AngularView.Models;
+using AngularView.Models.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,7 +33,7 @@ namespace AngularView
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc();
             services.AddControllersWithViews();
-            services.AddDbContext<AngularViewContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<u535755128_AngularviewContext>(Options => Options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             object p = services.AddAutoMapper(typeof(Startup));
 
         }

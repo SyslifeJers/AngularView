@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AngularView.Models;
+using AngularView.Models.Context;
 
 namespace AngularView.Controllers
 {
     public class CajasController : Controller
     {
-        private readonly AngularViewContext _context;
+        private readonly u535755128_AngularviewContext _context;
 
-        public CajasController(AngularViewContext context)
+        public CajasController(u535755128_AngularviewContext context)
         {
             _context = context;
         }
@@ -64,7 +65,7 @@ namespace AngularView.Controllers
             try
             {
                 caja.Ocupado = 0;
-                caja.Activo = true;
+                caja.Activo = 1;
                 caja.Modificado = DateTime.Now;
                 _context.Add(caja);
                 await _context.SaveChangesAsync();

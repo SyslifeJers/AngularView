@@ -8,14 +8,15 @@ using Microsoft.EntityFrameworkCore;
 using AngularView.Models;
 using AngularView.Models.ViewModels;
 using AutoMapper;
+using AngularView.Models.Context;
 
 namespace AngularView.Controllers
 {
     public class VendedoresController : Controller
     {
-        private readonly AngularViewContext _context;
+        private readonly u535755128_AngularviewContext _context;
         private readonly IMapper _mapper;
-        public VendedoresController(AngularViewContext context, IMapper mapper)
+        public VendedoresController(u535755128_AngularviewContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -64,7 +65,7 @@ namespace AngularView.Controllers
                 if (listVender.Count ==0)
                 {
                     Vendedores vended = _mapper.Map<Vendedores>(vendedores);
-                    vended.Activo = false;
+                    vended.Activo = 1;
                     vended.Comision = 0;
                     vended.FechaCaducidad = DateTime.Now;
                     vended.Modificado = DateTime.Now;
