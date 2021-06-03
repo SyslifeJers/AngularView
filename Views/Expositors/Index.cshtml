@@ -1,15 +1,12 @@
-﻿@model IEnumerable<AngularView.Models.Context.Context.Expositor>
+﻿@model IEnumerable<AngularView.Models.Context.Expositor>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Lista</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -80,9 +77,9 @@
                 @Html.DisplayFor(modelItem => item.Negocio)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }

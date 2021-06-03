@@ -1,7 +1,8 @@
-﻿@model IEnumerable<AngularView.Models.Context.Vendedores>
+﻿@model IEnumerable<AngularView.Models.Context.ProductoServicio>
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
 }
 
 <h1>Index</h1>
@@ -13,19 +14,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdFreelance)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Token)
+                @Html.DisplayNameFor(model => model.Decripcion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Correo)
+                @Html.DisplayNameFor(model => model.PrecioNormal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Passworsd)
+                @Html.DisplayNameFor(model => model.PrecioDescuento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descuento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Activo)
@@ -34,10 +38,10 @@
                 @Html.DisplayNameFor(model => model.Modificado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaCaducidad)
+                @Html.DisplayNameFor(model => model.Stock)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Comision)
+                @Html.DisplayNameFor(model => model.IdExpositorNavigation)
             </th>
             <th></th>
         </tr>
@@ -46,19 +50,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdFreelance)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Token)
+                @Html.DisplayFor(modelItem => item.Decripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Correo)
+                @Html.DisplayFor(modelItem => item.PrecioNormal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Passworsd)
+                @Html.DisplayFor(modelItem => item.PrecioDescuento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descuento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Activo)
@@ -67,10 +74,10 @@
                 @Html.DisplayFor(modelItem => item.Modificado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaCaducidad)
+                @Html.DisplayFor(modelItem => item.Stock)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Comision)
+                @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

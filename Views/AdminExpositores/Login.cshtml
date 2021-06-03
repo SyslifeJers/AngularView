@@ -1,0 +1,120 @@
+﻿@model AngularView.Models.ViewModels.ModelLoginExpoxitor
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AngularView</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+    body { background-image: url('../Img/fonFree.jpg'); 
+           background-position: center; background-size: cover; -webkit-font-smoothing: antialiased; font: normal 14px Roboto,arial,sans-serif; }
+
+        .container {
+            padding: 110px;
+        }
+
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #ffffff !important;
+            opacity: 1; /* Firefox */
+            font-size: 18px !important;
+        }
+
+        .form-login {
+            background-color: rgba(0,0,0,0.55);
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 15px;
+            border-color: #d2d2d2;
+            border-width: 5px;
+            color: white;
+            box-shadow: 0 1px 0 #cfcfcf;
+        }
+
+        .form-control {
+            background: transparent !important;
+            color: white !important;
+            font-size: 18px !important;
+        }
+
+        h1 {
+            color: white !important;
+        }
+
+        h4 {
+            border: 0 solid #fff;
+            border-bottom-width: 1px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .text-white {
+            color: white !important;
+        }
+
+        .wrapper {
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-5 col-md-4 text-center">
+                <h1 class='text-white'>Angular View</h1>
+                <div class="form-login">
+                    <form asp-action="Login">
+                        <br>
+                        <h4>Bienvenido</h4>
+                        <br>
+                        <input asp-for="Correo" class="form-control input-sm chat-input" placeholder="Correo" />
+                        <span asp-validation-for="Correo" class="text-danger"></span>
+                        <br><br>
+                        <input type="text" asp-for="Pass" class="form-control input-sm chat-input" placeholder="Contraseña" />
+                        <span asp-validation-for="Pass" class="text-danger"></span>
+                        <br><br>
+                        @if (Model != null)
+                        {
+                            if (Model.Coreect != null)
+                            {
+                                if (!Model.Coreect)
+                                {
+                    <div class="alert alert-warning" role="alert">
+                        Ups! @Model.Mensaje
+                    </div>
+                                }
+                            }
+
+                        }
+
+
+                        <div class="wrapper">
+                            <span class="group-btn">
+                                <button class="btn btn-danger btn-md" type="submit">Ingresar <i class="fa fa-sign-in"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer text-white text-center">
+            <p>© 2021 - Copyright © ALDA Networks</p>
+        </div>
+    </div>
+</body>
+</html>

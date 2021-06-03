@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AngularView.Models.Context.Context.Evento>
+﻿@model IEnumerable<AngularView.Models.Context.Evento>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,7 +8,7 @@
 <h1>Eventos actuales</h1>
 
 @foreach (var item in Model) {
-       <div class="card col-6">
+       <div class="card col-12">
            <div class="card-header">
                <h4>@item.Nombre <small> con @item.Caja.Count cajones</small> </h4>
            </div>
