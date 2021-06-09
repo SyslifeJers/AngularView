@@ -25,13 +25,19 @@ namespace AngularView.Controllers
         }
 
         // GET: AdminExpositoresController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+
+            return View(await _context.ProductoServicio.FindAsync(id));
         }
 
+
         // GET: AdminExpositoresController/Create
-        public ActionResult Login()
+        public IActionResult Login()
         {
             return View();
         }
@@ -39,7 +45,7 @@ namespace AngularView.Controllers
         // POST: AdminExpositoresController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(ModelLoginExpoxitor model)
+        public async Task<IActionResult> Login(ModelLoginExpoxitor model)
         {
             try
             {
@@ -72,7 +78,7 @@ namespace AngularView.Controllers
                                 HttpContext.Session.SetString("id", expos[0].Id.ToString());
                                 HttpContext.Session.SetString("nombre", expos[0].Nombre);
                                 HttpContext.Session.SetString("tipo", "new");
-                                return Redirect(Url.Action("HolaAngularView")); 
+                                return View("HolaAngularView", expos[0]); 
                             }
                             else
                             {
@@ -98,55 +104,110 @@ namespace AngularView.Controllers
         // GET: AdminExpositoresController/Edit/5
         public ActionResult HolaAngularView()
         {
-            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
-            {
-                return Redirect(Url.ActionLink("Index", "Home"));
-            }
+
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> HolaAngularView(Expositor model)
+        {
+
+            _context.Update(model);
+            await _context.SaveChangesAsync();
+            return View("Admin");
         }
 
         public ActionResult Admin()
         {
             if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
             {
-                return Redirect(Url.ActionLink("Index", "Home"));
+                return Redirect(Url.ActionLink("Expo", "Home"));
             }
             return View();
+        }
+        public async Task<ActionResult> Edit(int id)
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+
+            return View(await _context.ProductoServicio.FindAsync(id));
         }
 
         // POST: AdminExpositoresController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(ProductoServicio model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _context.ProductoServicio.Update(model);
+                await _context.SaveChangesAsync();
+                return View();
             }
             catch
             {
-                return View();
+                return View(model);
             }
+        }
+        public async Task<IActionResult> Productos()
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+            string id = HttpContext.Session.GetString("id");
+            List<ProductoServicio> model = await _context.ProductoServicio.Where(f => f.IdExpositor == Convert.ToInt32(id)).ToListAsync();
+            return View(model);
         }
 
         // GET: AdminExpositoresController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Create()
         {
             return View();
+        }
+        public ActionResult Delete()
+        {
+            return View();
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var expositor = await _context.Expositor.FindAsync(id);
+            _context.Expositor.Remove(expositor);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: AdminExpositoresController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Create(ProductoServicio model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+
+                if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+                {
+                    return Redirect(Url.ActionLink("Expo", "Home"));
+                }
+                string id = HttpContext.Session.GetString("id");
+
+                model.Activo = 1;
+                model.Modificado = DateTime.Now;
+                model.IdExpositor = Convert.ToInt32(id);
+
+                _context.Add(model);
+                await _context.SaveChangesAsync();
+
+                List<ProductoServicio> modelList = await _context.ProductoServicio.Where(f => f.IdExpositor == Convert.ToInt32(id)).ToListAsync();
+                return View("Productos", modelList);
             }
             catch
             {
-                return View();
+                return View("Admin");
             }
         }
     }

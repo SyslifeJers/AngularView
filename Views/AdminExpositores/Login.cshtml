@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AngularView</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
 
     <style>
     body { background-image: url('../Img/fonFree.jpg'); 
@@ -85,7 +84,7 @@
                         <input asp-for="Correo" class="form-control input-sm chat-input" placeholder="Correo" />
                         <span asp-validation-for="Correo" class="text-danger"></span>
                         <br><br>
-                        <input type="text" asp-for="Pass" class="form-control input-sm chat-input" placeholder="Contraseña" />
+                        <input type="password" asp-for="Pass" class="form-control input-sm chat-input" placeholder="Contraseña" />
                         <span asp-validation-for="Pass" class="text-danger"></span>
                         <br><br>
                         @if (Model != null)
