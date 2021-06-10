@@ -5,12 +5,13 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace AngularView.Models.Context
+namespace AngularView.Models
 {
     public partial class Caja
     {
         public Caja()
         {
+            DetalleCaja = new HashSet<DetalleCaja>();
             VentaEspacio = new HashSet<VentaEspacio>();
         }
 
@@ -26,6 +27,7 @@ namespace AngularView.Models.Context
 
         public virtual Evento IdEventoNavigation { get; set; }
         public virtual Sala IdSalaNavigation { get; set; }
+        public virtual ICollection<DetalleCaja> DetalleCaja { get; set; }
         public virtual ICollection<VentaEspacio> VentaEspacio { get; set; }
     }
 }

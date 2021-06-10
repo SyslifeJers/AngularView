@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace AngularView.Models.Context
+namespace AngularView.Models
 {
     public partial class u535755128_AngularviewContext : DbContext
     {
@@ -22,6 +22,8 @@ namespace AngularView.Models.Context
         public virtual DbSet<AltaExpositor> AltaExpositor { get; set; }
         public virtual DbSet<Caja> Caja { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<DetalleCaja> DetalleCaja { get; set; }
+        public virtual DbSet<EfmigrationsHistory> EfmigrationsHistory { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<Expositor> Expositor { get; set; }
         public virtual DbSet<ExpositorPago> ExpositorPago { get; set; }
@@ -37,6 +39,7 @@ namespace AngularView.Models.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySql("server=31.170.160.103;database=u535755128_Angularview;user=u535755128_jers;password=Rtx2080_", x => x.ServerVersion("10.4.17-mariadb"));
             }
         }
@@ -140,6 +143,95 @@ namespace AngularView.Models.Context
                     .HasColumnType("varchar(150)")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
+            });
+
+            modelBuilder.Entity<DetalleCaja>(entity =>
+            {
+                entity.HasIndex(e => e.IdCaja)
+                    .HasName("RelacionExpositorDetalleCaja");
+
+                entity.HasIndex(e => e.IdExpositor)
+                    .HasName("RelacionCajaExpositor");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdCaja)
+                    .HasColumnName("id_Caja")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdExpositor)
+                    .HasColumnName("id_Expositor")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Modificado).HasColumnType("datetime");
+
+                entity.Property(e => e.RedFacebook)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.RedInstagram)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.RedWhats)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Resumen)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Titulo)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.VideoYoutube)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.IdCajaNavigation)
+                    .WithMany(p => p.DetalleCaja)
+                    .HasForeignKey(d => d.IdCaja)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("RelacionExpositorDetalleCaja");
+
+                entity.HasOne(d => d.IdExpositorNavigation)
+                    .WithMany(p => p.DetalleCaja)
+                    .HasForeignKey(d => d.IdExpositor)
+                    .HasConstraintName("RelacionCajaExpositor");
+            });
+
+            modelBuilder.Entity<EfmigrationsHistory>(entity =>
+            {
+                entity.HasKey(e => e.MigrationId)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("__EFMigrationsHistory");
+
+                entity.Property(e => e.MigrationId)
+                    .HasColumnType("varchar(95)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ProductVersion)
+                    .IsRequired()
+                    .HasColumnType("varchar(32)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
             });
 
             modelBuilder.Entity<Evento>(entity =>

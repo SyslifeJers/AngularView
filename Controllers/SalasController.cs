@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Http;
 using AngularView.Models.ViewModels;
 using AutoMapper;
 using System.Net.Mail;
-using AngularView.Models.Context;
 
 namespace AngularView.Controllers
 {

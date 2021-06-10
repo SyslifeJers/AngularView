@@ -1,6 +1,6 @@
-﻿@model IEnumerable<AngularView.Models.Context.ProductoServicio>
-
+﻿@model AngularView.Models.ViewModels.ModelListproduct
 @{
+
     ViewData["Title"] = "Productos";
     Layout = "~/Views/Shared/_LayoutExpositor.cshtml";
 }
@@ -14,31 +14,25 @@
     <thead>
         <tr>
             <th>
-
+                Imagen
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+        Titulo 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Decripcion)
+               Descripción
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrecioNormal)
+                Costo Normal
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrecioDescuento)
+             Con Descuento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descuento)
+             Descuento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tipo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Modificado)
+               Producto o Servicio
             </th>
             <th>
                 Interesados
@@ -47,11 +41,20 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="AgregarImg" asp-route-id="@item.Id">Agregar imagen</a>
-            </td>
+
+@foreach (var item in Model.productoServicios) {
+
+
+    <tr>
+        <td>
+            @{string rut = "../Img/angularView.png";}
+            <img style="width:7em" src="@Url.Content(String.Format("~/Product/" + item.Id + ".png"))" onerror="if (this.src != '@rut') this.src = '@rut';">
+
+
+            <a asp-action="SubirImagen" asp-route-id="@item.Id">Cambiar imagen</a>
+
+
+        </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
@@ -65,22 +68,33 @@
                 @Html.DisplayFor(modelItem => item.PrecioDescuento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descuento)
+                @if (item.Descuento == 1)
+                {
+                    <p>Sí</p>
+                }
+                else
+                {
+                    <p>No</p>
+                }
             </td>
             <td>
+                @if (item.Tipo==1)
+                {
+                    <p>Producto</p>
+                }
+                else
+                {
+                    <p>Servicio</p>
+                }
+
                 @Html.DisplayFor(modelItem => item.Tipo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modificado)
-            </td>
-            <td>
+
                 @Html.DisplayFor(modelItem => item.Stock)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>

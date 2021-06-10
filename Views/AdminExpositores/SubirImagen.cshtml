@@ -1,0 +1,50 @@
+﻿@model AngularView.Models.ViewModels.ModelArchivo
+@{
+    ViewData["Title"] = "SubirImagen";
+    Layout = "~/Views/Shared/_LayoutExpositor.cshtml";
+}
+
+<h1>Subir Imagen</h1>
+<div>
+    <h4>ProductoServicio</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.productoServicio.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.productoServicio.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.productoServicio.Decripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.productoServicio.Decripcion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.productoServicio.PrecioNormal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.productoServicio.PrecioNormal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.productoServicio.PrecioDescuento)
+        </dt>
+
+    </dl>
+</div>
+
+<form asp-action="SubirImagen" enctype="multipart/form-data">
+
+    <input hidden asp-for="id_Producto" />
+    <div class="form-group">    <input asp-for="File" type="file" class="form-control-file" /></div>
+    <div class="form-group">    <input class="btn btn-primary" type="submit" value="Subir imagen" /></div>
+
+   @if (!String.IsNullOrEmpty(Model.mensaje))
+	{
+<div class="alert alert-primary" role="alert">
+    @Model.mensaje
+</div>
+	}
+
+</form>

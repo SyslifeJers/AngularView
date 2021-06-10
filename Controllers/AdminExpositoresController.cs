@@ -1,10 +1,13 @@
-﻿using AngularView.Models.Context;
+﻿using AngularView.Models;
 using AngularView.Models.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
+
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,9 +16,11 @@ namespace AngularView.Controllers
     public class AdminExpositoresController : Controller
     {
         u535755128_AngularviewContext _context;
-        public AdminExpositoresController(u535755128_AngularviewContext context)
+        private readonly IHostingEnvironment hostingEnvironment;
+        public AdminExpositoresController(u535755128_AngularviewContext context, IHostingEnvironment hosting)
         {
             _context = context;
+            hostingEnvironment = hosting;
         }
         // GET: AdminExpositoresController
         public ActionResult Index()
@@ -158,27 +163,51 @@ namespace AngularView.Controllers
                 return Redirect(Url.ActionLink("Expo", "Home"));
             }
             string id = HttpContext.Session.GetString("id");
+            string pathBase = HttpContext.Request.PathBase;
+            
             List<ProductoServicio> model = await _context.ProductoServicio.Where(f => f.IdExpositor == Convert.ToInt32(id)).ToListAsync();
-            return View(model);
+            ModelListproduct modelsda = new ModelListproduct() { 
+                productoServicios = model,
+            rut = pathBase
+            };
+            return View(modelsda);
         }
 
         // GET: AdminExpositoresController/Delete/5
         public ActionResult Create()
         {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
             return View();
         }
-        public ActionResult Delete()
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+
+            return View(await _context.ProductoServicio.FindAsync(id));
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var expositor = await _context.Expositor.FindAsync(id);
-            _context.Expositor.Remove(expositor);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+            var prod = await _context.ProductoServicio.FindAsync(id);
+            string compa = HttpContext.Session.GetString("id");
+            string comdele = prod.IdExpositor.ToString();
+            if (comdele.Equals(compa))
+            {
+                _context.ProductoServicio.Remove(prod);
+                await _context.SaveChangesAsync(); 
+            }
+            return RedirectToAction(nameof(Admin));
         }
 
         // POST: AdminExpositoresController/Delete/5
@@ -202,13 +231,97 @@ namespace AngularView.Controllers
                 _context.Add(model);
                 await _context.SaveChangesAsync();
 
-                List<ProductoServicio> modelList = await _context.ProductoServicio.Where(f => f.IdExpositor == Convert.ToInt32(id)).ToListAsync();
-                return View("Productos", modelList);
+                List<ProductoServicio> modelsad = await _context.ProductoServicio.Where(f => f.IdExpositor == Convert.ToInt32(id)).ToListAsync();
+                ModelListproduct modelsda = new ModelListproduct()
+                {
+                    productoServicios = modelsad,
+                };
+                return View("Productos", modelsda);
             }
             catch
             {
                 return View("Admin");
             }
         }
+        private string GetUniqueFileName(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            return Path.GetFileNameWithoutExtension(fileName)
+                      + "_"
+                      + Guid.NewGuid().ToString().Substring(0, 4)
+                      + Path.GetExtension(fileName);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SubirImagen(ModelArchivo model)
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+
+            if (model.File.Length > 0 && model.File.ContentType.Contains("image"))
+            {
+                if (model.File != null)
+                {
+
+                    try
+                    {
+                        var uniqueFileName = GetUniqueFileName(model.File.FileName);
+                        var uploads = Path.Combine(hostingEnvironment.WebRootPath, "Product");
+                        var filePath = Path.Combine(uploads, model.id_Producto + ".png");
+                        if (System.IO.File.Exists(filePath))
+                        {
+                            System.IO.File.Delete(filePath);
+                            model.File.CopyTo(new FileStream(filePath, FileMode.Create));
+                        }
+                        else
+                        {
+                            model.File.CopyTo(new FileStream(filePath, FileMode.Create));
+                        }
+                        string id = HttpContext.Session.GetString("id");
+                        List<ProductoServicio> modelsad = await _context.ProductoServicio.Where(f => f.IdExpositor == Convert.ToInt32(id)).ToListAsync();
+                        ModelListproduct modelsda = new ModelListproduct()
+                        {
+                            productoServicios = modelsad,
+                        };
+                        return View("Productos", modelsda);
+                    }
+                    catch (Exception)
+                    {
+
+
+                        ModelArchivo modelArcsahivo = new ModelArchivo()
+                        {
+                            id_Producto = model.id_Producto,
+                            productoServicio = _context.ProductoServicio.Find(model.id_Producto),
+                            mensaje = "Seguimos en proceso con la anterior imagen intente mas tarde"
+                        };
+                        return View(modelArcsahivo);
+                    }
+                } 
+            }
+
+            ModelArchivo modelArchivo = new ModelArchivo() { 
+            id_Producto = model.id_Producto,
+            productoServicio = _context.ProductoServicio.Find(model.id_Producto)
+            };
+            return View(modelArchivo);
+        }
+
+        public ActionResult SubirImagen(int id)
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+            ModelArchivo modelArchivo = new ModelArchivo()
+            {
+                id_Producto = id,
+                productoServicio = _context.ProductoServicio.Find(id)
+            };
+            return View(modelArchivo);
+        }
+
     }
 }

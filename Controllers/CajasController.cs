@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AngularView.Models;
-using AngularView.Models.Context;
+
 
 namespace AngularView.Controllers
 {

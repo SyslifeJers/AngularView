@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AngularView.Models.ViewModels
 {
-    public class ModelListadoVentas
+    public class ModelListproduct
     {
-        public List<VentaEspacio> ventaEspacios { get; set; }
-        public List<Vendedores> Vendedores { get; set; }
+        public List<ProductoServicio> productoServicios { get; set; }
+        public string rut { get; set; } 
     }
 }

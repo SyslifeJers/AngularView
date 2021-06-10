@@ -1,4 +1,4 @@
-﻿@model AngularView.Models.Context.ProductoServicio
+﻿@model AngularView.Models.ProductoServicio
 
 @{
     ViewData["Title"] = "Edit";
@@ -35,24 +35,41 @@
                 <span asp-validation-for="PrecioDescuento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Descuento" class="control-label"></label>
-                <input asp-for="Descuento" class="form-control" />
+                <label class="control-label">¿Este producto o servicio tiene descuento?</label>
+                <br />
+                <div class="form-check form-check-inline">
+                    <input checked class="form-check-input" type="radio" name="Descuento" id="Descuento1" value="1">
+                    <label class="form-check-label" for="Descuento1">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Descuento" id="Descuento2" value="0">
+                    <label class="form-check-label" for="Descuento2">No</label>
+                </div>
                 <span asp-validation-for="Descuento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Tipo" class="control-label"></label>
-                <input asp-for="Tipo" class="form-control" />
+                <label class="control-label">¿Es producto o servicio?</label>
+                <br />
+                <div class="form-check form-check-inline">
+                    <input checked class="form-check-input" type="radio" name="Tipo" id="Tipo1" value="1">
+                    <label class="form-check-label" for="Tipo">Producto</label>
+                </div>
+                <div class="form-check form-check-inline">
+
+                    <input class="form-check-input" type="radio" name="Tipo" id="DTipo2" value="0">
+                    <label class="form-check-label" for="Tipo2">Servicio</label>
+                </div>
                 <span asp-validation-for="Tipo" class="text-danger"></span>
             </div>
 
-                <input asp-for="Activo" class="form-control" hidden/>
+            <input asp-for="Activo" class="form-control" hidden />
 
-                <input asp-for="Modificado" class="form-control" hidden />
-              
+            <input asp-for="Modificado" class="form-control" hidden />
 
-                <input asp-for="Stock" class="form-control" hidden/>
-                
-                <select asp-for="IdExpositor" class="form-control" asp-items="ViewBag.IdExpositor" hidden></select>
+
+            <input asp-for="Stock" class="form-control" hidden />
+
+            <select asp-for="IdExpositor" class="form-control" asp-items="ViewBag.IdExpositor" hidden></select>
 
             <div class="form-group">
                 <input type="submit" value="Cambiar" class="btn btn-primary" />

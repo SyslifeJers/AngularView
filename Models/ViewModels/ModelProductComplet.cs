@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AngularView.Models.ViewModels
 {
-    public class ModelListadoVentas
+    public class ModelProductComplet : ProductoServicio
     {
-        public List<VentaEspacio> ventaEspacios { get; set; }
-        public List<Vendedores> Vendedores { get; set; }
+
     }
 }
