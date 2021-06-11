@@ -1,5 +1,5 @@
 ﻿using AngularView.DTOs;
-using AngularView.Models.Context;
+using AngularView.Models;
 using AutoMapper;
 using AutoMapper.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

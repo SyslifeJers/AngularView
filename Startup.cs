@@ -1,6 +1,5 @@
 using AngularView.Filtros;
 using AngularView.Models;
-using AngularView.Models.Context;
 using AngularView.Utilidades;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
