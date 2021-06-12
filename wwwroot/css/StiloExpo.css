@@ -1,2 +1,73 @@
-﻿body {
+﻿*{
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+}
+
+.fondo-pantalla {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute
+}
+
+.cursor-hover-animation {
+    background-color: transparent;
+    cursor: pointer;
+    
+    
+}
+
+
+.boton-informacion {
+    display: flex;
+    position: absolute;
+    top: 48%;
+    left: 0%;
+    height: 30%;
+    width: 27%;
+}
+
+.boton-registro {
+    display: flex;
+    position: absolute;
+    top: 48%;
+    left: 29%;
+    height: 30%;
+    width: 27%;
+}
+
+
+.boton-sala1 {
+    display: flex;
+    position: absolute;
+    top: 58%;
+    right: 30%;
+    height: 30%;
+    width: 15%;
+}
+
+
+.boton-sala2 {
+    display: flex;
+    position: absolute;
+    top: 60%;
+    right: 15%;
+    height: 30%;
+    width: 15%;
+}
+
+
+.boton-sala3 {
+    display: flex;
+    position: absolute;
+    top: 63%;
+    right: 0%;
+    height: 30%;
+    width: 15%;
+
 }
