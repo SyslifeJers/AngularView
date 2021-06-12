@@ -39,7 +39,7 @@ namespace AngularView.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+
                 optionsBuilder.UseMySql("server=31.170.160.103;database=u535755128_Angularview;user=u535755128_jers;password=Rtx2080_", x => x.ServerVersion("10.4.17-mariadb"));
             }
         }

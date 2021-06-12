@@ -9,7 +9,6 @@ using AngularView.Models;
 using Microsoft.AspNetCore.Http;
 using AngularView.Models.ViewModels;
 
-
 namespace AngularView.Controllers
 {
     public class EventoesController : Controller
@@ -73,8 +72,8 @@ namespace AngularView.Controllers
 
                 Herramientas.Correo(klist[0].Correo, "Pago de espacio en AngularView", cuerpo(klist[0].Nombre, coaka.Descripcion+" Espacio", klist[0].Correo, klist[0].Negocio));
 
-                return Redirect(Url.ActionLink("DetallesAlta", "Salas", _context.VentaEspacio.Include(
-                    d => d.IdExpositorNavigation).Include(d => d.IdCajonNavigation).Where(l => l.IdVendedor == id).ToList().OrderBy(f => f.Fecha))); ;
+                return View("DetallesAlta", _context.VentaEspacio.Include(
+                    d => d.IdExpositorNavigation).Include(d => d.IdCajonNavigation).Where(l => l.IdVendedor == id).ToList().OrderBy(f => f.Fecha));
             }
 
 
