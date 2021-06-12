@@ -13,11 +13,27 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
-    <div class="container">
+<body class="">
+    @*//Url.Action("Login", "AdminExpositores")*@
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img src="~/Img/angularView.png" style="width:4em" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Login", "AdminExpositores")">Soy expositor <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="container" style="padding:3em">
         <div class="text-center">
             <h1 class="display-4">Bienvenidos</h1>
-            <video src="~/Img/Video.mp4" style=" width: 100%;  margin: 2em;" controls></video>
+            <video src="~/Img/Video.mp4" style=" width: 60%;  margin: 2em;" controls></video>
             <p></p>
         </div>
 
@@ -25,23 +41,26 @@
             <div class="col-12 ">
                 <div class="row">
                     <div class="col-3">
-                        <img src="~/Img/angularView.png" style="width:15em" />
+                        <img src="~/Img/ExpoVerano.jpeg" style="width:15em" />
                     </div>
                     <div class="col-8">
                         <h2>Expo tu Verano 2021<small><br /> 12 al 19 Junio 2021</small></h2>
                         <h4>Reservar mi lugar </h4>
                         <a class="btn btn-outline-dark">Proximamente...</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Negocios participantes
+                        </button>
                     </div>
                 </div>
             </div>
 
 
-        </div>     
+        </div>
         <div class="row">
             <div class="col-12 ">
                 <div class="row">
                     <div class="col-3">
-                        <img src="~/Img/angularView.png" style="width:15em" />
+                        <img src="~/Img/ExpoGarden.jpeg" style="width:15em" />
                     </div>
                     <div class="col-8">
                         <h2>Expo tu Verano 2021<small><br /> 12 al 19 Junio 2021</small></h2>
@@ -61,12 +80,48 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            © 2021 - Copyright © ALDA Networks 
+            © 2021 - Copyright © ALDA Networks
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">EXPO TU VERANO 2021</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">QUINTAS</li>
+                        <li class="list-group-item">  AGENCIAS DE VIAJES</li>
+                        <li class="list-group-item">AGENCIAS DE TOURS</li>
+                        <li class="list-group-item">BALNEARIOS</li>
+                        <li class="list-group-item">HOTELES</li>
+                        <li class="list-group-item">HOSTALES</li>
+                        <li class="list-group-item">PARQUES</li>
+                        <li class="list-group-item">LUGARES TURÍSTICOS</li>
+                        <li class="list-group-item">TOURS DE REDES SOCIALES</li>
+                        <li class="list-group-item">TIENDAS DE TRAJES DE BAÑO</li>
+                        <li class="list-group-item">TIENDA DE ARTÍCULOS DE PLAYA</li>
+                        <li class="list-group-item">DEPORTES EXTREMOS</li>                
+                        <li class="list-group-item">CLASES DE NATACIÓN</li>                  
+                        <li class="list-group-item">CAMPAMENTOS</li>               
+                        <li class="list-group-item">ACTIVIDADES PARA NIÑOS</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 </html>
