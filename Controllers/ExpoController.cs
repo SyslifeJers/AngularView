@@ -1,4 +1,5 @@
 ﻿using AngularView.Models;
+using AngularView.Models.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,72 +29,50 @@ namespace AngularView.Controllers
         }
 
         // GET: ExpoController/Details/5
-        public ActionResult Cajones(int id)
+        public async Task<ActionResult> Cajones(int id)
         {
-            return View();
+            var list = await _context.Caja.Where(f => f.IdSala == id).OrderBy(d => d.Descripcion).ToListAsync();
+            List<Caja> cajas = new List<Caja>();
+            List<int> cvr = new List<int>();
+
+            foreach (var item in list)
+            {
+                cvr.Add(Convert.ToInt32(item.Descripcion));
+            }
+            var lisorede = cvr.OrderBy(d => d).ToList();
+            for (int i = 0; i < list.Count; i++)
+            {
+                foreach (var item in list)
+                {
+                    if (lisorede[i].ToString().Equals(item.Descripcion))
+                    {
+                        cajas.Add(item);
+                    }
+                }
+            }
+            return View(cajas);
         }
 
-        // GET: ExpoController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> DetalleCajon(int id)
         {
-            return View();
+            List<DetalleCaja> detalleCajas = await _context.DetalleCaja.Where(d => d.IdCaja == id).Include(d => d.IdExpositorNavigation).ToListAsync();
+
+            if (detalleCajas.Count!=0)
+            {
+                ModelDetalleCajon modelDetalleCajon = new ModelDetalleCajon()
+                {
+                    SiDAtos = true,
+                    listProductoServicios = await _context.ProductoServicio.Where(d => d.IdExpositor == detalleCajas[0].IdExpositor).ToListAsync(),
+                    detalleCaja = detalleCajas[0]
+                };
+                return View(modelDetalleCajon);
+            }
+            return View(new ModelDetalleCajon() { SiDAtos = false }) ; 
+        }
+        public async Task<ActionResult> DetalleProducto(int id)
+        {
+            return View(await _context.ProductoServicio.Where(f => f.Id == id).ToListAsync());
         }
 
-        // POST: ExpoController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ExpoController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ExpoController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ExpoController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ExpoController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

@@ -11,6 +11,7 @@ namespace AngularView.Models
     {
         public Caja()
         {
+            ClickCajas = new HashSet<ClickCajas>();
             DetalleCaja = new HashSet<DetalleCaja>();
             VentaEspacio = new HashSet<VentaEspacio>();
         }
@@ -27,6 +28,7 @@ namespace AngularView.Models
 
         public virtual Evento IdEventoNavigation { get; set; }
         public virtual Sala IdSalaNavigation { get; set; }
+        public virtual ICollection<ClickCajas> ClickCajas { get; set; }
         public virtual ICollection<DetalleCaja> DetalleCaja { get; set; }
         public virtual ICollection<VentaEspacio> VentaEspacio { get; set; }
     }

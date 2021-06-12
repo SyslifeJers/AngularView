@@ -48,7 +48,7 @@ namespace AngularView.Controllers
             _context.Update(ventaEspacio);
             await _context.SaveChangesAsync();
 
-            Herramientas.Correo(ventaEspacio.IdExpositorNavigation.Correo, "Pago de confirmado", "<h3>Tu pago fue confirmado ingrese a <a href='http://angularexpo-001-site1.gtempurl.com/AdminExpositores/Login'>Angular View </a><h3><p>En este paso ingresa con tu correo y tu contraseña temporal es:Tem264 ,dentro se te pedira dar de alta una contraseña para seguir ingresando</p>");
+            Herramientas.Correo(ventaEspacio.IdExpositorNavigation.Correo, "Pago de confirmado", "<h3>Tu pago fue confirmado ingrese a <a href='http://angularexpo.com/'>Angular View </a><h3><p>En este paso ingresa con tu correo y tu contraseña temporal es:Tem264 ,dentro se te pedira dar de alta una contraseña para seguir ingresando</p>");
 
             ModelListadoVentas model = new ModelListadoVentas();
             model.Vendedores = _context.Vendedores.Include(d => d.AltaExpositor).ToList();
@@ -61,7 +61,7 @@ namespace AngularView.Controllers
     .FirstOrDefaultAsync(i => i.Id == id); ;
           
 
-            Herramientas.Correo(ventaEspacio.IdExpositorNavigation.Correo, "Pago de confirmado", "<h3>Tu pago fue confirmado ingrese a <a href='http://angularexpo-001-site1.gtempurl.com/AdminExpositores/Login'>Angular View </a><h3><p>En este paso ingresa con tu correo y tu contraseña temporal es:Tem264 ,dentro se te pedira dar de alta una contraseña para seguir ingresando</p>");
+            Herramientas.Correo(ventaEspacio.IdExpositorNavigation.Correo, "Pago de confirmado", "<h3>Tu pago fue confirmado ingrese a <a href='http://angularexpo.com/AdminExpositores/Login'>Angular View </a><h3><p>En este paso ingresa con tu correo y tu contraseña temporal es:Tem264 ,dentro se te pedira dar de alta una contraseña para seguir ingresando</p>");
 
             ModelListadoVentas model = new ModelListadoVentas();
             model.Vendedores = _context.Vendedores.Include(d => d.AltaExpositor).ToList();

@@ -23,12 +23,22 @@ namespace AngularView.Controllers
             hostingEnvironment = hosting;
         }
         // GET: AdminExpositoresController
-        public ActionResult Index()
+        public async Task<ActionResult> MisCajones()
         {
-            
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+            string id = HttpContext.Session.GetString("id");
+            List<DetalleCaja> sds = await _context.DetalleCaja.Where(d => d.IdExpositor == Convert.ToInt32(id)).ToListAsync();
+            if (sds.Count!=0)
+            {
+
+            }
+           
             return View();
         }
-
+        
         // GET: AdminExpositoresController/Details/5
         public async Task<ActionResult> Details(int id)
         {

@@ -43,6 +43,8 @@ namespace AngularView
                 options.Cookie.IsEssential = true;
             });
 
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
             services.AddAutoMapper(typeof(Startup));
 
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

@@ -20,13 +20,23 @@ namespace AngularView.Models
         }
 
         public virtual DbSet<AltaExpositor> AltaExpositor { get; set; }
+        public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Caja> Caja { get; set; }
+        public virtual DbSet<ClickCajas> ClickCajas { get; set; }
+        public virtual DbSet<ClickProdcuto> ClickProdcuto { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<DetalleCaja> DetalleCaja { get; set; }
         public virtual DbSet<EfmigrationsHistory> EfmigrationsHistory { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<Expositor> Expositor { get; set; }
         public virtual DbSet<ExpositorPago> ExpositorPago { get; set; }
+        public virtual DbSet<Items> Items { get; set; }
         public virtual DbSet<MetodoDePago> MetodoDePago { get; set; }
         public virtual DbSet<PagosComision> PagosComision { get; set; }
         public virtual DbSet<ProductoServicio> ProductoServicio { get; set; }
@@ -39,7 +49,7 @@ namespace AngularView.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySql("server=31.170.160.103;database=u535755128_Angularview;user=u535755128_jers;password=Rtx2080_", x => x.ServerVersion("10.4.17-mariadb"));
             }
         }
@@ -75,6 +85,247 @@ namespace AngularView.Models
                     .WithMany(p => p.AltaExpositor)
                     .HasForeignKey(d => d.IdVendedor)
                     .HasConstraintName("FK_AltaExpositor_Vendedores");
+            });
+
+            modelBuilder.Entity<AspNetRoleClaims>(entity =>
+            {
+                entity.HasIndex(e => e.RoleId);
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.ClaimType)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ClaimValue)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.RoleId)
+                    .IsRequired()
+                    .HasColumnType("varchar(450)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.AspNetRoleClaims)
+                    .HasForeignKey(d => d.RoleId)
+                    .HasConstraintName("RelacionAspNetRoleClaims");
+            });
+
+            modelBuilder.Entity<AspNetRoles>(entity =>
+            {
+                entity.HasIndex(e => e.NormalizedName)
+                    .HasName("RoleNameIndex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("varchar(450)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ConcurrencyStamp)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Name)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.NormalizedName)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+            });
+
+            modelBuilder.Entity<AspNetUserClaims>(entity =>
+            {
+                entity.HasIndex(e => e.UserId);
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.ClaimType)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ClaimValue)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasColumnType("varchar(450)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserClaims)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("RelacionAspNetUserClaims");
+            });
+
+            modelBuilder.Entity<AspNetUserLogins>(entity =>
+            {
+                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey })
+                    .HasName("PRIMARY")
+                    .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+
+                entity.HasIndex(e => e.UserId);
+
+                entity.Property(e => e.LoginProvider)
+                    .HasColumnType("varchar(250)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ProviderKey)
+                    .HasColumnType("varchar(250)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ProviderDisplayName)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasColumnType("varchar(450)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserLogins)
+                    .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<AspNetUserRoles>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.RoleId })
+                    .HasName("PRIMARY")
+                    .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+
+                entity.HasIndex(e => e.RoleId);
+
+                entity.Property(e => e.UserId)
+                    .HasColumnType("varchar(250)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.RoleId)
+                    .HasColumnType("varchar(250)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.AspNetUserRoles)
+                    .HasForeignKey(d => d.RoleId);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserRoles)
+                    .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<AspNetUserTokens>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name })
+                    .HasName("PRIMARY")
+                    .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0, 0 });
+
+                entity.Property(e => e.UserId)
+                    .HasColumnType("varchar(250)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.LoginProvider)
+                    .HasColumnType("varchar(250)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Name)
+                    .HasColumnType("varchar(250)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Value)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserTokens)
+                    .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<AspNetUsers>(entity =>
+            {
+                entity.HasIndex(e => e.NormalizedEmail)
+                    .HasName("EmailIndex")
+                    .HasAnnotation("MySql:IndexPrefixLength", new[] { 768 });
+
+                entity.HasIndex(e => e.NormalizedUserName)
+                    .HasName("UserNameIndex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("varchar(450)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.AccessFailedCount).HasColumnType("int(11)");
+
+                entity.Property(e => e.ConcurrencyStamp)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Email)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.EmailConfirmed).HasColumnType("tinyint(4)");
+
+                entity.Property(e => e.LockoutEnabled).HasColumnType("tinyint(4)");
+
+                entity.Property(e => e.NormalizedEmail)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.NormalizedUserName)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.PasswordHash)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.PhoneNumber)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.PhoneNumberConfirmed).HasColumnType("tinyint(4)");
+
+                entity.Property(e => e.SecurityStamp)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.TwoFactorEnabled).HasColumnType("tinyint(4)");
+
+                entity.Property(e => e.UserName)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
             });
 
             modelBuilder.Entity<Caja>(entity =>
@@ -126,6 +377,82 @@ namespace AngularView.Models
                     .HasConstraintName("FK_Caja_Sala");
             });
 
+            modelBuilder.Entity<ClickCajas>(entity =>
+            {
+                entity.ToTable("clickCajas");
+
+                entity.HasIndex(e => e.IdCliente)
+                    .HasName("Relacioncliente");
+
+                entity.HasIndex(e => new { e.IdCaja, e.IdCliente })
+                    .HasName("id_caja");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnName("fecha")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.IdCaja)
+                    .HasColumnName("id_caja")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdCliente)
+                    .HasColumnName("id_cliente")
+                    .HasColumnType("int(11)");
+
+                entity.HasOne(d => d.IdCajaNavigation)
+                    .WithMany(p => p.ClickCajas)
+                    .HasForeignKey(d => d.IdCaja)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("RelacionCaja");
+
+                entity.HasOne(d => d.IdClienteNavigation)
+                    .WithMany(p => p.ClickCajas)
+                    .HasForeignKey(d => d.IdCliente)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Relacioncliente");
+            });
+
+            modelBuilder.Entity<ClickProdcuto>(entity =>
+            {
+                entity.ToTable("clickProdcuto");
+
+                entity.HasIndex(e => e.IdCliente)
+                    .HasName("Relacionclientes");
+
+                entity.HasIndex(e => new { e.IdProducto, e.IdCliente })
+                    .HasName("id_Producto");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnName("fecha")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.IdCliente)
+                    .HasColumnName("id_cliente")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdProducto)
+                    .HasColumnName("id_Producto")
+                    .HasColumnType("int(11)");
+
+                entity.HasOne(d => d.IdClienteNavigation)
+                    .WithMany(p => p.ClickProdcuto)
+                    .HasForeignKey(d => d.IdCliente)
+                    .HasConstraintName("Relacionclientes");
+
+                entity.HasOne(d => d.IdProductoNavigation)
+                    .WithMany(p => p.ClickProdcuto)
+                    .HasForeignKey(d => d.IdProducto)
+                    .HasConstraintName("RelacionProducto");
+            });
+
             modelBuilder.Entity<Clientes>(entity =>
             {
                 entity.Property(e => e.Id)
@@ -137,12 +464,32 @@ namespace AngularView.Models
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
+                entity.Property(e => e.Contrasena)
+                    .IsRequired()
+                    .HasColumnType("mediumtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Correo)
+                    .IsRequired()
+                    .HasColumnType("mediumtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
 
                 entity.Property(e => e.Nombre)
                     .HasColumnType("varchar(150)")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.Token)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.UtlConexion).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<DetalleCaja>(entity =>
@@ -319,6 +666,22 @@ namespace AngularView.Models
                     .WithMany(p => p.ExpositorPago)
                     .HasForeignKey(d => d.IdTipoPago)
                     .HasConstraintName("FK_ExpositorPAgo_MetodoDePago");
+            });
+
+            modelBuilder.Entity<Items>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Description)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ItemName)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
             });
 
             modelBuilder.Entity<MetodoDePago>(entity =>

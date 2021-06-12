@@ -9,6 +9,11 @@ namespace AngularView.Models
 {
     public partial class ProductoServicio
     {
+        public ProductoServicio()
+        {
+            ClickProdcuto = new HashSet<ClickProdcuto>();
+        }
+
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Decripcion { get; set; }
@@ -22,5 +27,6 @@ namespace AngularView.Models
         public int? IdExpositor { get; set; }
 
         public virtual Expositor IdExpositorNavigation { get; set; }
+        public virtual ICollection<ClickProdcuto> ClickProdcuto { get; set; }
     }
 }

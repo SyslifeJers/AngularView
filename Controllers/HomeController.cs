@@ -35,6 +35,10 @@ namespace AngularView.Controllers
         {
             return View();
         }
+        public IActionResult ProxExpo()
+        {
+            return View();
+        }
 
         public IActionResult Login()
         {
