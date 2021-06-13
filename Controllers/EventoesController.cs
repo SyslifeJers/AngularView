@@ -88,12 +88,12 @@ namespace AngularView.Controllers
                 "</head>" +
                 "<body style=\"font-family:'Century Gothic'\">" +
                     "<h1 style=\"text-align:center;\"> ¡Hola " + Nombre + "!</h1>" +
-                    "< BR >< BR > <P> Los vendedores en ningun momento pediran anticipo</ P > " +
+                    "< BR >< BR > <P> Los vendedores en ningún momento pedirán anticipo</ P > " +
                     $"<h3>Tu reserva del espacio es " + NombreCajon + "</h3>" +
                         $"Correo : {Correo}  <br />" +
-                        "Contraseña : Se le enviara un link inteligente para generar su contraseña una vez confirmado el pago<br />" +
+                        "Contraseña : Se le enviará un link inteligente para generar su contraseña una vez confirmado el pago<br />" +
                         $"Empresa : {Negocio} <br />" +
-                        $"<h3>Intruciones de pago</h3>" +
+                        $"<h3>Instruciones de pago</h3>" +
                            $"<p>El pago es por tranferencia bancaria </p>" +
   "<P> Banco: BBVA </ P >" +
        "<P> Clave: 012 580 00135237556 6 </ P >" +
@@ -101,10 +101,10 @@ namespace AngularView.Controllers
                 "    <P> Nombre: JORGE ABRAHAM ALVARADO DANIEL </ P >" +
          "        <P>" +
           "        </P>" +
-           "       <P> Una vez realizado el pago deberá enviar el ticket de compra, al correo jorge.alvarado@aldacomp.com" +
+           "       <P> Una vez realizado el pago deberá enviar el ticket de compra, al correo jorge.alvarado@aldacomp.com " +
                             "para su validación y activación a su perfil al expo. Recibirá un" +
 "correo donde se le dará acceso para dar de alta sus productos.</ P >" +
-"< BR >< BR > <P><a href=\"https://www.aldacomp.com/Facturacion/\" class=\"btn btn-info\" > ¿Requieres facturación?</ P > " +
+" <P><a href=\"mail:jorge.alvarado@aldacomp.com\" class=\"btn btn-info\" > ¿Requieres facturación?</ P > " +
                 "</body>" +
                 "</html>";
             return cuper;

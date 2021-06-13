@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Utilidades\" />
     <Folder Include="wwwroot\Product\" />
   </ItemGroup>
 

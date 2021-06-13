@@ -10,6 +10,5 @@ namespace AngularView.Models.ViewModels
         public bool SiDAtos { get; set; }
         public List<ProductoServicio> listProductoServicios { get; set; }
         public DetalleCaja detalleCaja { get; set; }
-
     }
 }

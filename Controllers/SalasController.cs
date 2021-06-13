@@ -50,7 +50,7 @@ namespace AngularView.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> TomarCajon(ProcesoVentaModel model)
+        public ActionResult TomarCajon(ProcesoVentaModel model)
         {
             if (String.IsNullOrEmpty(HttpContext.Session.GetString("nombre")))
             {
