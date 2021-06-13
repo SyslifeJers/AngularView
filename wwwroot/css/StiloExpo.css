@@ -18,10 +18,12 @@ body {
 .cursor-hover-animation {
     background-color: transparent;
     cursor: pointer;
-    
-    
 }
 
+a:hover {
+    background-color: lightcyan;
+    opacity: 0.2;
+}
 
 .boton-informacion {
     display: flex;

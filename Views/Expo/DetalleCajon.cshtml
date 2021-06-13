@@ -21,7 +21,7 @@
 <div class="row">
     <div class="col-8">
         <div>
-            <div class="card mb-3 text-center bg-light" style="max-width: 840px; padding:1em">
+            <div class="card mb-3 text-center" style="max-width: 840px; padding:1em">
                 <div class="row no-gutters">
 
                     <div class="col-12">
@@ -71,25 +71,57 @@
             </div>
         </div>
     </div>
-    <div class="col-4" >
-        <div>
-            <div class="card mb-3 text-center" style="max-width: 840px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
+    <div class="col-4">
 
-                        <img style="width:7em" src="@rut" onerror="if (this.src != '@rut') this.src = '@rut';">
+        <div class="row" style="padding: 1%;">
+            <div class="card bg-primary" style="width: 100%;">
+
+
+                <div class="row">
+                    <div class="col-4" style="display: flex;">
+                        <img src="~/Img/angularView.png" style="width:70px; height:70px; align-self: center;">
+
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h2>Sala @sala[posi] Cajon Descripcion<br /><small>Falta a agregar información al cajón</small></h2>
+                    <div class="col-8" >
+                        <p>Descripcion</p>
+                        <hr />
+                        <a asp-action="ActualizarDatos" class="btn btn-outline-dark ">Actualizar</a>
 
-                            <hr />
-                            <a asp-action="ActualizarDatos" class="btn btn-outline-dark">Actualizar</a>
-                        </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
+
+        <div class="row" style="padding: 1%;">
+            <div class="card bg-primary" style="width: 100%">
+
+
+                <div class="row">
+                    <div class="col-4" style="display: flex;">
+                        <img src="~/Img/angularView.png" style="width:70px; height:70px; align-self: center;">
+
+                    </div>
+                    <div class="col-8">
+                        <p>Descripcion</p>
+                        <hr />
+                        <a asp-action="ActualizarDatos" class="btn btn-outline-dark">Actualizar</a>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
     </div>
 </div>
 
