@@ -1,0 +1,84 @@
+﻿@model IEnumerable<AngularView.Models.DetalleCaja>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Administrador.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resumen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RedWhats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RedFacebook)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RedInstagram)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoYoutube)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modificado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCajaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdExpositorNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resumen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RedWhats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RedFacebook)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RedInstagram)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VideoYoutube)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modificado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCajaNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

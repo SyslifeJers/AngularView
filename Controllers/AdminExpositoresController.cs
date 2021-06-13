@@ -22,6 +22,31 @@ namespace AngularView.Controllers
             _context = context;
             hostingEnvironment = hosting;
         }
+
+        public ActionResult ActualizarDatos(int id)
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+
+            return View(new DetalleCaja() { IdCaja=id});
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ActualizarDatos(DetalleCaja model)
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+            model.Modificado = DateTime.Now;
+            model.IdExpositor = Convert.ToInt32(HttpContext.Session.GetString("id"));
+              _context.DetalleCaja.Add(model);
+            await _context.SaveChangesAsync();
+            return Redirect(Url.ActionLink("MisCajones"));
+        }
+
         // GET: AdminExpositoresController
         public async Task<ActionResult> MisCajones()
         {
@@ -30,13 +55,39 @@ namespace AngularView.Controllers
                 return Redirect(Url.ActionLink("Expo", "Home"));
             }
             string id = HttpContext.Session.GetString("id");
-            List<DetalleCaja> sds = await _context.DetalleCaja.Where(d => d.IdExpositor == Convert.ToInt32(id)).ToListAsync();
-            if (sds.Count!=0)
+            List<DetalleCaja> sds = await _context.DetalleCaja.Include(d=>d.IdCajaNavigation).Where(d => d.IdExpositor == Convert.ToInt32(id)).ToListAsync();
+            List<VentaEspacio> ventC = await _context.VentaEspacio.Include(d => d.IdCajonNavigation).Where(d => d.IdExpositor == Convert.ToInt32(id)&&d.Estatus==2).ToListAsync();
+            List<ModelDetalleCajon> modelDetalleCajons = new List<ModelDetalleCajon>();
+            if (ventC.Count!=0)
             {
+                foreach (var item in ventC)
+                {
+                    bool esta = false;
+                    foreach (var item2 in sds)
+                    {
 
+                        if (item.IdCajon == item2.IdCaja)
+                        {
+                            ModelDetalleCajon model = new ModelDetalleCajon();
+                            model.SiDAtos = true;
+                            model.detalleCaja = sds[0];
+                            esta = true;
+                            modelDetalleCajons.Add(model);
+                        }
+
+                    }
+                    if (!esta)
+                    {
+                        ModelDetalleCajon model = new ModelDetalleCajon();
+                        model.SiDAtos = false;
+                        model.detalleCaja = new DetalleCaja() { IdCaja = (int)item.IdCajon, IdCajaNavigation = item.IdCajonNavigation };
+                        modelDetalleCajons.Add(model);
+                    }
+                }
+               
             }
            
-            return View();
+            return View(modelDetalleCajons);
         }
         
         // GET: AdminExpositoresController/Details/5

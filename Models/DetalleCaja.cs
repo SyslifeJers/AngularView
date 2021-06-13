@@ -18,7 +18,7 @@ namespace AngularView.Models
         public string RedInstagram { get; set; }
         public string VideoYoutube { get; set; }
         public int IdCaja { get; set; }
-        public DateTime Modificado { get; set; }
+        public DateTime? Modificado { get; set; }
 
         public virtual Caja IdCajaNavigation { get; set; }
         public virtual Expositor IdExpositorNavigation { get; set; }

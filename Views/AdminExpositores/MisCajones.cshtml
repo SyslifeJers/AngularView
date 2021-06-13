@@ -1,0 +1,104 @@
+﻿@model IEnumerable<AngularView.Models.ViewModels.ModelDetalleCajon>
+@{
+    ViewData["Title"] = "MisCajones";
+    Layout = "~/Views/Shared/_LayoutExpositor.cshtml";
+
+    List<string> sala = new List<string>();
+    int posi = 0;
+    foreach (var item in Model)
+    {
+        if(item.detalleCaja.IdCajaNavigation.IdSala==2)
+        {
+            sala.Add("VIP");
+        }
+        else
+        {
+            sala.Add(" "+ item.detalleCaja.IdCajaNavigation.IdSala.ToString());
+        }
+    }
+}
+
+<h1>Mis Cajones</h1>
+
+@foreach (var item in Model)
+{
+    if (item.SiDAtos)
+    {
+<div>
+    <div class="card mb-3 text-center" style="max-width: 840px; padding:1em">
+        <div class="row no-gutters">
+
+            <div class="col-12">
+                <h3>@item.detalleCaja.Titulo</h3>
+                <h5>@item.detalleCaja.Resumen</h5>
+            </div>
+            <hr class="col-12" />
+            <div class="col-md-4">
+                <br />
+                <h4>Logo del espacio</h4>
+                @{string rut = "../Img/angularView.png";}
+                <img style="width:12em" src="@rut" onerror="if (this.src != '@rut') this.src = '@rut';">
+
+            
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2>Sala @sala[posi] Cajon @item.detalleCaja.IdCajaNavigation.Descripcion</h2>
+
+                    <i data-toggle="popover" title="EXPO TU VERANO 2021" data-content="En esta Expo podrás encontrar las mejores opciones de recreación para este verano 2021, Actividades de recreación para toda la  familia" class="bi bi-info-circle"></i>
+
+                    <h4>Redes Sociales</h4>
+                    <hr />
+                    @if (!string.IsNullOrEmpty(item.detalleCaja.RedFacebook))
+                    {<a target="_blank" class="h4" href="https://www.facebook.com/@item.detalleCaja.RedFacebook">Facebook</a>}
+                    <hr />
+                    @if (!string.IsNullOrEmpty(item.detalleCaja.RedWhats))
+                    {
+                        string link = "https://wa.me/52" + item.detalleCaja.RedWhats;
+                        <a target="_blank" class="h4" href="@link">Whatsapp</a>}
+                    <hr />
+                    @if (!string.IsNullOrEmpty(item.detalleCaja.RedInstagram))
+                    {<a target="_blank" class="h4" href="https://www.instagram.com/@item.detalleCaja.RedInstagram">Instagram</a>}
+                    <hr />
+                   
+                </div>
+            </div>
+            <hr class="col-12" />
+            <div class="col-md-4">
+                <a asp-action="CambiarLogo" asp-route-id="@item.detalleCaja.Id"> Cambiar Imagen</a>
+            </div>
+            <div class="col-md-8"> 
+            <a asp-action="ActualizarDatos" asp-route-id="@item.detalleCaja.Id" class="btn btn-outline-dark">Actualizar</a>
+            </div>
+        <br class="col-12" />
+        </div>
+    </div>
+</div>
+    }
+    else
+    {
+
+<div>
+    <div class="card mb-3 text-center" style="max-width: 840px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                @{string rut = "../Img/angularView.png";}
+                <img style="width:7em" src="@rut" onerror="if (this.src != '@rut') this.src = '@rut';">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2>Sala @sala[posi] Cajon @item.detalleCaja.IdCajaNavigation.Descripcion<br /><small>Falta a agregar información al cajón</small></h2>
+
+                    <hr />
+                    <a asp-action="ActualizarDatos" asp-route-id="@item.detalleCaja.IdCajaNavigation.Id" class="btn btn-outline-dark">Actualizar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                        }
+                        posi++;
+                    }
+
+@*Modal*@

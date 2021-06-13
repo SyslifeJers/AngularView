@@ -515,37 +515,31 @@ namespace AngularView.Models
                 entity.Property(e => e.Modificado).HasColumnType("datetime");
 
                 entity.Property(e => e.RedFacebook)
-                    .IsRequired()
                     .HasColumnType("longtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.RedInstagram)
-                    .IsRequired()
                     .HasColumnType("longtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.RedWhats)
-                    .IsRequired()
                     .HasColumnType("longtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.Resumen)
-                    .IsRequired()
                     .HasColumnType("longtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.Titulo)
-                    .IsRequired()
                     .HasColumnType("longtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.VideoYoutube)
-                    .IsRequired()
                     .HasColumnType("longtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
