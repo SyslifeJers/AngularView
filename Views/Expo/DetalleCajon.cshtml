@@ -1,73 +1,105 @@
-﻿@model AngularView.Models.DetalleCaja
-
+﻿@model AngularView.Models.ViewModels.ModelDetalleCajon
 @{
-    ViewData["Title"] = "DetalleCajon";
-    Layout = "~/Views/Shared/Expo_Layout.cshtml";
+    ViewData["Title"] = "MisCajones";
+    Layout = "~/Views/Shared/_LayoutExpositor.cshtml";
+
+    string sala = "";
+    int posi = 0;
+    
+        if (Model.detalleCaja.IdCajaNavigation.IdSala == 2)
+        {
+            sala = "VIP";
+        }
+        else
+        {
+            sala = Model.detalleCaja.IdCajaNavigation.IdSala.ToString();
+        }
+    
 }
 
-<h1>DetalleCajon</h1>
+<h1 style="background-color: grey; text-align: center;">Mis Cajones</h1>
+<div class="row">
+    <div class="col-8">
+        <div>
+            <div class="card mb-3 text-center bg-light" style="max-width: 840px; padding:1em">
+                <div class="row no-gutters">
 
-<div>
-    <h4>DetalleCaja</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Resumen)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Resumen)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RedWhats)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RedWhats)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RedFacebook)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RedFacebook)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RedInstagram)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RedInstagram)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VideoYoutube)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VideoYoutube)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Modificado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Modificado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCajaNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCajaNavigation.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdExpositorNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdExpositorNavigation.Id)
-        </dd>
-    </dl>
+                    <div class="col-12">
+                        <h3>Titulo</h3>
+                        <h5>Resumen</h5>
+                    </div>
+                    <hr class="col-12" />
+                    <div class="col-md-4">
+                        <br />
+                        <h4>Logo del espacio</h4>
+                        @{string rut = "../Img/angularView.png";}
+                        <img style="width:12em" src="@rut" onerror="if (this.src != '@rut') this.src = '@rut';">
+
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2>Sala @sala[posi] Cajon Descripcion</h2>
+
+                            <i data-toggle="popover" title="EXPO TU VERANO 2021" data-content="En esta Expo podrás encontrar las mejores opciones de recreación para este verano 2021, Actividades de recreación para toda la  familia" class="bi bi-info-circle"></i>
+
+                            <h4>Redes Sociales</h4>
+                            <hr />
+
+                            <a target="_blank" class="h4" href="https://www.facebook.com/">Facebook</a>
+                            <hr />
+
+
+                            string link = "https://wa.me/52" + item.detalleCaja.RedWhats;
+                            <a class="h4">Whatsapp</a>
+                            <hr />
+
+                            <a target="_blank" class="h4" href="https://www.instagram.com/">Instagram</a>
+                            <hr />
+
+                        </div>
+                    </div>
+                    <hr class="col-12" />
+                    <div class="col-md-4">
+                        <a asp-action="CambiarLogo"> Cambiar Imagen</a>
+                    </div>
+                    <div class="col-md-8">
+                        <a asp-action="ActualizarDatos" class="btn btn-outline-dark">Actualizar</a>
+                    </div>
+                    <br class="col-12" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4" >
+        <div>
+            <div class="card mb-3 text-center" style="max-width: 840px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+
+                        <img style="width:7em" src="@rut" onerror="if (this.src != '@rut') this.src = '@rut';">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2>Sala @sala[posi] Cajon Descripcion<br /><small>Falta a agregar información al cajón</small></h2>
+
+                            <hr />
+                            <a asp-action="ActualizarDatos" class="btn btn-outline-dark">Actualizar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+    
+        
+    
+
+        
+
+    
+    
+
+@*Modal*@

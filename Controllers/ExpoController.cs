@@ -53,25 +53,24 @@ namespace AngularView.Controllers
             return View(cajas);
         }
 
-        public async Task<ActionResult> DetalleCajon(int id)
-        {
-            List<DetalleCaja> detalleCajas = await _context.DetalleCaja.Where(d => d.IdCaja == id).Include(d => d.IdExpositorNavigation).ToListAsync();
-
-            if (detalleCajas.Count!=0)
-            {
-                ModelDetalleCajon modelDetalleCajon = new ModelDetalleCajon()
-                {
-                    SiDAtos = true,
-                    listProductoServicios = await _context.ProductoServicio.Where(d => d.IdExpositor == detalleCajas[0].IdExpositor).ToListAsync(),
-                    detalleCaja = detalleCajas[0]
-                };
-                return View(modelDetalleCajon);
-            }
-            return View(new ModelDetalleCajon() { SiDAtos = false }) ; 
-        }
         public async Task<ActionResult> DetalleProducto(int id)
         {
             return View(await _context.ProductoServicio.Where(f => f.Id == id).ToListAsync());
+        }
+
+        public async Task<ActionResult> DetalleCajon(int id)
+        {
+            
+            List<DetalleCaja> sds = await _context.DetalleCaja.Include(d => d.IdCajaNavigation).Where(d => d.Id == Convert.ToInt32(id)).ToListAsync();
+            ModelDetalleCajon modelDetalleCajons = new ModelDetalleCajon()
+            {
+                detalleCaja = sds[0],
+                SiDAtos = true,
+                listProductoServicios = await _context.ProductoServicio.Where(d => d.IdExpositor == sds[0].IdExpositor).ToListAsync()
+            };
+            
+
+            return View(modelDetalleCajons);
         }
 
     }
