@@ -11,7 +11,7 @@
     {
         @if (item.Ocupado == 0)
         {
-            estilo = "bg-succes";
+            estilo = "bg-success";
         }
         @if (item.Ocupado == 1)
         {
@@ -21,64 +21,35 @@
         {
             estilo = "bg-danger";
         }
-        <div class="col-lg-3" style="max-width: 250px">
-            <div class="container" style="min-width: 200px; max-width: 250px;">
-                <div class="card-columns" style="max-width: 200px;">
-                    <div class="card @estilo" style="min-width: 220px;">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-4" style="display: flex;">
-                                    <img src="~/Img/angularView.png" style="width:70px; height:70px; align-self: center;">
 
-                                </div>
-                                <div class="col-8">
-                                    <h5 class="text-center">Espacio - @item.Descripcion</h5>
+    <div class="col-3" style="max-width: 250px;">
 
-                                    <p card-text>$ @item.Costo.ToString()</p>
+        <div class="container" style="min-width: 200px; max-width: 250px;">
 
-                                    
-                                </div>
+            <div class="card-columns" style="max-width: 200px;">
+                <div class="card @estilo" style="min-width: 220px; position:relative;">
+                    <a class="container" asp-action="detallecajon" asp-route-id="145" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4" style="display: flex;">
+                                <img src="~/Img/angularView.png" style="width:70px; height:70px; align-self: center;">
+
+                            </div>
+                            <div class="col-8">
+                                <h5 class="text-center">Espacio - @item.Descripcion</h5>
+
+                                <p card-text>$ @item.Costo.ToString()</p>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
-
-
-
-            <!--
-
-                <div class="card-header @estilo">
-                    <h5>Espacio - @item.Descripcion</h5>
-                    <p>
-                        $ @item.Costo.ToString()
-                    </p>
-                </div>
-                <div class="card-body">
-                @if (item.Ocupado == 0)
-                {
-                    <p>Disponible</p>
-                }
-                @if (item.Ocupado == 1)
-                {
-                    <p>Apartado</p>
-                }
-                @if (item.Ocupado == 2)
-                {
-                    <p>Ocupado</p>
-                }
-
-                @if (item.Ocupado == 0)
-                {
-                    <a class="btn btn-outline-info" asp-action="TomarCajon" asp-route-id="@item.Id">Tomar</a>
-                }
-
-
-                </div>
-            -->
-
         </div>
+
+    </div>
     }
 </div>
