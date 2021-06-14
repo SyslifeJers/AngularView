@@ -42,13 +42,13 @@
     </thead>
     <tbody>
 
-@foreach (var item in Model.productoServicios) {
+@foreach (var item in Model.productoServicios.Where(d=>d.Activo==1).ToList()) {
 
 
     <tr>
         <td>
             @{string rut = "../Img/angularView.png";}
-            <img style="width:7em" src="@Url.Content(String.Format("~/Img/Logos/" + item.Id + ".png"))" onerror="if (this.src != '@rut') this.src = '@rut';">
+            <img style="width:7em" src="@Url.Content(String.Format("~/Product/" + item.Id + ".png"))" onerror="if (this.src != '@rut') this.src = '@rut';">
             <hr />
 
             <a asp-action="SubirImagen" asp-route-id="@item.Id">Cambiar imagen</a>

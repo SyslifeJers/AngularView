@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AngularView.Models.Sala>
+
+@{
+    ViewData["Title"] = "Salas";
+    Layout = "_LayoutVendedor";
+}
+
+<h1>Salas</h1>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        if (item.TipoSala == 1)
+        {
+            <div class="card col-sm-12 col-md-3 col-lg-3">
+                <div class="card-header">
+                    <h4>@item.Nombre <small> con @item.Caja.Count cajones</small> </h4>
+                </div>
+                <div class="card-body">
+
+                    <a class="btn btn-outline-info" asp-action="Cajas" asp-route-id="@item.Id">Ver espacios</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card  col-sm-12 col-md-3 col-lg-3" style="margin-right:1em; margin-left:1em;">
+                <div class="card-header bg-warning"> <h4>@item.Nombre <small> con @item.Caja.Where(e => e.Ocupado == 0).Count() espacios disponibles</small> </h4></div>
+                <div class="card-body">
+
+                    <a class="btn btn-warning" asp-action="Cajas" asp-route-id="@item.Id">Ver espacios</a>
+                </div>
+            </div>
+
+        }
+    }
+</div>

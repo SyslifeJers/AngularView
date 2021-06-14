@@ -1,0 +1,139 @@
+﻿@model AngularView.Models.Expositor
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AngularView</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        body {
+            background-image: url('../Img/fonFree.jpg');
+            background-position: center;
+            background-size: cover;
+            -webkit-font-smoothing: antialiased;
+            font: normal 14px Roboto,arial,sans-serif;
+        }
+
+        .container {
+            padding: 110px;
+        }
+
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #ffffff !important;
+            opacity: 1; /* Firefox */
+            font-size: 18px !important;
+        }
+
+        .form-login {
+            background-color: rgba(0,0,0,0.55);
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 15px;
+            border-color: #d2d2d2;
+            border-width: 5px;
+            color: white;
+            box-shadow: 0 1px 0 #cfcfcf;
+        }
+
+        .form-control {
+            background: transparent !important;
+            color: white !important;
+            font-size: 18px !important;
+        }
+
+        h1 {
+            color: white !important;
+        }
+
+        h4 {
+            border: 0 solid #fff;
+            border-bottom-width: 1px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .text-white {
+            color: white !important;
+        }
+
+        .wrapper {
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-8 col-sm-12 col-md-6  form-login">
+                <h4 class="text-center">Expositor</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <form asp-action="Registro">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Correo" class="control-label"></label>
+                                <input asp-for="Correo" class="form-control" required type="email" />
+                                <span asp-validation-for="Correo" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Agrega tu contraseña para futuros accesos</label>
+                                <input required type="password" asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Nombre" class="control-label"></label>
+                                <input asp-for="Nombre" class="form-control" required />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Apellidos" class="control-label"></label>
+                                <input asp-for="Apellidos" class="form-control" required />
+                                <span asp-validation-for="Apellidos" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Celular" class="control-label"></label>
+                                <input type="number" asp-for="Celular" required maxlength="10" class="form-control" />
+                                <span asp-validation-for="Celular" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Negocio" class="control-label"></label>
+                                <input required asp-for="Negocio" class="form-control" />
+                                <span asp-validation-for="Negocio" class="text-danger"></span>
+                            </div>
+                            <div class="row ">
+                                <div class="form-group">
+                                    <input type="submit" value="Registrarme" class="btn btn-primary" />
+
+                                    <a asp-action="Login" value="Regresar" class="btn btn-danger" >Regresar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="footer text-white text-center">
+        <p>© 2021 - Copyright © ALDA Networks</p>
+    </div>
+</body>
+</html>

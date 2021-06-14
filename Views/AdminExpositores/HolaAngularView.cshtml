@@ -14,25 +14,27 @@
         <form asp-action="HolaAngularView">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Correo" />
+            <input type="hidden" asp-for="Registro" />
             <div class="form-group">
-                <label  class="control-label">Agrega tu contraseña para futuros accesos</label>
+                <label class="control-label">Agrega tu contraseña para futuros accesos</label>
                 <input required type="password" asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
+                <input asp-for="Nombre" class="form-control" required />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Apellidos" class="control-label"></label>
-                <input asp-for="Apellidos" class="form-control" />
+                <input asp-for="Apellidos" class="form-control" required />
                 <span asp-validation-for="Apellidos" class="text-danger"></span>
             </div>
-           
+
             <div class="form-group">
                 <label asp-for="Celular" class="control-label"></label>
-                <input type="number" asp-for="Celular" class="form-control" />
+                <input type="number" asp-for="Celular" required maxlength="10" class="form-control" />
                 <span asp-validation-for="Celular" class="text-danger"></span>
             </div>
             <div class="form-group">
