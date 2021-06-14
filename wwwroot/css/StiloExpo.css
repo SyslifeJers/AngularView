@@ -18,10 +18,12 @@ body {
 .cursor-hover-animation {
     background-color: transparent;
     cursor: pointer;
-    
-    
 }
 
+a:hover {
+    background-color: lightcyan;
+    opacity: 0.2;
+}
 
 .boton-informacion {
     display: flex;
@@ -36,9 +38,9 @@ body {
     display: flex;
     position: absolute;
     top: 48%;
-    left: 29%;
+    left: 31%;
     height: 30%;
-    width: 27%;
+    width: 20%;
 }
 
 
@@ -70,4 +72,14 @@ body {
     height: 30%;
     width: 15%;
 
+}
+
+.container-card {
+    
+    margin: 5px auto;
+}
+
+.card-columns{
+    min-width: 250px;
+    max-width: 350px;
 }

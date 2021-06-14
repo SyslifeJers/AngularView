@@ -7,11 +7,13 @@
 <div>
     <img class="fondo-pantalla" src="~/Img/background.png">
     <div>
-        <button mat-icon-button class="boton-informacion cursor-hover-animation" ></button>
-        <button mat-icon-button class="boton-registro cursor-hover-animation" ></button>
-        <button mat-icon-button class="boton-sala1 cursor-hover-animation" ></button>
-        <button mat-icon-button class="boton-sala2 cursor-hover-animation" ></button>
-        <button mat-icon-button class="boton-sala3 cursor-hover-animation" ></button>
+        <a class="boton-informacion cursor-hover-animation"></a>
+        <a class="boton-registro cursor-hover-animation"></a>
+        <a class="boton-sala1 cursor-hover-animation" asp-action="cajones" asp-route-id="1"></a>
+        <a class="boton-sala2 cursor-hover-animation" asp-action="cajones" asp-route-id="2"></a>
+        <a class="boton-sala3 cursor-hover-animation" asp-action="cajones" asp-route-id="3"></a>
+
+
     </div>
 </div>
 
