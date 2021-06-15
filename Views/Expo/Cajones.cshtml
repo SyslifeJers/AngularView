@@ -1,25 +1,40 @@
-﻿@model IEnumerable<AngularView.Models.ViewModels.ModelCajasExpo>
+﻿@model List<AngularView.Models.ViewModels.ModelCajasExpo>
 
 @{
     ViewData["Title"] = "Cajones";
     Layout = "~/Views/Shared/Expo_Layout.cshtml";
     string estilo = "";
+    string sala = "";
+    if(Model[0].caja.IdSala==1)
+    {
+        sala = "1";
+    }
+
+    if (Model[0].caja.IdSala == 2)
+    {
+        sala = "Vip";
+        }
+
+    if (Model[0].caja.IdSala == 3)
+    {
+        sala = "2";
+        }
+
 }
-<h1 style="background-color: grey; text-align: center;">Sala 1</h1>
+<h1 style="        background-color: #17bba0;
+        text-align: center;
+        color: white">Sala @sala</h1>
 <div class="row">
     @foreach (var item in Model)
     {
-        @if (item.caja.Ocupado == 0)
-        {
-            estilo = "";
-        }
-        @if (item.caja.Ocupado == 1)
-        {
-            estilo = "";
-        }
-        @if (item.caja.Ocupado == 2)
+
+        @if (!item.Exitente)
         {
             estilo = "bg-light";
+        }
+       else
+        {
+            estilo = "bg-warning";
         }
 
 
@@ -38,7 +53,7 @@
                             <div class="col-4" style="display: flex;">
                                 @if (!item.Exitente)
                                 {
-                                    <img src="~/Img/angularView.png" style="width:70px; height:70px; align-self: center;">
+                                    <img src="~/Img/angularView.png" style="width:100%; height:100%; align-self: center;">
 
                                 }
                                 else
