@@ -17,182 +17,77 @@
     }
 
 }
+@{string rut = "../../Img/Logos/" + Model.detalleCaja.IdCaja + ".png";}
 @if (Model.detalleCaja.IdCajaNavigation.Tipo == 1)
 {
 
-    <div>
+    
         <img class="fondo-pantalla" src="~/Img/Espacios/stand1.png">
+
         <div class="row">
             <div class="col-8">
-                <div>
-                    <div class="card mb-3 text-center" style="max-width: 840px; padding:1em">
-                        <div class="row no-gutters">
+                <div class="row">
+                    <div class="col-6">
+                        <img class="logo-stand" src="~/Img/angularView.png" style="width:70px; height:70px; margin-top: 7%; margin-left: 35%">
 
-                            <div class="col-12">
-                                <h3>Titulo</h3>
-                                <h5>Resumen</h5>
-                            </div>
-                            <hr class="col-12" />
-                            <div class="col-md-4">
-                                <br />
-                                <h4>Logo del espacio</h4>
-                                @{string rut = "../../Img/Logos/" + Model.detalleCaja.IdCaja + ".png";}
-                                <img style="width:12em" src="@rut" onerror="if(this.src != '@rut') this.src = '~/Img/angularView.png">
+                    </div>
+                    <div class="col-6">
+                        <h1>Nombre</h1>
 
-
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body bg-light">
-                                    <h2>Sala @sala[posi] Cajon Descripcion</h2>
-
-                                    <i data-toggle="popover" title="EXPO TU VERANO 2021" data-content="En esta Expo podrás encontrar las mejores opciones de recreación para este verano 2021, Actividades de recreación para toda la  familia" class="bi bi-info-circle"></i>
-
-                                    <h4>Redes Sociales</h4>
-                                    <hr />
-
-                                    <a target="_blank" class="h4" href="https://www.facebook.com/">Facebook</a>
-                                    <hr />
-
-
-                                    string link = "https://wa.me/52" + item.detalleCaja.RedWhats;
-                                    <a class="h4">Whatsapp</a>
-                                    <hr />
-
-                                    <a target="_blank" class="h4" href="https://www.instagram.com/">Instagram</a>
-                                    <hr />
-
-                                </div>
-                            </div>
-                            <hr class="col-12" />
-                            <div class="col-md-4">
-                                <a asp-action="CambiarLogo"> Cambiar Imagen</a>
-                            </div>
-                            <div class="col-md-8">
-                                <a asp-action="ActualizarDatos" class="btn btn-outline-dark">Actualizar</a>
-                            </div>
-                            <br class="col-12" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="container" style="width: 60%; height: 60%; background-color: red;">
+                            <p>Lorem Psilum</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="container" style="width: 60%; height: 60%; background-color: yellow;">
+                            <p>Logo</p>
+                            <p>Logo</p>
+                            <p>Logo</p>
                         </div>
                     </div>
                 </div>
+                
+                
+
             </div>
             <div class="col-4">
-                <div style="height: 700px; overflow-y: scroll;">
+                <div style="height: 300px; overflow-y: scroll; margin-top: 10%;">
                     @for (int i = 0; i < 10; i++)
                     {
-
-                        <div class="row" style="padding: 1%;">
-                            <div class="card bg-info" style="width: 90%; position: relative; left: 7%;">
+                        <div class="row" style="padding-top: 2%; margin: 0;">
+                            <div class="card bg-light" style="margin: auto;">
                                 <!--<a class="container" asp-action="detalleproducto" asp-route-id="1" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>-->
 
 
-                                <div class="row">
-                                    <div class="col-4" style="display: flex;">
-                                        <img src="~/Img/angularView.png" style="width:70px; height:70px; align-self: center;">
-
+                                <div class="row container" style="padding-top: 1%; padding-bottom: 1%">
+                                    <div class="col-4">
+                                        <div class="container" style="display: flex; justify-content: center;">
+                                            <img src="~/Img/angularView.png" style="width:70px; height:70px;">
+                                        </div>
                                     </div>
-                                    <div class="col-8" style="padding-top: 1%; padding-bottom: 1%">
+                                    <div class="col-8">
                                         <h4>Nombre</h4>
                                         <hr />
                                         <p>Descripción</p>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     }
                 </div>
             </div>
         </div>
+
+
+
+        
 
 
     
-        <img class="fondo-pantalla" src="~/Img/Espacios/standVip.png">
-        <div class="row">
-            <div class="col-8">
-                <div>
-                    <div class="card mb-3 text-center" style="max-width: 840px; padding:1em">
-                        <div class="row no-gutters">
-
-                            <div class="col-12">
-                                <h3>Titulo</h3>
-                                <h5>Resumen</h5>
-                            </div>
-                            <hr class="col-12" />
-                            <div class="col-md-4">
-                                <br />
-                                <h4>Logo del espacio</h4>
-                                @{string rut = "../../Img/Logos/" + Model.detalleCaja.IdCaja + ".png";}
-                                <img style="width:12em" src="@rut" onerror="if(this.src != '@rut') this.src = '~/Img/angularView.png">
-
-
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body bg-light">
-                                    <h2>Sala @sala[posi] Cajon Descripcion</h2>
-
-                                    <i data-toggle="popover" title="EXPO TU VERANO 2021" data-content="En esta Expo podrás encontrar las mejores opciones de recreación para este verano 2021, Actividades de recreación para toda la  familia" class="bi bi-info-circle"></i>
-
-                                    <h4>Redes Sociales</h4>
-                                    <hr />
-
-                                    <a target="_blank" class="h4" href="https://www.facebook.com/">Facebook</a>
-                                    <hr />
-
-
-                                    string link = "https://wa.me/52" + item.detalleCaja.RedWhats;
-                                    <a class="h4">Whatsapp</a>
-                                    <hr />
-
-                                    <a target="_blank" class="h4" href="https://www.instagram.com/">Instagram</a>
-                                    <hr />
-
-                                </div>
-                            </div>
-                            <hr class="col-12" />
-                            <div class="col-md-4">
-                                <a asp-action="CambiarLogo"> Cambiar Imagen</a>
-                            </div>
-                            <div class="col-md-8">
-                                <a asp-action="ActualizarDatos" class="btn btn-outline-dark">Actualizar</a>
-                            </div>
-                            <br class="col-12" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div style="height: 700px; overflow-y: scroll;">
-                    @for (int i = 0; i < 10; i++)
-                    {
-
-                        <div class="row" style="padding: 1%;">
-                            <div class="card bg-info" style="width: 90%; position: relative; left: 7%;">
-                                <!--<a class="container" asp-action="detalleproducto" asp-route-id="1" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>-->
-
-
-                                <div class="row">
-                                    <div class="col-4" style="display: flex;">
-                                        <img src="~/Img/angularView.png" style="width:70px; height:70px; align-self: center;">
-
-                                    </div>
-                                    <div class="col-8" style="padding-top: 1%; padding-bottom: 1%">
-                                        <h4>Nombre</h4>
-                                        <hr />
-                                        <p>Descripción</p>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-
-
-    </div>
 
 
 

@@ -84,4 +84,9 @@ a:hover {
     max-width: 350px;
 }
 
-
+.logo-stand {
+    display: flex;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
