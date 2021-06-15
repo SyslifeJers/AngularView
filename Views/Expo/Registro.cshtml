@@ -1,4 +1,4 @@
-﻿@model AngularView.Models.Expositor
+﻿@model AngularView.Models.Clientes
 @{
     Layout = null;
 }
@@ -93,8 +93,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Agrega tu contraseña para futuros accesos</label>
-                                <input required type="password" asp-for="Password" class="form-control" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <input required type="password" asp-for="Contrasena" class="form-control" />
+                                <span asp-validation-for="Contrasena" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Nombre" class="control-label"></label>
@@ -106,17 +106,6 @@
                                 <input asp-for="Apellidos" class="form-control" required />
                                 <span asp-validation-for="Apellidos" class="text-danger"></span>
                             </div>
-
-                            <div class="form-group">
-                                <label asp-for="Celular" class="control-label"></label>
-                                <input type="number" asp-for="Celular" required maxlength="10" class="form-control" />
-                                <span asp-validation-for="Celular" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Negocio" class="control-label"></label>
-                                <input required asp-for="Negocio" class="form-control" />
-                                <span asp-validation-for="Negocio" class="text-danger"></span>
-                            </div>
                             <div class="row ">
                                 <div class="form-group">
                                     <input type="submit" value="Registrarme" class="btn btn-primary" />
@@ -125,14 +114,14 @@
                                 </div>
                             </div>
                             @if (Model != null)
-            {
-                if (!String.IsNullOrEmpty(Model.Token))
-                {
-                            <div class="form-group">
-                                <label class="alert-danger">@Model.Token</label>
-                            </div>
-                }
-            }
+                            {
+                                if (!String.IsNullOrEmpty(Model.Token))
+                                {
+                                    <div class="form-group">
+                                        <label class="alert-danger">@Model.Token</label>
+                                    </div>
+                                }
+                            }
                         </form>
                     </div>
                 </div>

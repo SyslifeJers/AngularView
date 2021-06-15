@@ -77,7 +77,12 @@ namespace AngularView.Controllers
                 model.Token = "Ups, no pordemos dejar vacío Correo";
                 return View(model);
             }
-
+            var klist = _context.Expositor.Where(r => r.Correo.Equals(model.Correo)).ToList();
+            if (klist.Count() != 0)
+            {
+                model.Token = "El correo ya esta registrado";
+                return View(model);
+            }
             _context.Expositor.Add(model);
             _context.SaveChanges();
 
@@ -415,7 +420,20 @@ namespace AngularView.Controllers
                     return Redirect(Url.ActionLink("Expo", "Home"));
                 }
                 string id = HttpContext.Session.GetString("id");
+                if (model.Descuento ==1)
+                {
+                    if (model.PrecioNormal !=null)
+                    {
 
+                        if (model.PrecioDescuento !=null&& model.PrecioDescuento > 0)
+                        {
+                            if (true)
+                            {
+                                model.PrecioDescuento = model.PrecioNormal - ((model.PrecioNormal * model.PrecioDescuento) / 100);
+                            }
+                        }
+                    } 
+                }
                 model.Activo = 1;
                 model.Modificado = DateTime.Now;
                 model.IdExpositor = Convert.ToInt32(id);

@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Decripcion" class="control-label"></label>
-                <input  asp-for="Decripcion" class="form-control" />
+                <input asp-for="Decripcion" class="form-control" />
                 <span asp-validation-for="Decripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -27,46 +27,55 @@
                 <span asp-validation-for="PrecioNormal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PrecioDescuento" class="control-label"></label>
-                <input asp-for="PrecioDescuento" class="form-control" />
+                <label class="control-label">Descuento por % (0 a 99)</label>
+                <input type="number" max="99" min="0" step="1" asp-for="PrecioDescuento" class="form-control" />
                 <span asp-validation-for="PrecioDescuento" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label">¿Este producto o servicio tiene descuento?</label>
-                <br />
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Descuento" id="Descuento1" value="1">
-                    <label class="form-check-label" for="Descuento1">Sí</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Descuento" id="Descuento2" value="0">
-                    <label class="form-check-label" for="Descuento2">No</label>
-                </div>
-                <span asp-validation-for="Descuento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">¿Es producto o servicio?</label>
-                <br />
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Tipo" id="Tipo1" value="1">
-                    <label class="form-check-label" for="Tipo">Producto</label>
-                </div>
-                <div class="form-check form-check-inline">
-
-                    <input class="form-check-input" type="radio" name="Tipo" id="DTipo2" value="0">
-                    <label class="form-check-label" for="Tipo2">Servicio</label>
-                </div>
-                <span asp-validation-for="Tipo" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Agregar" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="form-group">
+        <label class="control-label">Stock</label>
+        <input type="number" max="99" min="0" step="1" asp-for="Stock" class="form-control" />
+        <span asp-validation-for="Stock" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label class="control-label">¿Este producto o servicio tiene descuento?</label>
+        <br />
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Descuento" id="Descuento1" value="1">
+            <label class="form-check-label" for="Descuento1">Sí</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Descuento" id="Descuento2" value="0">
+            <label class="form-check-label" for="Descuento2">No</label>
+        </div>
+        <span asp-validation-for="Descuento" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label">¿Es producto o servicio?</label>
+        <br />
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Tipo" id="Tipo1" value="1">
+            <label class="form-check-label" for="Tipo">Producto</label>
+        </div>
+        <div class="form-check form-check-inline">
+
+            <input class="form-check-input" type="radio" name="Tipo" id="DTipo2" value="0">
+            <label class="form-check-label" for="Tipo2">Servicio</label>
+        </div>
+        <span asp-validation-for="Tipo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Agregar" class="btn btn-primary" />
+    </div>
+    </form>
+</div>
 </div>
 
 <div>
     <a asp-action="Admin">Regresar</a>
 </div>
 
+<script src="~/js/Spinner.js"></script>
+<script>
+    $("input[type='number']").inputSpinner()
+</script>
