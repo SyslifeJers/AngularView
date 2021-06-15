@@ -1,0 +1,64 @@
+﻿@model AngularView.Models.DetalleCaja
+
+@{
+    ViewData["Title"] = "ActualizarCajonDatos";
+    Layout = "~/Views/Shared/_LayoutExpositor.cshtml";
+}
+
+
+
+<h1>Actualizar Datos</h1>
+
+<h4>Hola, llena los campos como en los ejemplos, si no cuentas con la informacion deje vacio los campos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="ActualizarCajonDatos">
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" hidden />
+            <input asp-for="IdCaja" hidden />
+            <input asp-for="IdExpositor" hidden />
+            <div class="form-group">
+                <label class="control-label">Agregar el titulo del espacio (Ejemplo: Angular View)</label>
+                <input asp-for="Titulo" class="form-control" required />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Escribe una descrición del empresa o servicios</label>
+                <textarea asp-for="Resumen" class="form-control" rows="4" required></textarea>
+                <span asp-validation-for="Resumen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Solo agrega el numero celular 10 digítos</label>
+                <input type="tel" maxlength="10" asp-for="RedWhats" class="form-control" />
+                <span asp-validation-for="RedWhats" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Agrega la terminación de tu pagína de Facebook Ejemplo facebook.com/AngularViewMx la terminación es AngularViewMx</label>
+                <input asp-for="RedFacebook" class="form-control" />
+                <span asp-validation-for="RedFacebook" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Agrega la terminación de tu pagína de Instagram Ejemplo instagram.com/AngularViewMx la terminación es AngularViewMx</label>
+                <input asp-for="RedInstagram" class="form-control" />
+                <span asp-validation-for="RedInstagram" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Agrega el codígo de iFrame de Youtube</label>
+                <textarea asp-for="VideoYoutube" class="form-control" rows="4"> </textarea>
+                <span asp-validation-for="VideoYoutube" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Subir" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="MisCajones">Regresar</a>
+</div>
+

@@ -178,7 +178,7 @@ namespace AngularView.Controllers
                 "</head>" +
                 "<body style=\"font-family:'Century Gothic'\">" +
                     "<h1 style=\"text-align:center;\"> ¡Hola " + model.Nombre + "!</h1>" +
-                    "< BR >< BR > <P> Los vendedores en ningun momento pediran anticipo</ P > " +
+                    "<P> Los vendedores en ningun momento pediran anticipo</ P > " +
                     $"<h3>Tu reserva del espacio es "+model.NombreCajon+"</h3>" +
                         $"Correo : {model.Correo}  <br />" +
                         "Contraseña : Se le enviara un link inteligente para generar su contraseña una vez confirmado el pago<br />" +
@@ -194,7 +194,7 @@ namespace AngularView.Controllers
            "       <P> Una vez realizado el pago deberá enviar el ticket de compra, al correo jorge.alvarado@aldacomp.com" +
                             "para su validación y activación a su perfil al expo. Recibirá un"+
 "correo donde se le dará acceso para dar de alta sus productos.</ P >"+
-"< BR >< BR > <P><a href=\"https://www.aldacomp.com/Facturacion/\" class=\"btn btn-info\" > ¿Requieres facturación?</ P > " +
+"< BR >< BR > <P><a href=\"mailto:jorge.alvarado@aldacomp.com\" class=\"btn btn-info\" > ¿Requieres facturación?</ P > " +
                 "</body>" +
                 "</html>";
             return cuper;

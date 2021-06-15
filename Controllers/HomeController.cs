@@ -29,7 +29,6 @@ namespace AngularView.Controllers
                 return Redirect(Url.ActionLink("Index", "Freelance"));
             }
             return Redirect(Url.ActionLink("Expo", "Home"));
-            return View();
         }
 
         public IActionResult Expo()

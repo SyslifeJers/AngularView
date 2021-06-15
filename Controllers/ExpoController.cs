@@ -73,5 +73,56 @@ namespace AngularView.Controllers
             return View(modelDetalleCajons);
         }
 
+
+        public async Task<ActionResult> Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(Clientes model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var expos = await _context.Clientes.Where(d => d.Correo.Equals(model.Correo)).ToListAsync();
+                    if (expos.Count == 1)
+                    {
+
+                            if (expos[0].Contrasena.Equals(model.Contrasena))
+                            {
+                                HttpContext.Session.SetString("Cliente", expos[0].Id.ToString());
+                                return Redirect(Url.Action("Index"));
+                            }
+                            else
+                            {
+                                model.Token = "Error de contraseña";
+                                return View(model);
+                            }
+                       
+
+                    }
+                    model.Token = "Ese correo";
+                    return View(model);
+                }
+
+                return View(model);
+            }
+            catch
+            {
+
+                return View(model);
+            }
+        }
+        public async Task<ActionResult> Registro()
+        {
+            return View();
+        }
+        public async Task<ActionResult> Registro(Clientes modal)
+        {
+            return View();
+        }
+
     }
 }

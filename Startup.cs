@@ -30,6 +30,7 @@ namespace AngularView
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddHttpContextAccessor();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc();

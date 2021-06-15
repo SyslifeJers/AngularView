@@ -1,4 +1,4 @@
-﻿@model AngularView.Models.ViewModels.ModelLoginExpoxitor
+﻿@model AngularView.Models.Clientes
 @{
     Layout = null;
 }
@@ -11,8 +11,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
     <style>
-    body { background-image: url('../Img/fonFree.jpg'); 
-           background-position: center; background-size: cover; -webkit-font-smoothing: antialiased; font: normal 14px Roboto,arial,sans-serif; }
+        body {
+            background-image: url('../Img/fonFree.jpg');
+            background-position: center;
+            background-size: cover;
+            -webkit-font-smoothing: antialiased;
+            font: normal 14px Roboto,arial,sans-serif;
+        }
 
         .container {
             padding: 10%;
@@ -78,24 +83,24 @@
                 <img src="~/Img/angularView.png" style="    width: inherit;" />
                 <div class="form-login">
                     <form asp-action="Login">
-                                       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <br>
                         <h4>Bienvenido</h4>
                         <br>
                         <input asp-for="Correo" class="form-control input-sm chat-input" placeholder="Correo" />
                         <span asp-validation-for="Correo" class="text-danger"></span>
                         <br><br>
-                        <input type="password" asp-for="Pass" class="form-control input-sm chat-input" placeholder="Contraseña" />
-                        <span asp-validation-for="Pass" class="text-danger"></span>
+                        <input type="password" asp-for="Contrasena" class="form-control input-sm chat-input" placeholder="Contraseña" />
+                        <span asp-validation-for="Contrasena" class="text-danger"></span>
                         <br><br>
                         @if (Model != null)
                         {
-                            if (Model.Coreect != null)
+                            if (Model.Token != null)
                             {
-                                if (!Model.Coreect)
+                                if (!String.IsNullOrEmpty(Model.Token))
                                 {
                                     <div class="alert alert-warning" role="alert">
-                                        Ups! @Model.Mensaje
+                                        Ups! @Model.Token
                                     </div>
                                 }
                             }
