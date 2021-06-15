@@ -61,7 +61,7 @@ namespace AngularView.Controllers
         public async Task<ActionResult> DetalleCajon(int id)
         {
             
-            List<DetalleCaja> sds = await _context.DetalleCaja.Include(d => d.IdCajaNavigation).Where(d => d.Id == Convert.ToInt32(id)).ToListAsync();
+            List<DetalleCaja> sds = await _context.DetalleCaja.Include(d => d.IdCajaNavigation).Where(d => d.IdCaja == Convert.ToInt32(id)).ToListAsync();
             ModelDetalleCajon modelDetalleCajons = new ModelDetalleCajon()
             {
                 detalleCaja = sds[0],
