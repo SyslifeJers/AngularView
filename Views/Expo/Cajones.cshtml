@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AngularView.Models.Caja>
+﻿@model IEnumerable<AngularView.Models.ViewModels.ModelCajasExpo>
 
 @{
     ViewData["Title"] = "Cajones";
@@ -9,38 +9,54 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        @if (item.Ocupado == 0)
+        @if (item.caja.Ocupado == 0)
         {
-            estilo = "bg-success";
+            estilo = "";
         }
-        @if (item.Ocupado == 1)
+        @if (item.caja.Ocupado == 1)
         {
-            estilo = "bg-warning";
+            estilo = "";
         }
-        @if (item.Ocupado == 2)
+        @if (item.caja.Ocupado == 2)
         {
-            estilo = "bg-danger";
+            estilo = "bg-light";
         }
+
+
 
     <div class="col-3" style="max-width: 250px;">
 
         <div class="container" style="min-width: 200px; max-width: 250px;">
 
             <div class="card-columns" style="max-width: 200px;">
-                <div class="card @estilo" style="min-width: 220px; position:relative;">
-                    <a class="container" asp-action="detallecajon" asp-route-id="@item.Id" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>
+                <div class="card @estilo" style="min-width: 220px; position: relative; ">
+                 @if (item.Exitente)
+                 {   <a class="container" asp-action="detallecajon" asp-route-id="@item.caja.Id" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>}
 
                     <div class="card-body">
                         <div class="row">
                             <div class="col-4" style="display: flex;">
-                                <img src="~/Img/angularView.png" style="width:70px; height:70px; align-self: center;">
+                                @if (!item.Exitente)
+                                {
+                                    <img src="~/Img/angularView.png" style="width:70px; height:70px; align-self: center;">
 
+                                }
+                                else
+                                {
+                                    string rut = "http://angularviewexpo.com/Img/Logos/" + item.detalleCaja.IdCaja + ".png";
+                                    <img style="width:5em" src="@rut" onerror="if(this.src != '@rut') this.src = 'http://angularviewexpo.com//Img/angularView.png">
+                                }
                             </div>
                             <div class="col-8">
-                                <h5 class="text-center">Espacio - @item.Descripcion</h5>
+                                @if (item.Exitente)
+                                {
+                                    <p>@item.detalleCaja.Titulo</p>
+                                }
+                                else
+                                {
+                                 <p> Caja @item.caja.Descripcion</p>
 
-                                <p card-text>$ @item.Costo.ToString()</p>
-
+                                }
 
                             </div>
                         </div>

@@ -7,7 +7,8 @@ namespace AngularView.Models.ViewModels
 {
     public class ModelCajasExpo
     {
-        DetalleCaja detalleCaja { get; set; }
-        Caja  caja { get; set; }
+        public DetalleCaja detalleCaja { get; set; }
+        public Caja  caja { get; set; }
+        public bool Exitente { get; set; }
     }
 }

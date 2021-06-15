@@ -21,7 +21,7 @@ namespace AngularView.Models
         public DateTime? Fecha { get; set; }
         public string Contrasena { get; set; }
         public string Correo { get; set; }
-        public DateTime UtlConexion { get; set; }
+        public DateTime? UtlConexion { get; set; }
         public string Token { get; set; }
 
         public virtual ICollection<ClickCajas> ClickCajas { get; set; }

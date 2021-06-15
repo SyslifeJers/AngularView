@@ -1,21 +1,37 @@
 ﻿@model IEnumerable<AngularView.Models.Sala>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/Expo_Layout.cshtml";
+    Layout = null;
 }
 
-<div>
-    <img class="fondo-pantalla" src="~/Img/fonExpo.png">
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AngularView</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/StiloExpo.css" />
+</head>
+<body>
     <div>
-        <a class="boton-informacion cursor-hover-animation"></a>
-        <a class="boton-registro cursor-hover-animation"></a>
-        <a class="boton-sala1 cursor-hover-animation" asp-action="cajones" asp-route-id="1"></a>
-        <a class="boton-sala2 cursor-hover-animation" asp-action="cajones" asp-route-id="2"></a>
-        <a class="boton-sala3 cursor-hover-animation" asp-action="cajones" asp-route-id="3"></a>
+
+        <div>
+            <img class="fondo-pantalla" src="~/Img/fonExpo.png">
+            <div>
+                <a class="boton-informacion cursor-hover-animation"></a>
+                <a class="boton-registro cursor-hover-animation" asp-action="Registro"></a>
+                <a class="boton-sala1 cursor-hover-animation" asp-action="cajones" asp-route-id="1"></a>
+                <a class="boton-sala2 cursor-hover-animation" asp-action="cajones" asp-route-id="2"></a>
+                <a class="boton-sala3 cursor-hover-animation" asp-action="cajones" asp-route-id="3"></a>
 
 
+            </div>
+        </div>
     </div>
-</div>
-
+</body>
+</html>
 
 

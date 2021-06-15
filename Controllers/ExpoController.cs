@@ -25,14 +25,24 @@ namespace AngularView.Controllers
         // GET: ExpoController
         public async Task<ActionResult> Index()
         {
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
+            {
+                return Redirect(Url.ActionLink("IndexSucces"));
+            }
             return View(await _context.Sala.Include(d => d.Caja).Where(f => f.IdEvento == 1).ToListAsync());
         }
 
         // GET: ExpoController/Details/5
         public async Task<ActionResult> Cajones(int id)
         {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
+            {
+                return Redirect(Url.ActionLink("Login", "Expo"));
+            }
             var list = await _context.Caja.Where(f => f.IdSala == id).OrderBy(d => d.Descripcion).ToListAsync();
+            var listDetalle = await _context.DetalleCaja.ToListAsync();
             List<Caja> cajas = new List<Caja>();
+            List<ModelCajasExpo> modelcajas = new List<ModelCajasExpo>();
             List<int> cvr = new List<int>();
 
             foreach (var item in list)
@@ -46,11 +56,23 @@ namespace AngularView.Controllers
                 {
                     if (lisorede[i].ToString().Equals(item.Descripcion))
                     {
-                        cajas.Add(item);
+                        modelcajas.Add(new ModelCajasExpo() {caja = item });
                     }
                 }
             }
-            return View(cajas);
+            foreach (var item in modelcajas)
+            {
+                foreach (var itemcaja in listDetalle)
+                {
+
+                    if (itemcaja.IdCaja == item.caja.Id)
+                    {
+                        item.Exitente = true;
+                        item.detalleCaja = itemcaja;
+                    }
+                }
+            }
+            return View(modelcajas);
         }
 
         public async Task<ActionResult> DetalleProducto(int id)
@@ -60,7 +82,10 @@ namespace AngularView.Controllers
 
         public async Task<ActionResult> DetalleCajon(int id)
         {
-            
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
+            {
+                return Redirect(Url.ActionLink("Login", "Expo"));
+            }
             List<DetalleCaja> sds = await _context.DetalleCaja.Include(d => d.IdCajaNavigation).Where(d => d.IdCaja == Convert.ToInt32(id)).ToListAsync();
             ModelDetalleCajon modelDetalleCajons = new ModelDetalleCajon()
             {
@@ -75,6 +100,14 @@ namespace AngularView.Controllers
 
 
         public async Task<ActionResult> Login()
+        {
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
+            {
+                return Redirect(Url.ActionLink("IndexSucces"));
+            }
+            return View();
+        }
+        public async Task<ActionResult> IndexSucces()
         {
             return View();
         }
@@ -93,17 +126,17 @@ namespace AngularView.Controllers
                             if (expos[0].Contrasena.Equals(model.Contrasena))
                             {
                                 HttpContext.Session.SetString("Cliente", expos[0].Id.ToString());
-                                return Redirect(Url.Action("Index"));
+                                return Redirect(Url.Action("IndexSucces"));
                             }
                             else
                             {
                                 model.Token = "Error de contraseña";
-                                return View(model);
+
                             }
                        
 
                     }
-                    model.Token = "Ese correo";
+                    model.Token = "Ese correo ya fue registrado";
                     return View(model);
                 }
 
@@ -119,9 +152,37 @@ namespace AngularView.Controllers
         {
             return View();
         }
-        public async Task<ActionResult> Registro(Clientes modal)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Registro(Clientes model)
         {
-            return View();
+            model.Fecha = DateTime.Now;
+
+            if (String.IsNullOrEmpty(model.Nombre))
+            {
+                model.Token = "Ups, no pordemos dejar vacío Nombre";
+                return View(model);
+            }
+            if (String.IsNullOrEmpty(model.Apellidos))
+            {
+                model.Token = "Ups, no pordemos dejar vacío Apellido";
+                return View(model);
+            }
+            if (String.IsNullOrEmpty(model.Correo))
+            {
+                model.Token = "Ups, no pordemos dejar vacío Correo";
+                return View(model);
+            }
+            var klist = _context.Clientes.Where(r => r.Correo.Equals(model.Correo)).ToList();
+            if (klist.Count() != 0)
+            {
+                model.Token = "El correo ya esta registrado";
+                return View(model);
+            }
+            _context.Clientes.Add(model);
+            _context.SaveChanges();
+
+            return Redirect(Url.Action("Login"));
         }
 
     }

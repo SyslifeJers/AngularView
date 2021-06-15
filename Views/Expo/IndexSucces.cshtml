@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Expo_Layout.cshtml";
+}
+
+<div>
+    <img class="fondo-pantalla" src="~/Img/fonExpo.png">
+    <div>
+        <a class="boton-informacion cursor-hover-animation"></a>
+        <a class="boton-registro cursor-hover-animation" asp-action="Registro"></a>
+        <a class="boton-sala1 cursor-hover-animation" asp-action="cajones" asp-route-id="1"></a>
+        <a class="boton-sala2 cursor-hover-animation" asp-action="cajones" asp-route-id="2"></a>
+        <a class="boton-sala3 cursor-hover-animation" asp-action="cajones" asp-route-id="3"></a>
+
+
+    </div>
+</div>

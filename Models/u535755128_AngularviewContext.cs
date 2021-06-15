@@ -465,13 +465,11 @@ namespace AngularView.Models
                     .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Contrasena)
-                    .IsRequired()
                     .HasColumnType("mediumtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.Correo)
-                    .IsRequired()
                     .HasColumnType("mediumtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
@@ -484,7 +482,6 @@ namespace AngularView.Models
                     .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Token)
-                    .IsRequired()
                     .HasColumnType("longtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
