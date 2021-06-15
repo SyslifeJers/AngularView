@@ -46,7 +46,9 @@
             <div class="card-columns" style="max-width: 200px;">
                 <div class="card @estilo" style="min-width: 220px; position: relative; ">
                  @if (item.Exitente)
-                 {   <a class="container" asp-action="detallecajon" asp-route-id="@item.caja.Id" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>}
+                 {   
+                     <a class="container" asp-action="detallecajon" asp-route-id="@item.caja.Id" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>
+                 }
 
                     <div class="card-body">
                         <div class="row">

@@ -75,16 +75,82 @@
                 </div>
             </div>
         </div>
+}else if(Model.detalleCaja.IdCajaNavigation.Tipo == 2)
+{
+<div>
+    <img class="fondo-pantalla" src="~/Img/Espacios/standVip.png">
+    <div class="row">
+        <div class="col-9">
+            <div class="row" style="height: 30%">
+                <div class="col-6">
 
+                </div>
+                <div class="col-6">
 
+                </div>
+            </div>
+            <div class="row" style="height: 25%;">
+                <div class="col-5">
+                    <div class="container" style="width: 60%; height: 60%; max-height: 200px; padding-left: 6%; margin-right: 11%;">
+                        <p style="text-align: justify; font-size: 1.3vw;">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. </p>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="video-container">
+                        <iframe class="responsive-iframe"
+                                src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                        </iframe>
+                    </div>
+                    
+                </div>
+                <div class="col-2">
+                    <h1 style="margin-top: 13%; margin-left: 8%; font-size: 2.5vw;">Nombre</h1>
 
-        
+                </div>
+            </div>
+            <div class="row" style="height: 10%">
+                <div class="col-2">
+                    <img class="logo-stand-vip" src="~/Img/angularView.png" style="width:36px; height:36px; margin-top: 8%; margin-left: 16%">
+                </div>
+                <div class="col-3">
+                    <div class="container" style="width: 100%; height: 60%; max-height: 200px; display: flex; padding-top: 8%">
+                        <a style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 36px; width: 36px; border-radius: 50px" /></a>
+                        <a style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 36px; width: 36px; border-radius: 50px" /></a>
+                        <a style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 36px; width: 36px;" /></a>
+                    </div>
+                </div>
+                <div class="col-7">
 
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div style="height: 300px; overflow-y: scroll; margin-top: 10%;">
+                @for (int i = 0; i < 10; i++)
+                {
+                    <div class="row" style="padding-top: 2%; margin: 0;">
+                        <div class="card bg-light" style="margin: auto;">
+                            <!--<a class="container" asp-action="detalleproducto" asp-route-id="1" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>-->
 
-    
-
-
-
+                            <div class="row container" style="padding-top: 1%; padding-bottom: 1%">
+                                <div class="col-4">
+                                    <div class="container" style="display: flex; justify-content: center;">
+                                        <img src="~/Img/angularView.png" style="width:70px; height:70px;">
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <h4 style="font-size: 1.3vw;">Nombre</h4>
+                                    <hr />
+                                    <p style="font-size: 1.3vw;">Descripción</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
 }
 
 
