@@ -21,112 +21,51 @@
 @if (Model.detalleCaja.IdCajaNavigation.Tipo == 1)
 {
 
-        <img class="fondo-pantalla" src="~/Img/Espacios/stand1.png">
-        <div class="row">
-            <div class="col-8">
-                <div class="row" style="height: 50%">
-                    <div class="col-6">
-                        <img class="logo-stand" src="~/Img/angularView.png" style="width: 25%; height: 33%; margin-top: 15%; margin-left: 14%">
-
-                    </div>
-                    <div class="col-6">
-                        <h1 style="margin-top: 25%; margin-left: 20%;">Nombre</h1>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="container" style="width: 60%; height: 60%; max-height: 200px; padding-left: 11%;">
-                            <p style="text-align: justify; font-size: 1.3vw;">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. </p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="container" style="width: 60%; height: 60%; max-height: 200px; display: flex; padding-top: 6%; padding-left: 4%;">
-                            <a style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
-                            <a style="margin: auto 3% auto 3%; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px " /></a>
-                            <a style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px; " /></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div style="height: 900px; overflow-y: scroll; margin-top: 10%;">
-                    @for (int i = 0; i < 10; i++)
-                    {
-                        <div class="row" style="padding-top: 2%; margin: 0;">
-                            <div class="card bg-light" style="margin: auto;">
-                                <!--<a class="container" asp-action="detalleproducto" asp-route-id="1" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>-->
-
-                                <div class="row container" style="padding-top: 1%; padding-bottom: 1%">
-                                    <div class="col-4">
-                                        <div class="container" style="display: flex; justify-content: center;">
-                                            <img src="~/Img/angularView.png" style="width:70px; height:70px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-8">
-                                        <h4>Nombre</h4>
-                                        <hr />
-                                        <p>Descripción</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-}else if(Model.detalleCaja.IdCajaNavigation.Tipo == 2)
-{
-<div>
-    <img class="fondo-pantalla" src="~/Img/Espacios/standVip.png">
+    <img class="fondo-pantalla" src="~/Img/Espacios/stand1.png">
     <div class="row">
-        <div class="col-9">
-            <div class="row" style="height: 40%">
+        <div class="col-8">
+            <div class="row" style="height: 50%">
                 <div class="col-6">
+                    @{string rutaL = "../Img/Logos/" + Model.detalleCaja.Id + ".png";}
+
+                    <img class="logo-stand" src="@rutaL" onerror="if (this.src != @rutaL) this.src = '../Img/angularView.png';" style="width: 25%; height: 33%; margin-top: 15%; margin-left: 14%">
 
                 </div>
                 <div class="col-6">
+                    <h1 style="margin-top: 25%; margin-left: 20%;">@Model.detalleCaja.Titulo</h1>
 
                 </div>
             </div>
-            <div class="row" style="height: 25%;">
-                <div class="col-5">
-                    <div class="container" style="width: 60%; height: 60%; max-height: 200px; padding-left: 6%; margin-right: 11%;">
-                        <p style="text-align: justify; font-size: 1.3vw;">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. </p>
+            <div class="row">
+                <div class="col-6">
+                    <div class="container" style="width: 60%; height: 60%; max-height: 200px; padding-left: 11%;">
+                        <p style="text-align: justify; font-size: 1.3vw;">@Model.detalleCaja.Resumen</p>
                     </div>
                 </div>
-                <div class="col-5">
-                    <div class="video-container">
-                        <iframe class="responsive-iframe"
-                                src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                        </iframe>
-                    </div>
-                    
-                </div>
-                <div class="col-2">
-                    <h1 style="margin-top: 25%; margin-left: 8%; font-size: 2.5vw;">Nombre</h1>
+                <div class="col-6">
+                    <div class="container" style="width: 60%; height: 60%; max-height: 200px; display: flex; padding-top: 6%; padding-left: 4%;">
+                        @if (!String.IsNullOrEmpty(Model.detalleCaja.RedFacebook))
+                        {
+                            <a href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
+                        }
+                        @if (!String.IsNullOrEmpty(Model.detalleCaja.RedWhats))
+                        {
+                            string link = "https://wa.me/52" + Model.detalleCaja.RedWhats;
+                            <a href="@link" style="margin: auto 3% auto 3%; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px " /></a>
+                        }
+                        @if (!String.IsNullOrEmpty(Model.detalleCaja.RedInstagram))
+                        {
+                            <a href="https://www.instagram.com/@Model.detalleCaja.RedInstagram" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px; " /></a>
+                        }
 
-                </div>
-            </div>
-            <div class="row" style="height: 10%">
-                <div class="col-2">
-                    <img class="logo-stand-vip" src="~/Img/angularView.png" style="width: 50%; height: 80%; margin-top: 8%; ">
-                </div>
-                <div class="col-3">
-                    <div class="container" style="width: 100%; height: 60%; max-height: 200px; display: flex; padding-top: 30%">
-                        <a style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
-                        <a style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
-                        <a style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px;" /></a>
-                    </div>
-                </div>
-                <div class="col-7">
 
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-4">
             <div style="height: 900px; overflow-y: scroll; margin-top: 10%;">
-                @for (int i = 0; i < 10; i++)
+                @foreach (var item in Model.listProductoServicios)
                 {
                     <div class="row" style="padding-top: 2%; margin: 0;">
                         <div class="card bg-light" style="margin: auto;">
@@ -139,18 +78,134 @@
                                     </div>
                                 </div>
                                 <div class="col-8">
-                                    <h4 style="font-size: 1.3vw;">Nombre</h4>
-                                    <hr />
-                                    <p style="font-size: 1.3vw;">Descripción</p>
+                                    <div class="col-8">
+                                        <h4 style="font-size: 1.3vw;">@item.Nombre</h4>
+                                        <hr />
+                                        <p style="font-size: 1.3vw;">@item.Decripcion</p>
+                                        <hr />
+                                        @if (item.Descuento == 1)
+                                        {
+                                            <p style="font-size: 1.3vw;">@item.PrecioDescuento</p>
+                                        }
+                                        else
+                                        {
+                                            <p style="font-size: 1.3vw;">@item.PrecioNormal</p>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 }
             </div>
+
         </div>
     </div>
-</div>
+}
+else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
+{
+    <div>
+        <img class="fondo-pantalla" src="~/Img/Espacios/standVip.png">
+        <div class="row">
+            <div class="col-9">
+                <div class="row" style="height: 40%">
+                    <div class="col-6">
+
+                    </div>
+                    <div class="col-6">
+
+                    </div>
+                </div>
+                <div class="row" style="height: 25%;">
+                    <div class="col-5">
+                        <div class="container" style="width: 60%; height: 60%; max-height: 200px; padding-left: 6%; margin-right: 11%;">
+                            <p style="text-align: justify; font-size: 1.3vw;">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. </p>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="video-container">
+                            <iframe class="responsive-iframe"
+                                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                            </iframe>
+                        </div>
+
+                    </div>
+                    <div class="col-2">
+                        <h1 style="margin-top: 25%; margin-left: 8%; font-size: 2.5vw;">Nombre</h1>
+
+                    </div>
+                </div>
+                <div class="row" style="height: 10%">
+                    <div class="col-2">
+                        @{string rutaLs = "../Img/Logos/" + Model.detalleCaja.Id + ".png";}
+
+                        <img class="logo-stand-vip" src="@rutaLs" onerror="if (this.src != @rutaLs) this.src = '../Img/angularView.png';" style="width: 50%; height: 80%; margin-top: 8%; ">
+                    </div>
+                    <div class="col-3">
+                        <div class="container" style="width: 100%; height: 60%; max-height: 200px; display: flex; padding-top: 30%">
+
+                            @if (!String.IsNullOrEmpty(Model.detalleCaja.RedFacebook))
+                            {
+
+                                <a href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
+                            }
+                            @if (!String.IsNullOrEmpty(Model.detalleCaja.RedWhats))
+                            {
+                                string link = "https://wa.me/52" + Model.detalleCaja.RedWhats;
+                                <a href="@link" style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
+                            }
+                            @if (!String.IsNullOrEmpty(Model.detalleCaja.RedInstagram))
+                            {
+                                <a href="https://www.instagram.com/@Model.detalleCaja.RedInstagram" style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px;" /></a>
+                            }
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-7">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div style="height: 900px; overflow-y: scroll; margin-top: 10%;">
+                    @foreach (var item in Model.listProductoServicios)
+                    {
+                        <div class="row" style="padding-top: 2%; margin: 0;">
+                            <div class="card bg-light" style="margin: auto;">
+                                <!--<a class="container" asp-action="detalleproducto" asp-route-id="1" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>-->
+
+                                <div class="row container" style="padding-top: 1%; padding-bottom: 1%">
+                                    <div class="col-4">
+                                        <div class="container" style="display: flex; justify-content: center;">
+                                            <img src="~/Img/angularView.png" style="width:70px; height:70px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <h4 style="font-size: 1.3vw;">@item.Nombre</h4>
+                                        <hr />
+                                        <p style="font-size: 1.3vw;">@item.Decripcion</p>
+                                        <hr />
+                                        @if (item.Descuento == 1)
+                                        {
+                                            <p style="font-size: 1.3vw;">@item.PrecioDescuento</p>
+                                        }
+                                        else
+                                        {
+                                            <p style="font-size: 1.3vw;">@item.PrecioNormal</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 
