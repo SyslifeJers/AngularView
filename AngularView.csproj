@@ -39,7 +39,6 @@
 
   <ItemGroup>
     <Folder Include="Utilidades\" />
-    <Folder Include="wwwroot\Img\Logos\" />
     <Folder Include="wwwroot\Product\" />
   </ItemGroup>
 

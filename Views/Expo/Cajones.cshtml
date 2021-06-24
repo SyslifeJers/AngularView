@@ -2,87 +2,202 @@
 
 @{
     ViewData["Title"] = "Cajones";
-    Layout = "~/Views/Shared/Expo_Layout.cshtml";
-    string estilo = "";
-    string sala = "";
-    if(Model[0].caja.IdSala==1)
-    {
-        sala = "1";
-    }
-
-    if (Model[0].caja.IdSala == 2)
-    {
-        sala = "Vip";
-        }
-
-    if (Model[0].caja.IdSala == 3)
-    {
-        sala = "2";
-        }
-
+    Layout = null;
 }
-<h1 style="        background-color: #17bba0;
-        text-align: center;
-        color: white">Sala @sala</h1>
-<div class="row">
-    @foreach (var item in Model)
-    {
+    <!DOCTYPE html>
 
-        @if (!item.Exitente)
-        {
-            estilo = "bg-light";
-        }
-       else
-        {
-            estilo = "bg-warning";
-        }
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - AngularView</title>
+        <link rel="shortcut icon" type="image/png" href="~/Img/angularView.png" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/StiloExpo.css" />
+    </head>
+    <body style="    background-image: url(https://media.istockphoto.com/photos/-picture-id894206294?k=6&m=894206294&s=612x612&w=0&h=PZukh1y1Hly_xE4YvjfpEqdmKrsnrpcy5AjBF9cprs0=);">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom mb-3" style="margin-bottom: 0em!important;">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-action="IndexSucces">Inicio</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
 
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-action="cajones" asp-route-id="1">Sala 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-action="cajones" asp-route-id="2">Sala Vip</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-action="cajones" asp-route-id="3">Sala 2</a>
+                            </li>
 
-
-    <div class="col-3" style="max-width: 250px;">
-
-        <div class="container" style="min-width: 200px; max-width: 250px;">
-
-            <div class="card-columns" style="max-width: 200px;">
-                <div class="card @estilo" style="min-width: 220px; min-height: 130px; position: relative; ">
-                 @if (item.Exitente)
-                 {   
-                     <a class="container" asp-action="detallecajon" asp-route-id="@item.caja.Id" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>
-                 }
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4" style="display: flex;">
-                                @if (!item.Exitente)
-                                {
-                                    <img src="~/Img/angularView.png" style="width:100%; height:100%; align-self: center;">
-
-                                }
-                                else
-                                {
-                                    string rut = "http://angularviewexpo.com/Img/Logos/" + item.detalleCaja.IdCaja + ".png";
-                                    <img style="width:5em" src="@rut" onerror="if(this.src != '@rut') this.src = 'http://angularviewexpo.com//Img/angularView.png">
-                                }
-                            </div>
-                            <div class="col-8">
-                                @if (item.Exitente)
-                                {
-                                    <p style="padding-left: 15px;">@item.detalleCaja.Titulo</p>
-                                }
-                                else
-                                {
-                                 <p style="padding-left: 15px;"> Caja @item.caja.Descripcion</p>
-
-                                }
-
-                            </div>
-                        </div>
+                        </ul>
                     </div>
                 </div>
 
+            </nav>
+        </header>
+        <div>
+            @{
+                string estilo = "";
+                string estiloII = "";
+                string sala = "";
+                if (Model[0].caja.IdSala == 1)
+                {
+                    sala = "1";
+                }
+
+                if (Model[0].caja.IdSala == 2)
+                {
+                    sala = "Vip";
+                }
+
+                if (Model[0].caja.IdSala == 3)
+                {
+                    sala = "2";
+                }
+
+            }
+            <h1 style="        background-color: #17bba0;
+        text-align: center;
+        color: white">
+                Sala @sala
+            </h1>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+
+                    @if (!item.Exitente)
+                    {
+                        estilo = "bg-light";
+
+                    }
+                    else
+                    {
+                        estilo = "";
+                    }
+                    if (item.caja.Tipo == 2)
+                    {
+                        estiloII = " background-color: rgb(253, 255, 131,0.6 ); ";
+
+                    }
+                    else
+                    {
+                        estiloII = " background-color: rgb(105, 255, 216,0.6 ); ";
+                    }
+
+
+                    if (item.caja.Activo == 1)
+                    {
+                        if (item.caja.Tipo == 1)
+                        {
+                            <div class="col-3" style="max-width: 250px;">
+
+                                <div class="container" style="min-width: 200px; max-width: 250px;">
+
+                                    <div class="card-columns" style="max-width: 200px;">
+                                        <div class="card @estilo" style="min-width: 220px; min-height: 130px; position: relative; @estiloII ">
+                                            @if (item.Exitente)
+                                            {
+                                                <a class="container" asp-action="detallecajon" asp-route-id="@item.caja.Id" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>
+                                            }
+
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-4" style="display: flex;">
+                                                        @if (!item.Exitente)
+                                                        {
+                                                            <img src="~/Img/angularView.png" style="width:100%; height:100%; align-self: center;">
+
+                                                        }
+                                                        else
+                                                        {
+                                                            string rut = "http://angularviewexpo.com/Img/Logos/" + item.detalleCaja.IdCaja + ".png";
+                                                            <img style="width:5em" src="@rut" onerror="if(this.src != 'http://angularviewexpo.com//Img/angularView.png') this.src = 'http://angularviewexpo.com//Img/angularView.png'">
+                                                        }
+                                                    </div>
+                                                    <div class="col-8">
+                                                        @if (item.Exitente)
+                                                        {
+                                                            <p style="padding-left: 15px;" class="font-weight-bold">@item.detalleCaja.Titulo</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p style="padding-left: 15px;"> Local @item.caja.Descripcion</p>
+
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-5" style="max-width: 350px;">
+
+                                <div class="container" style="min-width: 200px; max-width: 350px;">
+
+                                    <div class="card-columns" style="max-width: 300px;">
+                                        <div class="card @estilo" style="min-width: 320px; min-height: 180px; position: relative; @estiloII ">
+                                            @if (item.Exitente)
+                                            {
+                                                <a class="container" asp-action="detallecajon" asp-route-id="@item.caja.Id" style="width: 100%; height: 100%; z-index: 999; position:absolute; "></a>
+                                            }
+
+                                            <div class="card-body">
+                                                <div class="text-center">
+                                                    <div class="" style="">
+                                                        @if (!item.Exitente)
+                                                        {
+                                                            <img src="~/Img/angularView.png" style="width:10em;  align-self: center;">
+
+                                                        }
+                                                        else
+                                                        {
+                                                            string rut = "http://angularviewexpo.com/Img/Logos/" + item.detalleCaja.IdCaja + ".png";
+                                                            <img style="width:10em" src="@rut" onerror="if(this.src != 'http://angularviewexpo.com//Img/angularView.png') this.src = 'http://angularviewexpo.com//Img/angularView.png'">
+                                                        }
+                                                    </div>
+                                                    <div class="">
+                                                        @if (item.Exitente)
+                                                        {
+                                                            <p style="padding-left: 15px;" class="font-weight-bold">@item.detalleCaja.Titulo</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p style="padding-left: 15px;"> Local @item.caja.Descripcion</p>
+
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+
+                    }
+                }
             </div>
         </div>
-
-    </div>
-    }
-</div>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </body>
+</html>

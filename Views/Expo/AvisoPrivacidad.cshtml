@@ -8,9 +8,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AngularView</title>
-    <link rel="shortcut icon" type="image/png" href="~/Img/angularView.png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
+    <link rel="shortcut icon" type="image/png" href="~/Img/angularView.png" />
     <style>
         body {
             background-image: url('../Img/fonFree.jpg');
@@ -80,44 +79,26 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-5 col-sm-12 col-md-4 text-center">
-                <img src="~/Img/angularView.png" style="    width: inherit;" />
+            <div class="col-md-offset-12 col-sm-12 col-md-12 text-center">
+                <div class="row">  
+                    <div class="col-sm-12 col-md-6"><img src="~/Img/angularView.png" style="    width: 60%;" /></div>
+                                   <div class="col-sm-12 col-md-6"><img src="~/Img/alda.png" style="  width: 80%;" /></div>
+                </div>
                 <div class="form-login">
-                    <form asp-action="Login">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <br>
-                        <h4>Bienvenido</h4>
-                        <br>
-                        <input asp-for="Correo" class="form-control input-sm chat-input" placeholder="Correo" />
-                        <span asp-validation-for="Correo" class="text-danger"></span>
-                        <br><br>
-                        <input type="password" asp-for="Contrasena" class="form-control input-sm chat-input" placeholder="Contraseña" />
-                        <span asp-validation-for="Contrasena" class="text-danger"></span>
-                        <br><br>
-                        @if (Model != null)
-                        {
-                            if (Model.Token != null)
-                            {
-                                if (!String.IsNullOrEmpty(Model.Token))
-                                {
-                                    <div class="alert alert-warning" role="alert">
-                                        Ups! @Model.Token
-                                    </div>
-                                }
-                            }
+                    <p class="h4">
 
-                        }
-                        <a asp-action="Registro" class="btn-link btn">Registrarme</a>
+                        Angular View, un producto digital de ALDA Comp. Business Networks es una plataforma de software que permite vincular en un espacio virtual directamente a los negocios expositores participantes con los asistentes. ALDA Comp. Business Networks, que es el único y exclusivo responsable de la producción, calidad y cumplimiento de la plataforma en forma oportuna y en cumplimiento de la ley. ALDA Comp. Business Networks es completamente ajeno a la organización, logística, pagos, calidad de los productos y servicios de los negocios participantes de la plataforma por lo que cualquier consulta referente a ello será tratada directamente con los dueños y/o representantes de los negocios participantes.
 
-                        <div class="wrapper">
-                            <span class="group-btn">
-                                <button class="btn btn-danger btn-md" type="submit">Ingresar <i class="fa fa-sign-in"></i></button>
-                            </span>
-                            <span class="group-btn">
-                                <a class="btn btn-primary btn-md" asp-action="">Regresar <i class="fa fa-sign-in"></i></a>
-                            </span>
-                        </div>
-                    </form>
+                        https://www.facebook.com/ALDA-comp-101437277896984
+
+                        jorge.alvarado@aldacomp.com
+
+
+                    </p>
+                    <p>
+                        <a asp-action="" asp-controller="Expo">Regresar</a>
+                    </p>
+                 
                 </div>
             </div>
         </div>

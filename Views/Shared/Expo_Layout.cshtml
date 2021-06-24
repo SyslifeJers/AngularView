@@ -5,12 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AngularView</title>
+    <link rel="shortcut icon" type="image/png" href="~/Img/angularView.png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/StiloExpo.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom mb-3"  style="margin-bottom: 0em!important;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom mb-3" style="margin-bottom: 0em!important;">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-action="IndexSucces">Inicio</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -21,13 +22,13 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-white"  asp-action="cajones" asp-route-id="1">Sala 1</a>
+                            <a class="nav-link text-white" asp-action="cajones" asp-route-id="1">Sala 1</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white"  asp-action="cajones" asp-route-id="2">Sala Vip</a>
+                            <a class="nav-link text-white" asp-action="cajones" asp-route-id="2">Sala Vip</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white"  asp-action="cajones" asp-route-id="3">Sala 2</a>
+                            <a class="nav-link text-white" asp-action="cajones" asp-route-id="3">Sala 2</a>
                         </li>
 
                     </ul>
@@ -39,5 +40,9 @@
     <div>
         @RenderBody()
     </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

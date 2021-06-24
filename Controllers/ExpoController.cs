@@ -25,20 +25,20 @@ namespace AngularView.Controllers
         // GET: ExpoController
         public async Task<ActionResult> Index()
         {
-            /*if (!String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
             {
                 return Redirect(Url.ActionLink("IndexSucces"));
-            }*/
+            }
             return View(await _context.Sala.Include(d => d.Caja).Where(f => f.IdEvento == 1).ToListAsync());
         }
 
         // GET: ExpoController/Details/5
         public async Task<ActionResult> Cajones(int id)
         {
-            /*if (String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
             {
                 return Redirect(Url.ActionLink("Login", "Expo"));
-            }*/
+            }
             var list = await _context.Caja.Where(f => f.IdSala == id).OrderBy(d => d.Descripcion).ToListAsync();
             var listDetalle = await _context.DetalleCaja.ToListAsync();
             List<Caja> cajas = new List<Caja>();
@@ -82,10 +82,10 @@ namespace AngularView.Controllers
 
         public async Task<ActionResult> DetalleCajon(int id)
         {
-            /*if (String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
             {
                 return Redirect(Url.ActionLink("Login", "Expo"));
-            }*/
+            }
             List<DetalleCaja> sds = await _context.DetalleCaja.Include(d => d.IdCajaNavigation).Where(d => d.IdCaja == Convert.ToInt32(id)).ToListAsync();
             ModelDetalleCajon modelDetalleCajons = new ModelDetalleCajon()
             {
@@ -147,6 +147,10 @@ namespace AngularView.Controllers
 
                 return View(model);
             }
+        }
+        public async Task<ActionResult> AvisoPrivacidad()
+        {
+            return View();
         }
         public async Task<ActionResult> Registro()
         {

@@ -8,6 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AngularView</title>
+    <link rel="shortcut icon" type="image/png" href="~/Img/angularView.png" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
     <style>
@@ -106,11 +107,18 @@
                                 <input asp-for="Apellidos" class="form-control" required />
                                 <span asp-validation-for="Apellidos" class="text-danger"></span>
                             </div>
+                            <div class="form-group">
+                                <input type="checkbox"  required />
+                                <a asp-action="AvisoPrivacidad" asp-controller="Expo">Aviso de privacidad</a>
+                            </div>
                             <div class="row ">
                                 <div class="form-group">
                                     <input type="submit" value="Registrarme" class="btn btn-primary" />
 
                                     <a asp-action="Login" value="Regresar" class="btn btn-danger">Regresar</a>
+                                    <span class="group-btn">
+                                        <a class="text-white-50" asp-action="Login">Tengo cuenta <i class="fa fa-sign-in"></i></a>
+                                    </span>
                                 </div>
                             </div>
                             @if (Model != null)
