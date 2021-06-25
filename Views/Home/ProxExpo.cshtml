@@ -140,7 +140,7 @@
                 <h3 class="masthead-brand">Angular View</h3>
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link" href="@Url.Action("Expo", "Home")">Inicio</a>
-                    <a class="nav-link active" href="@Url.Action("ProxExpo", "Home")">Expos</a>
+                    <a class="nav-link active" href="@Url.Action("ProxExpo", "Home")">Calendario</a>
                     <a class="nav-link " href="@Url.Action("Login", "AdminExpositores")">Soy Expositor</a>
 
                 </nav>
@@ -149,7 +149,7 @@
 
         <main role="main" class="inner cover">
 
-            <div class="container" style="padding:3em">
+            <div class="container" style="padding:3em;max-height: 800px;overflow-y: scroll;">
                 <h3>Proximas Expos</h3>
                 <div class="card mb-3 bg-dark text-center" style="max-width: 840px;">
                     <div class="row no-gutters">
@@ -165,11 +165,68 @@
                                 <h4> </h4>
                                 <hr />
                                 <div class="" style="padding-left:1em">
-                                    <a class="btn " asp-action="Login" asp-controller="AdminExpositores" style="        background-color: #04c3ab">Reservar mi lugar</a>
+                                    <label class="">Gracias por participar</label>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                         Negocios participantes
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3 bg-dark text-center" style="max-width: 840px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="~/Img/ExpoGarden.jpeg" style="width:15em" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2>EXPO GARDEN PARTY 2021<small><br /> ...<small></h2>
+                                <i data-toggle="popover" title="EXPO GARDEN PARTY" data-content="Expo pensada para organizar todo tipo de fiesta o evento social, no importa el tamaño de tu evento o reunión, Variedad de opciones que harán que tu reunión sea todo un éxito" class="bi bi-info-circle"></i>
+
+                                <hr />
+                                <a class="btn btn-outline-dark">Proximamente...</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                                    Negocios participantes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3 bg-dark text-center" style="max-width: 840px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="~/Img/ExpoGarden.jpeg" style="width:15em" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2>Expo tu Verano 2021<small><br /> ...<small></h2>
+                                <i data-toggle="popover" title="EXPO GARDEN PARTY" data-content="Expo pensada para organizar todo tipo de fiesta o evento social, no importa el tamaño de tu evento o reunión, Variedad de opciones que harán que tu reunión sea todo un éxito" class="bi bi-info-circle"></i>
+
+                                <hr />
+                                <a class="btn btn-outline-dark">Proximamente...</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                                    Negocios participantes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3 bg-dark text-center" style="max-width: 840px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="~/Img/ExpoGarden.jpeg" style="width:15em" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2>Expo tu Verano 2021<small><br /> ...<small></h2>
+                                <i data-toggle="popover" title="EXPO GARDEN PARTY" data-content="Expo pensada para organizar todo tipo de fiesta o evento social, no importa el tamaño de tu evento o reunión, Variedad de opciones que harán que tu reunión sea todo un éxito" class="bi bi-info-circle"></i>
+
+                                <hr />
+                                <a class="btn btn-outline-dark">Proximamente...</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                                    Negocios participantes
+                                </button>
                             </div>
                         </div>
                     </div>
