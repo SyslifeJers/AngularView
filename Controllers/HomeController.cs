@@ -35,6 +35,28 @@ namespace AngularView.Controllers
         {
             return View();
         }
+        public IActionResult Correo()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Correo(ModelCorreo model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Tipo == "Soporte Técnico")
+                {
+                    string mendaje = $"Solicitud de soporte de {model.Correo} envia el siguiente mensaje {model.Mensaje}";
+                    Herramientas.Correo("jers.sist@gmail.com", "Soporte Tecnico", mendaje);
+                }
+                else
+                {
+                    string mendaje = $"Quejas o sugerencias de {model.Correo} envia el siguiente mensaje {model.Mensaje}";
+                    Herramientas.Correo("jorge.alvarado@aldacomp.com", model.Tipo, mendaje);
+                }
+            }
+            return View();
+        }
         public IActionResult ProxExpo()
         {
             return View();

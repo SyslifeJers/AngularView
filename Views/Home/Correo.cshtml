@@ -1,0 +1,125 @@
+﻿@model AngularView.Models.ViewModels.ModelCorreo
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AngularView</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        body {
+            background-image: url('../Img/fonFree.jpg');
+            background-position: center;
+            background-size: cover;
+            -webkit-font-smoothing: antialiased;
+            font: normal 14px Roboto,arial,sans-serif;
+        }
+
+        .container {
+            padding: 10%;
+        }
+
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #ffffff !important;
+            opacity: 1; /* Firefox */
+            font-size: 18px !important;
+        }
+
+        .form-login {
+            background-color: rgba(0,0,0,0.55);
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 15px;
+            border-color: #d2d2d2;
+            border-width: 5px;
+            color: white;
+            box-shadow: 0 1px 0 #cfcfcf;
+        }
+
+        .form-control {
+            background: transparent !important;
+            color: white !important;
+            font-size: 18px !important;
+        }
+
+        h1 {
+            color: white !important;
+        }
+
+        h4 {
+            border: 0 solid #fff;
+            border-bottom-width: 1px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .text-white {
+            color: white !important;
+        }
+
+        .wrapper {
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-8 col-sm-12 col-md-6 text-center">
+                <img src="~/Img/angularView.png" style="    width: 40%;" />
+                <div class="form-login">
+                    <form asp-action="Correo">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <br>
+                        <h4>Contacto</h4>
+                        <br>
+                        <div class="form-group ">
+                            <label for="inputState">Tipo</label>
+                            <select name="Tipo" id="inputState" class="form-control">
+                                <option style="color:black">Sugerencias</option>
+                                <option style="color:black">Queja</option>
+                                <option style="color:black">Soporte Técnico</option>
+                            </select>
+                        </div>
+                        <br>
+                        <label>Correo</label>
+                        <input type="email" asp-for="Correo" class="form-control input-sm chat-input" placeholder="Correo" />
+                        <span asp-validation-for="Correo" class="text-danger"></span>
+                        <br>
+                        <label>En que podemos ayudarte</label>
+                        <textarea asp-for="Mensaje" class="form-control input-sm chat-input" placeholder="Mensaje">
+                        </textarea>
+                        <span asp-validation-for="Mensaje" class="text-danger"></span>
+                        <br>
+
+                        <a asp-action="Expo" class="btn-link btn">Regresar</a>
+
+                        <div class="wrapper">
+                            <span class="group-btn">
+                                <button class="btn btn-danger btn-md" type="submit">Enviar <i class="fa fa-sign-in"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>    <div class="footer text-white text-center">
+            <p>© 2021 - Copyright © ALDA Networks</p>
+        </div>
+    </div>
+
+</body>
+</html>
