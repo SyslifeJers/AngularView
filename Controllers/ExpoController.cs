@@ -93,9 +93,57 @@ namespace AngularView.Controllers
                 SiDAtos = true,
                 listProductoServicios = await _context.ProductoServicio.Where(d => d.IdExpositor == sds[0].IdExpositor).ToListAsync()
             };
-            
+            modelDetalleCajons.listProductSelected = new List<ModelSelect>();
+            foreach (var item in modelDetalleCajons.listProductoServicios)
+            {
+                modelDetalleCajons.listProductSelected.Add(new ModelSelect()
+                {
+                    Selected = false,
+                    Cant = 0,
+                    IdProduct = item.Id,
+                    Producto = item.Nombre
+
+                }) ;
+            }
 
             return View(modelDetalleCajons);
+        }
+        public async Task<ActionResult> GoVenta(ModelDetalleCajon model)
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("Cliente")))
+            {
+                return Redirect(Url.ActionLink("Login", "Expo"));
+            }
+            var detalleC = await _context.DetalleCaja.FindAsync(model.detalleCaja.Id);
+            var expositor = await _context.Expositor.FindAsync(model.IdExpositor);
+
+            string listpro = "";
+            foreach (var item in model.listProductSelected)
+            {
+                if (item.Selected)
+                {
+                    listpro += "<p>" + item.Producto + " Cantidad" + item.Cant + "</p> ";
+                }
+            }
+
+            Herramientas.Correo(expositor.Correo, "Venta de AngularView", "<!DOCTYPE html> " +
+"<html>" +
+"<head>" +
+   "<title>Email</title>" +
+"</head>" +
+"<body style=\"font-family:'Century Gothic'\">" +
+   "<h1 style=\"text-align:center;\"> ¡Hola " + detalleC.Titulo + "!</h1>" +
+   "<P> Los vendedores en ningun momento pediran anticipo</ P > " +
+   listpro +
+"       <P> Una vez realizado el pago deberá enviar el ticket de compra, al correo jorge.alvarado@aldacomp.com" +
+           "para su validación y activación a su perfil al expo. Recibirá un" +
+"correo donde se le dará acceso para dar de alta sus productos.</ P >" +
+"<P><a href=\"mailto:jorge.alvarado@aldacomp.com\" class=\"btn btn-info\" > ¿Requieres facturación?</ P > " +
+"</body>" +
+"</html>");
+
+
+            return View(model);
         }
 
 

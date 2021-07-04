@@ -66,18 +66,22 @@
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Productos y/o Servicios</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-12">
-                            <div style="margin-top: 10%;">
-                                <form action="/" method="post">
-                                    @foreach (var item in Model.listProductoServicios)
+                    <form asp-action="GoVenta" method="post">
+                        <input type="hidden" asp-for="@Model.detalleCaja.Id" />
+                        <input type="hidden" asp-for="@Model.IdExpositor" value="@Model.detalleCaja.IdExpositor" />
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Productos y/o Servicios</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-12">
+                                <div style="margin-top: 10%;">
+
+                                    @for (int i = 0; i < Model.listProductSelected.Count; i++)
                                     {
+
                                         <div class="row container" style="padding-top: 1%; padding-bottom: 1%">
                                             <div class="col-4">
                                                 <div class="container" style="display: flex; justify-content: center;">
@@ -86,7 +90,11 @@
                                                 </div>
                                                 <hr />
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="@item.Id">
+                                                    <input type="checkbox" asp-for="@Model.listProductSelected[i].Selected" />
+                                                    <label asp-for="@Model.listProductSelected[i].Selected">@Model.listProductoServicios[i].Nombre</label>
+                                                    <input type="hidden" asp-for="@Model.listProductSelected[i].IdProduct" />
+                                                    <input type="hidden" asp-for="@Model.listProductoServicios[i].Nombre" />
+                                                    <input type="number" asp-for="@Model.listProductSelected[i].Cant" />
                                                     <label class="form-check-label" for="defaultCheck1">
                                                         Interesado
                                                     </label>
@@ -94,31 +102,32 @@
                                             </div>
                                             <div class="col-8">
 
-                                                <h4 style="font-size: 1.5vw;">@item.Nombre</h4>
+                                                <h4 style="font-size: 1.5vw;">@Model.listProductoServicios[i].Nombre</h4>
                                                 <hr />
-                                                <p style="font-size: 1.0vw;">@item.Decripcion</p>
+                                                <p style="font-size: 1.0vw;">@Model.listProductoServicios[i].Decripcion</p>
                                                 <hr />
-                                                @if (item.Descuento == 1)
+                                                @if (Model.listProductoServicios[i].Descuento == 1)
                                                 {
-                                                    <p style="font-size: 1.3vw;">@item.PrecioDescuento</p>
+                                                    <p style="font-size: 1.3vw;">@Model.listProductoServicios[i].PrecioDescuento</p>
                                                 }
                                                 else
                                                 {
-                                                    <p style="font-size: 1.3vw;">@item.PrecioNormal</p>
+                                                    <p style="font-size: 1.3vw;">@Model.listProductoServicios[i].PrecioNormal</p>
                                                 }
 
                                             </div>
                                         </div>
                                     }
-                                </form>
-                            </div>
 
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
-                        <button type="button" class="btn btn-primary">Solictar </button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+                            <button type="submit" class="btn btn-primary">Solictar </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -200,18 +209,21 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
             <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Productos y/o Servicios</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="col-12">
-                                <div style="margin-top: 10%;">
-                                    <form action="/" method="post">
-                                        @foreach (var item in Model.listProductoServicios)
+                        <form asp-action="GoVenta" method="post">
+                            <input type="hidden" asp-for="@Model.detalleCaja.Id" />
+                            <input type="hidden" asp-for="@Model.IdExpositor" value="@Model.detalleCaja.IdExpositor" />
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Productos y/o Servicios</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-12">
+                                    <div style="margin-top: 10%;">
+                                        @for (int i = 0; i < Model.listProductSelected.Count; i++)
                                         {
+
                                             <div class="row container" style="padding-top: 1%; padding-bottom: 1%">
                                                 <div class="col-4">
                                                     <div class="container" style="display: flex; justify-content: center;">
@@ -220,7 +232,11 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                                                     </div>
                                                     <hr />
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" name="@item.Id">
+                                                        <input type="checkbox" asp-for="@Model.listProductSelected[i].Selected" />
+                                                        <label asp-for="@Model.listProductSelected[i].Selected">@Model.listProductoServicios[i].Nombre</label>
+                                                        <input type="hidden" asp-for="@Model.listProductSelected[i].IdProduct" />
+                                                        <input type="hidden" asp-for="@Model.listProductoServicios[i].Nombre" />
+                                                        <input type="number" asp-for="@Model.listProductSelected[i].Cant" />
                                                         <label class="form-check-label" for="defaultCheck1">
                                                             Interesado
                                                         </label>
@@ -228,31 +244,31 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                                                 </div>
                                                 <div class="col-8">
 
-                                                    <h4 style="font-size: 1.5vw;">@item.Nombre</h4>
+                                                    <h4 style="font-size: 1.5vw;">@Model.listProductoServicios[i].Nombre</h4>
                                                     <hr />
-                                                    <p style="font-size: 1.0vw;">@item.Decripcion</p>
+                                                    <p style="font-size: 1.0vw;">@Model.listProductoServicios[i].Decripcion</p>
                                                     <hr />
-                                                    @if (item.Descuento == 1)
+                                                    @if (Model.listProductoServicios[i].Descuento == 1)
                                                     {
-                                                        <p style="font-size: 1.3vw;">@item.PrecioDescuento</p>
+                                                        <p style="font-size: 1.3vw;">@Model.listProductoServicios[i].PrecioDescuento</p>
                                                     }
                                                     else
                                                     {
-                                                        <p style="font-size: 1.3vw;">@item.PrecioNormal</p>
+                                                        <p style="font-size: 1.3vw;">@Model.listProductoServicios[i].PrecioNormal</p>
                                                     }
 
                                                 </div>
                                             </div>
                                         }
-                                    </form>
-                                </div>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
-                            <button type="button" class="btn btn-primary">Solictar </button>
-                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+                                <button type="submit" class="btn btn-primary">Solictar </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
