@@ -132,13 +132,120 @@ namespace AngularView.Controllers
    "<title>Email</title>" +
 "</head>" +
 "<body style=\"font-family:'Century Gothic'\">" +
-   "<h1 style=\"text-align:center;\"> ¡Hola " + detalleC.Titulo + "!</h1>" +
-   "<P> Los vendedores en ningun momento pediran anticipo</ P > " +
-   listpro +
-"       <P> Una vez realizado el pago deberá enviar el ticket de compra, al correo jorge.alvarado@aldacomp.com" +
-           "para su validación y activación a su perfil al expo. Recibirá un" +
-"correo donde se le dará acceso para dar de alta sus productos.</ P >" +
-"<P><a href=\"mailto:jorge.alvarado@aldacomp.com\" class=\"btn btn-info\" > ¿Requieres facturación?</ P > " +
+"<h1>Prueba</h1>" +
+" <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
+"<tr style=\"background - color: cornflowerblue\" > " +
+" <td style=\"text - align:center\" > Cliente</td>" +
+" </tr>" +
+" <tr>" +
+" <td>" +
+"Razón social: "+ model.razonSocial + "<br>" +
+" RFC:"+ model.RFC+"<br>" +
+"  Dirección:"+model.Direccion+" <br>" +
+"Teléfono:"+model.Telefono+"<br>" +
+"  Correo electrónico: (Correo electrónico del cliente" +
+" </td>" +
+"   </tr>" +
+" </table>" +
+"  <br>" +
+"  <table class=\"defaul\"border =\"1\" style = \"width: 30em\" > " +
+" <tr style=\"background - color: cornflowerblue\" > " +
+" <td style=\"text - align:center\" > Proovedor</td>" +
+" </tr>" +
+"  <tr>" +
+"<td>" +
+"Razón social: (Nombre del proveedor)<br>" +
+" RFC: (RFC del proveedor)<br>" +
+" Dirección: (Dirección del proveedor)<br>" +
+"Teléfono: (Teléfono del proveedor)<br>" +
+" Correo electrónico: (Correo electrónico del proveedor)" +
+"</td>" +
+"  </tr>" +
+" </table>" +
+" <br>" +
+ " < table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
+ "      <tr style = \"background - color: cornflowerblue\" > " +
+"         < td style=\"width: 4em\" > Cantidad</td>" +
+"        <td style = \"width: 18em\" > Descripción del Servicio</td>" +
+"       <td> Precio Unitario</td>" +
+"       </tr>" +
+
+"  <tr>" +
+"          <td>" +
+"         </td>" +
+"        <td>" +
+"               (Características del servicio proporcionado)" +
+"      </td>" +
+"     <td style = \"text - align:center\" > " +
+"        0.00" +
+"   </ td >" +
+"</ tr >" +
+"</ table >" +
+" < table class=\"defaul\">" +
+"    <tr>" +
+"       <td style = \"width: 19em\" > " +
+"      </ td >" +
+"     < td >" +
+"        Subtotal" +
+"       < br >" +
+"      I.V.A." +
+"    < br >" +
+"               Total" +
+"          </ td >" +
+"         < td style=\"text - align:center\" > " +
+"            0.00" +
+"           <br>" +
+"          0.00" +
+"         <br>" +
+"        0.00" +
+"   </td>" +
+"        </tr>" +
+"    </table>" +
+"    <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
+
+"       <tr style = \"background - color: cornflowerblue\" >" +
+
+"            < td style=\"text - align:center\" > Observaciones</td>" +
+"        </tr>" +
+"        <tr>" +
+"           <td>"+
+"              (Cuestiones a considerar, tanto para el cliente como para el proveedor, como condiciones de pago<br>"+
+"             y entrega, forma en que se proveerá el servicio, fecha y lugar, etcétera)"+
+"        </td>"+
+"   </tr>"+
+"    </table>"+
+"    <table class=\"defaul\" > " +
+
+"        <tr>"+
+"            <td style = \"text-align:center\" > _________________________ </ td >" +
+
+"            < td style=\"text-align:center\" > _________________________</td>" +
+"        </tr>"+
+
+"        <br> <br>"+
+
+"        <tr style = \"width: 3em\" >" +
+"            < td ></ td >"+
+
+ "           < td ></ td >"+
+"        </ tr >"+
+
+"        < tr >"+
+"            < td style=\"text-align:center\" > " +
+"                Cliente<br>"+
+"                (Nombre y firma del cliente)"+
+"            </td>"+
+"            <td style = \"text-align:center\" >" +
+"                Proveedor<br>"+
+"                (Nombre y firma del proveedor)"+
+
+"            </ td >"+
+"       </ tr >"+
+
+"    </ table >"+
+
+listpro +
+ 
 "</body>" +
 "</html>");
 
