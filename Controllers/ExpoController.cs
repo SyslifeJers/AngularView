@@ -79,6 +79,10 @@ namespace AngularView.Controllers
         {
             return View(await _context.ProductoServicio.Where(f => f.Id == id).ToListAsync());
         }
+                public async Task<ActionResult> ModuloInformacion()
+        {
+            return View();
+        }
 
         public async Task<ActionResult> DetalleCajon(int id)
         {
@@ -139,10 +143,10 @@ namespace AngularView.Controllers
 " </tr>" +
 " <tr>" +
 " <td>" +
-"Razón social: "+ model.razonSocial + "<br>" +
-" RFC:"+ model.RFC+"<br>" +
-"  Dirección:"+model.Direccion+" <br>" +
-"Teléfono:"+model.Telefono+"<br>" +
+"Razón social: model.razonSocial <br>" +
+" RFC: model.RFC<br>"+
+"  Dirección:model.Direccion <br>"+
+"Teléfono:model.Telefono<br>"+
 "  Correo electrónico: (Correo electrónico del cliente" +
 " </td>" +
 "   </tr>" +
