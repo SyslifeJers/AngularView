@@ -120,7 +120,7 @@ namespace AngularView.Controllers
             }
             var detalleC = await _context.DetalleCaja.FindAsync(model.detalleCaja.Id);
             var expositor = await _context.Expositor.FindAsync(model.IdExpositor);
-
+            var correo = HttpContext.Session.GetString("ClienteCorreo");
             string listpro = "";
             foreach (var item in model.listProductSelected)
             {
@@ -143,11 +143,11 @@ namespace AngularView.Controllers
 " </tr>" +
 " <tr>" +
 " <td>" +
-"Razón social: model.razonSocial <br>" +
-" RFC: model.RFC<br>"+
-"  Dirección:model.Direccion <br>"+
-"Teléfono:model.Telefono<br>"+
-"  Correo electrónico: (Correo electrónico del cliente" +
+"Razón social: "+ model.razonSocial + "<br>" +
+" RFC:"+ model.RFC+"<br>" +
+"  Dirección:"+model.Direccion+" <br>" +
+"Teléfono:"+model.Telefono+"<br>" +
+"  Correo electrónico: " + correo +
 " </td>" +
 "   </tr>" +
 " </table>" +
@@ -158,16 +158,16 @@ namespace AngularView.Controllers
 " </tr>" +
 "  <tr>" +
 "<td>" +
-"Razón social: (Nombre del proveedor)<br>" +
+"Razón social: "+expositor.Nombre+"<br>" +
 " RFC: (RFC del proveedor)<br>" +
 " Dirección: (Dirección del proveedor)<br>" +
-"Teléfono: (Teléfono del proveedor)<br>" +
-" Correo electrónico: (Correo electrónico del proveedor)" +
+"Teléfono: " + expositor.Celular + "<br>" +
+" Correo electrónico: " + expositor.Correo + "" +
 "</td>" +
 "  </tr>" +
 " </table>" +
 " <br>" +
- " < table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
+ " <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
  "      <tr style = \"background - color: cornflowerblue\" > " +
 "         < td style=\"width: 4em\" > Cantidad</td>" +
 "        <td style = \"width: 18em\" > Descripción del Servicio</td>" +
@@ -188,6 +188,7 @@ namespace AngularView.Controllers
 " < table class=\"defaul\">" +
 "    <tr>" +
 "       <td style = \"width: 19em\" > " +
+
 "      </ td >" +
 "     < td >" +
 "        Subtotal" +
@@ -248,7 +249,7 @@ namespace AngularView.Controllers
 
 "    </ table >"+
 
-listpro +
+
  
 "</body>" +
 "</html>");
@@ -285,7 +286,8 @@ listpro +
                             if (expos[0].Contrasena.Equals(model.Contrasena))
                             {
                                 HttpContext.Session.SetString("Cliente", expos[0].Id.ToString());
-                                return Redirect(Url.Action("IndexSucces"));
+                            HttpContext.Session.SetString("ClienteCorreo", expos[0].Correo.ToString());
+                            return Redirect(Url.Action("IndexSucces"));
                             }
                             else
                             {
