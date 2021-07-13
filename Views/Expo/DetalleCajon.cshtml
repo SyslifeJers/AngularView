@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Direccion </label>
-                                    <input type="text" asp-for="@Model.Direccion" 0class="form-control" />
+                                    <input type="text" asp-for="@Model.Direccion" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <label>Telefono</label>
@@ -222,7 +222,7 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                 </div>
             </div>
             <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <form asp-action="GoVenta" method="post">
                             <input type="hidden" asp-for="@Model.detalleCaja.Id" />
@@ -276,21 +276,35 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                                             </div>
                                         }
                                     </div>
-                                    <div class="form-group">
-                                        <label>Razon Social</label>
-                                        <input type="text" asp-for="@Model.razonSocial" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>RFC</label>
-                                        <input type="text" asp-for="@Model.RFC" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Direccion </label>
-                                        <input type="text" asp-for="@Model.Direccion" 0class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Telefono</label>
-                                        <input type="text" asp-for="@Model.Telefono" class="form-control" />
+                                    <hr color="Black"  width="700">
+                                    <h1>Datos del cliente</h1>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>Razon Social</label>
+                                                    <input type="text" asp-for="@Model.razonSocial" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>RFC</label>
+                                                    <input type="text" asp-for="@Model.RFC" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>Telefono</label>
+                                                    <input type="text" asp-for="@Model.Telefono" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Direccion </label>
+                                            <input type="text" asp-for="@Model.Direccion" class="form-control" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
