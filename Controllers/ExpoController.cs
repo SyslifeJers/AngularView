@@ -119,14 +119,35 @@ namespace AngularView.Controllers
                 return Redirect(Url.ActionLink("Login", "Expo"));
             }
             var detalleC = await _context.DetalleCaja.FindAsync(model.detalleCaja.Id);
-            var expositor = await _context.Expositor.FindAsync(model.IdExpositor);
+            var expositor = await _context.Expositor.Include(s=>s.ProductoServicio).Where(d=>d.Id == model.IdExpositor).FirstOrDefaultAsync();
             var correo = HttpContext.Session.GetString("ClienteCorreo");
             string listpro = "";
+            double sum =0;
             foreach (var item in model.listProductSelected)
             {
                 if (item.Selected)
                 {
-                    listpro += "<p>" + item.Producto + " Cantidad" + item.Cant + "</p> ";
+                    try
+                    {
+                        var res = expositor.ProductoServicio.Where(d => d.Id == item.IdProduct).FirstOrDefault();
+                        listpro += "<p>" + res.Nombre + " | Cantidad" + item.Cant + " | " + res.PrecioNormal+"</p> ";
+                        if (res.Descuento == 1 && res.PrecioNormal !=null)
+                        {
+                            sum += item.Cant * (double)res.PrecioNormal; 
+                        }
+                        else
+                        {
+                            if (res.PrecioNormal != null)
+                            {
+                                sum += item.Cant * (double)res.PrecioNormal;
+                            }
+
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+
                 }
             }
 
@@ -169,7 +190,7 @@ namespace AngularView.Controllers
 " <br>" +
  " <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
  "      <tr style = \"background - color: cornflowerblue\" > " +
-"         < td style=\"width: 4em\" > Cantidad</td>" +
+"         <td style=\"width: 4em\" > Cantidad</td>" +
 "        <td style = \"width: 18em\" > Descripción del Servicio</td>" +
 "       <td> Precio Unitario</td>" +
 "       </tr>" +
@@ -178,31 +199,31 @@ namespace AngularView.Controllers
 "          <td>" +
 "         </td>" +
 "        <td>" +
-"               (Características del servicio proporcionado)" +
+            listpro    +
 "      </td>" +
 "     <td style = \"text - align:center\" > " +
 "        0.00" +
-"   </ td >" +
-"</ tr >" +
-"</ table >" +
-" < table class=\"defaul\">" +
+"   </td >" +
+"</tr >" +
+"</table >" +
+" <table class=\"defaul\">" +
 "    <tr>" +
 "       <td style = \"width: 19em\" > " +
 
 "      </ td >" +
-"     < td >" +
+"     <td >" +
 "        Subtotal" +
-"       < br >" +
+"       <br >" +
 "      I.V.A." +
-"    < br >" +
+"    <br >" +
 "               Total" +
-"          </ td >" +
-"         < td style=\"text - align:center\" > " +
-"            0.00" +
+"          </td >" +
+"         <td style=\"text - align:center\" > " +
+sum +
 "           <br>" +
-"          0.00" +
+(sum*.16).ToString() +
 "         <br>" +
-"        0.00" +
+(sum * .16 + sum).ToString() +
 "   </td>" +
 "        </tr>" +
 "    </table>" +
@@ -210,7 +231,7 @@ namespace AngularView.Controllers
 
 "       <tr style = \"background - color: cornflowerblue\" >" +
 
-"            < td style=\"text - align:center\" > Observaciones</td>" +
+"            <td style=\"text - align:center\" > Observaciones</td>" +
 "        </tr>" +
 "        <tr>" +
 "           <td>"+
@@ -224,19 +245,19 @@ namespace AngularView.Controllers
 "        <tr>"+
 "            <td style = \"text-align:center\" > _________________________ </ td >" +
 
-"            < td style=\"text-align:center\" > _________________________</td>" +
+"            <td style=\"text-align:center\" > _________________________</td>" +
 "        </tr>"+
 
 "        <br> <br>"+
 
 "        <tr style = \"width: 3em\" >" +
-"            < td ></ td >"+
+"            <td ></ td >"+
 
- "           < td ></ td >"+
+ "           <td ></ td >"+
 "        </ tr >"+
 
-"        < tr >"+
-"            < td style=\"text-align:center\" > " +
+"        <tr >"+
+"            <td style=\"text-align:center\" > " +
 "                Cliente<br>"+
 "                (Nombre y firma del cliente)"+
 "            </td>"+
@@ -244,8 +265,8 @@ namespace AngularView.Controllers
 "                Proveedor<br>"+
 "                (Nombre y firma del proveedor)"+
 
-"            </ td >"+
-"       </ tr >"+
+"            </td >"+
+"       </tr >"+
 
 "    </ table >"+
 
