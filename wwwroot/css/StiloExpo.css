@@ -31,6 +31,26 @@ a:hover {
     opacity: 0.2;
 }
 
+.number-container {
+/*    display: flex;*/
+    position: absolute;
+    top: 45%;
+    left: 52%;
+/*    height: 15%;*/
+/*    width: 5%;*/
+
+}
+
+.video-container-entrance {
+    display: flex;
+    position: absolute;
+    top: 18%;
+    left: 0%;
+    height: 25%;
+    width: 30%;
+    background-color: black;
+}
+
 .boton-informacion {
     display: flex;
     position: absolute;
