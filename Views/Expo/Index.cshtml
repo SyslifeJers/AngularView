@@ -22,7 +22,12 @@
         <div>
             <img class="fondo-pantalla" src="~/Img/fonExpo.png">
             <div>
-                <a class="boton-informacion cursor-hover-animation"></a>
+                <div class="video-container-entrance"></div>
+                <div class="number-container">
+                    <p style="color: white; font-size: 1.5vw;">Visitas</p>
+                    <p style="color: white; font-size: 1.2vw; background-color:black">1345</p>
+                </div>
+                <a class="boton-informacion cursor-hover-animation" asp-action="ModuloInformacion"></a>
                 <a class="boton-registro cursor-hover-animation" asp-action="Registro"></a>
                 <a class="boton-sala1 cursor-hover-animation" asp-action="cajones" asp-route-id="1"></a>
                 <a class="boton-sala2 cursor-hover-animation" asp-action="cajones" asp-route-id="2"></a>
