@@ -70,7 +70,7 @@
                     <a asp-action="CambiarLogo" asp-route-id="@item.detalleCaja.Id"> Cambiar Imagen</a>
                 </div>
                 <div class="col-md-8">
-                    <a asp-action="ActualizarCajonDatos" asp-route-id="@item.detalleCaja.Id" class="btn btn-outline-dark">Actualizar</a>
+                    <a asp-action="ActualizarCajonDatos" asp-route-id="@item.detalleCaja.Id" class="btn" style="background: #4DCBAE;">Actualizar</a>
                 </div>
             </div>
             <br class="col-12" />
@@ -139,7 +139,7 @@
                     <h2>Sala @sala[posi] Cajon @item.detalleCaja.IdCajaNavigation.Descripcion<br /><small>Falta a agregar información al cajón</small></h2>
 
                     <hr />
-                    <a asp-action="ActualizarDatos" asp-route-id="@item.detalleCaja.IdCajaNavigation.Id" class="btn btn-outline-dark">Actualizar</a>
+                    <a asp-action="ActualizarDatos" asp-route-id="@item.detalleCaja.IdCajaNavigation.Id" class="btn" style="background: #4DCBAE">Actualizar</a>
                 </div>
             </div>
         </div>
