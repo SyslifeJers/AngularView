@@ -15,16 +15,20 @@
         {
             sala.Add(" "+ item.detalleCaja.IdCajaNavigation.IdSala.ToString());
         }
-    }
+    }  
 }
 
-<h1>Mis Cajones</h1>
+<h1>Mis Cajones </h1>
 <a class="btn btn-primary" asp-action="Salas" asp-route-id="1">Solicitud de nuevo espacio</a>
 @foreach (var item in Model)
 {
     if (item.SiDAtos)
     {
+      
+
+
 <div>
+
     <div class="card mb-4 text-center" style="padding:1em">
         <div class="row no-gutters">
 
@@ -32,6 +36,7 @@
                 <h2>@item.detalleCaja.Titulo</h2>
                 <h4>@item.detalleCaja.Resumen</h4>
             </div>
+           
             <div class="card-body row no-gutters">
                 <div class="col-md-4">
                     <br />
@@ -68,13 +73,13 @@
                     <a asp-action="ActualizarCajonDatos" asp-route-id="@item.detalleCaja.Id" class="btn btn-outline-dark">Actualizar</a>
                 </div>
             </div>
-        <br class="col-12" />
-        <div class="card-footer bg-dark text-white col-12">
-            <h5>Sala @sala[posi] Cajon @item.detalleCaja.IdCajaNavigation.Descripcion</h5>
+            <br class="col-12" />
+            <div class="card-footer bg-dark text-white col-12">
+                <h5>Sala @sala[posi] Cajon @item.detalleCaja.IdCajaNavigation.Descripcion</h5>
 
-            <i data-toggle="popover" title="EXPO TU VERANO 2021" data-content="En esta Expo podrás encontrar las mejores opciones de recreación para este verano 2021, Actividades de recreación para toda la  familia" class="bi bi-info-circle"></i>
+                <i data-toggle="popover" title="EXPO TU VERANO 2021" data-content="En esta Expo podrás encontrar las mejores opciones de recreación para este verano 2021, Actividades de recreación para toda la  familia" class="bi bi-info-circle"></i>
 
-        </div>
+            </div>
         </div>
     </div>
 
@@ -84,6 +89,45 @@
     {
 
 <div>
+    <br>
+    <form>
+
+        <div class="input-group">
+            <div class="col-md-4">
+                <label for="exampleFormControlSelect1">Método de pago </label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>Tranferencia </option>
+                    <option>Contra entrega </option>
+                    <option>Deposito </option>
+                </select><br/>
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary mb-2">Agregar</button>
+                </span>
+            </div>
+
+        </div>
+
+    </form>
+    <br/>
+    <form>
+
+        <div class="input-group">
+            <div class="col-md-4">
+                <label for="exampleFormControlSelect1">Método de envío </label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>Paqueteria </option>
+                    <option>Contra entrega </option>
+                    </select><br/>
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary mb-2">Agregar</button>
+                </span>
+            </div>
+            
+        </div>
+
+    </form>
+
+    <br />
     <div class="card mb-3 text-center" style="max-width: 840px;">
         <div class="row no-gutters">
             <div class="col-md-4">
