@@ -157,41 +157,50 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                 </div>
                 <div class="modal-body">
                     <div class="col-12">
+                        <h4>Por favor seleciona los productos de interes y la cantidad que deseas </h4>
+                        <hr />
                         <div style="margin-top: 10%;">
                             @for (int i = 0; i < Model.listProductSelected.Count; i++)
                             {
 
                                 <div class="row container" style="padding-top: 1%; padding-bottom: 1%">
-                                    <div class="col-4">
+                                    <div class="col-md-4 col-sm-12">
                                         <div class="container" style="display: flex; justify-content: center;">
-                                            <img src="~/Img/angularView.png" style="width:70px; height:70px;">
+                                            @{string ruta = "../Img/angularView.png";}
+                                            <img style="width:8em" src="@Url.Content(String.Format("http://angularviewexpo.com/Product/" + Model.listProductSelected[i].IdProduct + ".png"))" onerror="if (this.src != '@ruta') this.src = '';">
 
                                         </div>
                                         <hr />
                                         <div class="form-check">
-                                            <input type="checkbox" asp-for="@Model.listProductSelected[i].Selected" />
-                                            <label asp-for="@Model.listProductSelected[i].Selected">@Model.listProductoServicios[i].Nombre</label>
+                                            <div class="form-group">
+                                                <label asp-for="@Model.listProductSelected[i].Selected">Me interesa </label>
+                                                <input type="checkbox" asp-for="@Model.listProductSelected[i].Selected" />
+
+                                            </div>
                                             <input type="hidden" asp-for="@Model.listProductSelected[i].IdProduct" />
                                             <input type="hidden" asp-for="@Model.listProductoServicios[i].Nombre" />
-                                            <input type="number" asp-for="@Model.listProductSelected[i].Cant" />
-                                            <label class="form-check-label" for="defaultCheck1">
-                                                Interesado
-                                            </label>
+                                            <div class="form-group">
+                                                <label class="form-check-label" for="Cant">
+                                                    Cantidad
+                                                </label>
+                                                <input type="number" asp-for="@Model.listProductSelected[i].Cant" />
+                                            </div>
+
                                         </div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-md-8 col-sm-12">
 
-                                        <h4 style="font-size: 1.5vw;">@Model.listProductoServicios[i].Nombre</h4>
+                                        <h4 style="font-size: 1.5em;">@Model.listProductoServicios[i].Nombre</h4>
                                         <hr />
-                                        <p style="font-size: 1.0vw;">@Model.listProductoServicios[i].Decripcion</p>
+                                        <p style="font-size: 1.0em;">Descripcion:  @Model.listProductoServicios[i].Decripcion</p>
                                         <hr />
                                         @if (Model.listProductoServicios[i].Descuento == 1)
                                         {
-                                            <p style="font-size: 1.3vw;">@Model.listProductoServicios[i].PrecioDescuento</p>
+                                            <p style="font-size: 1.3em;">Costo: @Model.listProductoServicios[i].PrecioDescuento</p>
                                         }
                                         else
                                         {
-                                            <p style="font-size: 1.3vw;">@Model.listProductoServicios[i].PrecioNormal</p>
+                                            <p style="font-size: 1.3vw;">Costo: @Model.listProductoServicios[i].PrecioNormal</p>
                                         }
 
                                     </div>
@@ -199,9 +208,9 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                             }
                         </div>
                         <hr color="Black" width="700">
-                        <h1>Datos del cliente</h1>
+                        <h4>Datos del cliente</h4>
                         <div class="container">
-                            <div class="row">
+                            @*<div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Razon Social</label>
@@ -226,6 +235,14 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                             <div class="form-group">
                                 <label>Direccion </label>
                                 <input type="text" asp-for="@Model.Direccion" class="form-control" />
+                            </div>*@
+                            <div class="form-group">
+                                <label asp-for="TipoEnvio" class="control-label"></label>
+                                <select asp-for="TipoEnvio" class="form-control" asp-items="ViewBag.TipoEnvio"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TipoPago" class="control-label"></label>
+                                <select asp-for="TipoPago" class="form-control" asp-items="ViewBag.TipoPago"></select>
                             </div>
                         </div>
                     </div>

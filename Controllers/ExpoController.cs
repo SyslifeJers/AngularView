@@ -3,6 +3,7 @@ using AngularView.Models.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -97,6 +98,8 @@ namespace AngularView.Controllers
                 SiDAtos = true,
                 listProductoServicios = await _context.ProductoServicio.Where(d => d.IdExpositor == sds[0].IdExpositor).ToListAsync()
             };
+            ViewData["TipoEnvio"] = new SelectList(_context.TipoEnvio, "Id", "Nombre");
+            ViewData["TipoPago"] = new SelectList(_context.TipoPago, "Id", "Nombre");
             modelDetalleCajons.listProductSelected = new List<ModelSelect>();
             foreach (var item in modelDetalleCajons.listProductoServicios)
             {
@@ -120,6 +123,7 @@ namespace AngularView.Controllers
             }
             var detalleC = await _context.DetalleCaja.FindAsync(model.detalleCaja.Id);
             var expositor = await _context.Expositor.Include(s=>s.ProductoServicio).Where(d=>d.Id == model.IdExpositor).FirstOrDefaultAsync();
+            model.GetExpositor = expositor;
             var correo = HttpContext.Session.GetString("ClienteCorreo");
             string listpro = "";
             double sum =0;
@@ -150,130 +154,130 @@ namespace AngularView.Controllers
 
                 }
             }
+            model.listpro = listpro;
+//            Herramientas.Correo(expositor.Correo, "Venta de AngularView", "<!DOCTYPE html> " +
+//"<html>" +
+//"<head>" +
+//   "<title>Email</title>" +
+//"</head>" +
+//"<body style=\"font-family:'Century Gothic'\">" +
+//"<h1>Prueba</h1>" +
+//" <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
+//"<tr style=\"background - color: cornflowerblue\" > " +
+//" <td style=\"text - align:center\" > Cliente</td>" +
+//" </tr>" +
+//" <tr>" +
+//" <td>" +
+//"Razón social: "+ model.razonSocial + "<br>" +
+//" RFC:"+ model.RFC+"<br>" +
+//"  Dirección:"+model.Direccion+" <br>" +
+//"Teléfono:"+model.Telefono+"<br>" +
+//"  Correo electrónico: " + correo +
+//" </td>" +
+//"   </tr>" +
+//" </table>" +
+//"  <br>" +
+//"  <table class=\"defaul\"border =\"1\" style = \"width: 30em\" > " +
+//" <tr style=\"background - color: cornflowerblue\" > " +
+//" <td style=\"text - align:center\" > Proovedor</td>" +
+//" </tr>" +
+//"  <tr>" +
+//"<td>" +
+//"Razón social: "+expositor.Nombre+"<br>" +
+//" RFC: (RFC del proveedor)<br>" +
+//" Dirección: (Dirección del proveedor)<br>" +
+//"Teléfono: " + expositor.Celular + "<br>" +
+//" Correo electrónico: " + expositor.Correo + "" +
+//"</td>" +
+//"  </tr>" +
+//" </table>" +
+//" <br>" +
+// " <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
+// "      <tr style = \"background - color: cornflowerblue\" > " +
+//"         <td style=\"width: 4em\" > Cantidad</td>" +
+//"        <td style = \"width: 18em\" > Descripción del Servicio</td>" +
+//"       <td> Precio Unitario</td>" +
+//"       </tr>" +
 
-            Herramientas.Correo(expositor.Correo, "Venta de AngularView", "<!DOCTYPE html> " +
-"<html>" +
-"<head>" +
-   "<title>Email</title>" +
-"</head>" +
-"<body style=\"font-family:'Century Gothic'\">" +
-"<h1>Prueba</h1>" +
-" <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
-"<tr style=\"background - color: cornflowerblue\" > " +
-" <td style=\"text - align:center\" > Cliente</td>" +
-" </tr>" +
-" <tr>" +
-" <td>" +
-"Razón social: "+ model.razonSocial + "<br>" +
-" RFC:"+ model.RFC+"<br>" +
-"  Dirección:"+model.Direccion+" <br>" +
-"Teléfono:"+model.Telefono+"<br>" +
-"  Correo electrónico: " + correo +
-" </td>" +
-"   </tr>" +
-" </table>" +
-"  <br>" +
-"  <table class=\"defaul\"border =\"1\" style = \"width: 30em\" > " +
-" <tr style=\"background - color: cornflowerblue\" > " +
-" <td style=\"text - align:center\" > Proovedor</td>" +
-" </tr>" +
-"  <tr>" +
-"<td>" +
-"Razón social: "+expositor.Nombre+"<br>" +
-" RFC: (RFC del proveedor)<br>" +
-" Dirección: (Dirección del proveedor)<br>" +
-"Teléfono: " + expositor.Celular + "<br>" +
-" Correo electrónico: " + expositor.Correo + "" +
-"</td>" +
-"  </tr>" +
-" </table>" +
-" <br>" +
- " <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
- "      <tr style = \"background - color: cornflowerblue\" > " +
-"         <td style=\"width: 4em\" > Cantidad</td>" +
-"        <td style = \"width: 18em\" > Descripción del Servicio</td>" +
-"       <td> Precio Unitario</td>" +
-"       </tr>" +
+//"  <tr>" +
+//"          <td>" +
+//"         </td>" +
+//"        <td>" +
+//            listpro    +
+//"      </td>" +
+//"     <td style = \"text - align:center\" > " +
+//"        0.00" +
+//"   </td >" +
+//"</tr >" +
+//"</table >" +
+//" <table class=\"defaul\">" +
+//"    <tr>" +
+//"       <td style = \"width: 19em\" > " +
 
-"  <tr>" +
-"          <td>" +
-"         </td>" +
-"        <td>" +
-            listpro    +
-"      </td>" +
-"     <td style = \"text - align:center\" > " +
-"        0.00" +
-"   </td >" +
-"</tr >" +
-"</table >" +
-" <table class=\"defaul\">" +
-"    <tr>" +
-"       <td style = \"width: 19em\" > " +
+//"      </ td >" +
+//"     <td >" +
+//"        Subtotal" +
+//"       <br >" +
+//"      I.V.A." +
+//"    <br >" +
+//"               Total" +
+//"          </td >" +
+//"         <td style=\"text - align:center\" > " +
+//sum +
+//"           <br>" +
+//(sum*.16).ToString() +
+//"         <br>" +
+//(sum * .16 + sum).ToString() +
+//"   </td>" +
+//"        </tr>" +
+//"    </table>" +
+//"    <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
 
-"      </ td >" +
-"     <td >" +
-"        Subtotal" +
-"       <br >" +
-"      I.V.A." +
-"    <br >" +
-"               Total" +
-"          </td >" +
-"         <td style=\"text - align:center\" > " +
-sum +
-"           <br>" +
-(sum*.16).ToString() +
-"         <br>" +
-(sum * .16 + sum).ToString() +
-"   </td>" +
-"        </tr>" +
-"    </table>" +
-"    <table class=\"defaul\" border =\"1\" style =\"width: 30em\" > " +
+//"       <tr style = \"background - color: cornflowerblue\" >" +
 
-"       <tr style = \"background - color: cornflowerblue\" >" +
+//"            <td style=\"text - align:center\" > Observaciones</td>" +
+//"        </tr>" +
+//"        <tr>" +
+//"           <td>"+
+//"              (Cuestiones a considerar, tanto para el cliente como para el proveedor, como condiciones de pago<br>"+
+//"             y entrega, forma en que se proveerá el servicio, fecha y lugar, etcétera)"+
+//"        </td>"+
+//"   </tr>"+
+//"    </table>"+
+//"    <table class=\"defaul\" > " +
 
-"            <td style=\"text - align:center\" > Observaciones</td>" +
-"        </tr>" +
-"        <tr>" +
-"           <td>"+
-"              (Cuestiones a considerar, tanto para el cliente como para el proveedor, como condiciones de pago<br>"+
-"             y entrega, forma en que se proveerá el servicio, fecha y lugar, etcétera)"+
-"        </td>"+
-"   </tr>"+
-"    </table>"+
-"    <table class=\"defaul\" > " +
+//"        <tr>"+
+//"            <td style = \"text-align:center\" > _________________________ </ td >" +
 
-"        <tr>"+
-"            <td style = \"text-align:center\" > _________________________ </ td >" +
+//"            <td style=\"text-align:center\" > _________________________</td>" +
+//"        </tr>"+
 
-"            <td style=\"text-align:center\" > _________________________</td>" +
-"        </tr>"+
+//"        <br> <br>"+
 
-"        <br> <br>"+
+//"        <tr style = \"width: 3em\" >" +
+//"            <td ></ td >"+
 
-"        <tr style = \"width: 3em\" >" +
-"            <td ></ td >"+
+// "           <td ></ td >"+
+//"        </ tr >"+
 
- "           <td ></ td >"+
-"        </ tr >"+
+//"        <tr >"+
+//"            <td style=\"text-align:center\" > " +
+//"                Cliente<br>"+
+//"                (Nombre y firma del cliente)"+
+//"            </td>"+
+//"            <td style = \"text-align:center\" >" +
+//"                Proveedor<br>"+
+//"                (Nombre y firma del proveedor)"+
 
-"        <tr >"+
-"            <td style=\"text-align:center\" > " +
-"                Cliente<br>"+
-"                (Nombre y firma del cliente)"+
-"            </td>"+
-"            <td style = \"text-align:center\" >" +
-"                Proveedor<br>"+
-"                (Nombre y firma del proveedor)"+
+//"            </td >"+
+//"       </tr >"+
 
-"            </td >"+
-"       </tr >"+
-
-"    </ table >"+
+//"    </ table >"+
 
 
  
-"</body>" +
-"</html>");
+//"</body>" +
+//"</html>");
 
 
             return View(model);
