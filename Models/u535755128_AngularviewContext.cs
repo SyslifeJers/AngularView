@@ -41,6 +41,8 @@ namespace AngularView.Models
         public virtual DbSet<PagosComision> PagosComision { get; set; }
         public virtual DbSet<ProductoServicio> ProductoServicio { get; set; }
         public virtual DbSet<Sala> Sala { get; set; }
+        public virtual DbSet<TipoEnvio> TipoEnvio { get; set; }
+        public virtual DbSet<TipoPago> TipoPago { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Vendedores> Vendedores { get; set; }
         public virtual DbSet<VentaEspacio> VentaEspacio { get; set; }
@@ -501,6 +503,11 @@ namespace AngularView.Models
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Direccion)
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
                 entity.Property(e => e.IdCaja)
                     .HasColumnName("id_Caja")
                     .HasColumnType("int(11)");
@@ -510,6 +517,11 @@ namespace AngularView.Models
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Modificado).HasColumnType("datetime");
+
+                entity.Property(e => e.RazonSocial)
+                    .HasColumnType("mediumtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.RedFacebook)
                     .HasColumnType("longtext")
@@ -528,6 +540,12 @@ namespace AngularView.Models
 
                 entity.Property(e => e.Resumen)
                     .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Rfc)
+                    .HasColumnName("RFC")
+                    .HasColumnType("text")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
@@ -790,6 +808,49 @@ namespace AngularView.Models
                     .WithMany(p => p.Sala)
                     .HasForeignKey(d => d.IdEvento)
                     .HasConstraintName("FK_Sala_Evento");
+            });
+
+            modelBuilder.Entity<TipoEnvio>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdExpo)
+                    .HasColumnName("id_expo")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+            });
+
+            modelBuilder.Entity<TipoPago>(entity =>
+            {
+                entity.HasIndex(e => e.IdExpo)
+                    .HasName("Relacionexpositor");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdExpo)
+                    .HasColumnName("id_expo")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasColumnType("longtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.IdExpoNavigation)
+                    .WithMany(p => p.TipoPago)
+                    .HasForeignKey(d => d.IdExpo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Relacionexpositor");
             });
 
             modelBuilder.Entity<Usuarios>(entity =>
