@@ -68,79 +68,51 @@
 }
 else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
 {
-    <div>
-        <img class="fondo-pantalla" src="~/Img/Espacios/standVip.png">
-        <div class="row">
-            <div class="col-9">
-                <div class="row" style="height: 40%">
-                    <div class="col-6">
-
-
-                    </div>
-                    <div class="col-6">
-                        <button type="button" class="btn btn-light" style="margin:3em" data-toggle="modal" data-target="#exampleModalLong">
-                            Catalogo
-                        </button>
-                    </div>
-                </div>
-                <div class="row" style="height: 25%;">
-                    <div class="col-5">
-                        <div class="container" style="width: 60%; height: 60%; max-height: 200px; padding-left: 6%; margin-right: 11%;">
-                            <p style="text-align: justify; font-size: 1.3vw;">@Model.detalleCaja.Resumen</p>
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="video-container">
-                            @if (!string.IsNullOrEmpty(Model.detalleCaja.VideoYoutube))
-                            {<iframe class="responsive-iframe"
-                                     src="@Model.detalleCaja.VideoYoutube">
-                                </iframe>
-                            }
-                        </div>
-
-                    </div>
-                    <div class="col-2">
-                        <h1 style="margin-top: 25%; margin-left: 8%; font-size: 2.5vw;">@Model.detalleCaja.Titulo</h1>
-
-                    </div>
-                </div>
-                <div class="row" style="height: 10%">
-                    <div class="col-2">
-                        @{string rutaLs = "../Img/Logos/" + Model.detalleCaja.Id + ".png";}
-
-                        <img class="logo-stand-vip" src="@rutaLs" onerror="if (this.src != '../../Img/angularView.png') this.src = '../../Img/angularView.png';" style="width: 50%; height: 50%; margin-top: 8%; ">
-                    </div>
-                    <div class="col-3">
-                        <div class="container" style="width: 100%; height: 60%; max-height: 200px; display: flex; padding-top: 60%">
-
-                            @if (!String.IsNullOrEmpty(Model.detalleCaja.RedFacebook))
-                            {
-
-                                <a href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
-                            }
-                            @if (!String.IsNullOrEmpty(Model.detalleCaja.RedWhats))
-                            {
-                                string link = "https://wa.me/52" + Model.detalleCaja.RedWhats;
-                                <a href="@link" style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
-                            }
-                            @if (!String.IsNullOrEmpty(Model.detalleCaja.RedInstagram))
-                            {
-                                <a href="https://www.instagram.com/@Model.detalleCaja.RedInstagram" style="margin: auto; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px;" /></a>
-                            }
-
-
-
-
-                        </div>
-                    </div>
-                    <div class="col-7">
-
-                    </div>
-                </div>
+<div>
+    <img class="fondo-pantalla" src="~/Img/Espacios/standVip.png">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="container" style="height: 200px; width: 100%; position: inherit; top:60%; left:-15%;">
+                <center><h1 style="margin-top: 1%; font-size: 4vw; color: white;">@Model.detalleCaja.Titulo</h1></center>
             </div>
+        </div>
+        <div class="col-1">
+            <div class="container" style="position: inherit; top: 50%; height: 100px; width: 100px; border-radius: 50px; background-color: white;"></div>
+        </div>
 
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2">
+            <div class="container" style="position: inherit; top: 120%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;"></div>
+            <div class="container" style="position: inherit; top: 200%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
+                <button type="button" style="position: inherit; top: 33%; left: -15%;" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">
+                    Catalogo
+                </button>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="video-container">
+                <iframe class="responsive-iframe"
+                        src="@Model.detalleCaja.VideoYoutube">
+                </iframe>
+                @*
+        @if (!string.IsNullOrEmpty(Model.detalleCaja.VideoYoutube))
+        {<iframe class="responsive-iframe"
+                 src="@Model.detalleCaja.VideoYoutube">
+            </iframe>
+        }
+                *@
+            </div>
+        </div>
+        <div class="col-4" style="display: inline-flex;">
+            <div class="container linear-boxes"></div>
+            <div class="container linear-boxes"></div>
+            <div class="container linear-boxes"></div>
         </div>
     </div>
+</div>
 }
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
