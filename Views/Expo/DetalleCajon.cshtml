@@ -73,22 +73,31 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
-            <div class="container" style="height: 200px; width: 100%; position: inherit; top:60%; left:-15%;">
+            <div class="container" style="height: 150px; width: 100%; position: inherit; top:60%; left:-15%;">
                 <center><h1 style="margin-top: 1%; font-size: 4vw; color: white;">@Model.detalleCaja.Titulo</h1></center>
             </div>
         </div>
         <div class="col-1">
-            <div class="container" style="position: inherit; top: 50%; height: 100px; width: 100px; border-radius: 50px; background-color: white;"></div>
+            <div class="container" style="position: inherit; top: 50%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
+
+                    @{string ruta = "http://angularviewexpo.com/Img/Logos/" + Model.detalleCaja.IdCaja + ".png";
+                    <img style="width:5em" src="@ruta" onerror="if(this.src != 'http://angularviewexpo.com//Img/angularView.png') this.src = 'http://angularviewexpo.com//Img/angularView.png'">
+                        }
+            </div>
         </div>
 
     </div>
     <div class="row">
         <div class="col-1"></div>
         <div class="col-2">
-            <div class="container" style="position: inherit; top: 120%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;"></div>
-            <div class="container" style="position: inherit; top: 200%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
+            <div class="container" style="position: inherit; top: 70%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
                 <button type="button" style="position: inherit; top: 33%; left: -15%;" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">
                     Catalogo
+                </button>
+            </div>
+            <div class="container" style="position: inherit; top: 170%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
+                <button type="button" style="position: inherit; top: 33%; left: -15%;" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">
+                    Nosotros
                 </button>
             </div>
         </div>
@@ -107,10 +116,32 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
             </div>
         </div>
         <div class="col-4" style="display: inline-flex;">
-            <div class="container linear-boxes"></div>
-            <div class="container linear-boxes"></div>
-            <div class="container linear-boxes"></div>
-        </div>
+            @if (!String.IsNullOrEmpty(Model.detalleCaja.RedFacebook))
+            {<div class="container linear-boxes">
+
+                    <a href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
+
+                </div>
+            }
+            @if (!String.IsNullOrEmpty(Model.detalleCaja.RedWhats))
+            {
+
+                string link = "https://wa.me/52" + Model.detalleCaja.RedWhats;
+                <div class="container linear-boxes">
+
+                    <a href="@link" style="margin: auto 3% auto 3%; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px " /></a>
+                    
+
+                </div>
+            }
+                @if (!String.IsNullOrEmpty(Model.detalleCaja.RedInstagram))
+                {<div class="container linear-boxes">
+
+                        <a href="https://www.instagram.com/@Model.detalleCaja.RedInstagram" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px; " /></a>
+
+                    </div>
+                }
+            </div>
     </div>
 </div>
 }
