@@ -15,6 +15,7 @@ namespace AngularView.Models
             DetalleCaja = new HashSet<DetalleCaja>();
             ExpositorPago = new HashSet<ExpositorPago>();
             ProductoServicio = new HashSet<ProductoServicio>();
+            TipoEnvio = new HashSet<TipoEnvio>();
             TipoPago = new HashSet<TipoPago>();
             VentaEspacio = new HashSet<VentaEspacio>();
         }
@@ -35,6 +36,7 @@ namespace AngularView.Models
         public virtual ICollection<DetalleCaja> DetalleCaja { get; set; }
         public virtual ICollection<ExpositorPago> ExpositorPago { get; set; }
         public virtual ICollection<ProductoServicio> ProductoServicio { get; set; }
+        public virtual ICollection<TipoEnvio> TipoEnvio { get; set; }
         public virtual ICollection<TipoPago> TipoPago { get; set; }
         public virtual ICollection<VentaEspacio> VentaEspacio { get; set; }
     }

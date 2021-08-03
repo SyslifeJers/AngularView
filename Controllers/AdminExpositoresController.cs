@@ -44,6 +44,72 @@ namespace AngularView.Controllers
 
             return View(new ModelArchivo() { id_Producto = id });
         }
+        public async Task<IActionResult> SubirEnvio(string name)
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+             var IdExpositor = Convert.ToInt32(HttpContext.Session.GetString("id"));
+            var list = await _context.Expositor.FindAsync(IdExpositor);
+            if (list != null)
+            {
+                bool agregar = true;
+                foreach (var item in list.TipoEnvio)
+                {
+                    if (!item.Nombre.Equals(name))
+                    {
+                        agregar = false;
+                    }
+
+                }
+                if (agregar)
+                {
+                    TipoEnvio tipoPago = new TipoEnvio()
+                    {
+                        IdExpo = IdExpositor,
+                        Nombre = name
+                    };
+                    _context.TipoEnvio.Add(tipoPago);
+                    await _context.SaveChangesAsync();
+                }
+                
+            }
+            return View();
+        }        public async Task<IActionResult> SubirPago(string name)
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
+            {
+                return Redirect(Url.ActionLink("Expo", "Home"));
+            }
+             var IdExpositor = Convert.ToInt32(HttpContext.Session.GetString("id"));
+            var list = await _context.Expositor.FindAsync(IdExpositor);
+            if (list != null)
+            {
+                bool agregar = true;
+                foreach (var item in list.TipoPago)
+                {
+                    if (!item.Nombre.Equals(name))
+                    {
+                        agregar = false;
+                    }
+
+                }
+                if (agregar)
+                {
+                    TipoPago tipoPago = new TipoPago()
+                    {
+                        IdExpo = IdExpositor,
+                        Nombre = name
+                    };
+                    _context.TipoPago.Add(tipoPago);
+                    await _context.SaveChangesAsync();
+                }
+                
+            }
+            return Redirect(Url.Action("MisCajones"));
+        }
+
         public IActionResult Registro()
         {
 
@@ -189,9 +255,14 @@ namespace AngularView.Controllers
                 return Redirect(Url.ActionLink("Expo", "Home"));
             }
             string id = HttpContext.Session.GetString("id");
+            Expositor expositor = await _context.Expositor.FindAsync(id);
+            
             List<DetalleCaja> sds = await _context.DetalleCaja.Include(d => d.IdCajaNavigation).Where(d => d.IdExpositor == Convert.ToInt32(id)).ToListAsync();
             List<VentaEspacio> ventC = await _context.VentaEspacio.Include(d => d.IdCajonNavigation).Where(d => d.IdExpositor == Convert.ToInt32(id) && d.Estatus == 2).ToListAsync();
             List<ModelDetalleCajon> modelDetalleCajons = new List<ModelDetalleCajon>();
+            
+            
+
             if (ventC.Count != 0)
             {
                 foreach (var item in ventC)
@@ -219,6 +290,12 @@ namespace AngularView.Controllers
                     }
                 }
 
+            }
+
+            if (modelDetalleCajons.Count>0)
+            {
+                modelDetalleCajons[0].listTipoPago = expositor.TipoPago.ToList();
+                modelDetalleCajons[0].listTipoEnvio = expositor.TipoEnvio.ToList();
             }
 
             return View(modelDetalleCajons);

@@ -812,6 +812,9 @@ namespace AngularView.Models
 
             modelBuilder.Entity<TipoEnvio>(entity =>
             {
+                entity.HasIndex(e => e.IdExpo)
+                    .HasName("RelacionTipoEnvio");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
@@ -825,6 +828,12 @@ namespace AngularView.Models
                     .HasColumnType("longtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.IdExpoNavigation)
+                    .WithMany(p => p.TipoEnvio)
+                    .HasForeignKey(d => d.IdExpo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("RelacionTipoEnvio");
             });
 
             modelBuilder.Entity<TipoPago>(entity =>

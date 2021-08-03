@@ -7,9 +7,12 @@ namespace AngularView.Models.ViewModels
 {
     public class ModelDetalleCajon
     {
+
         public bool SiDAtos { get; set; }
         public List<ProductoServicio> listProductoServicios { get; set; }
         public List<ModelSelect> listProductSelected { get; set; }
+        public List<TipoPago> listTipoPago { get; set; }     
+        public List<TipoEnvio> listTipoEnvio { get; set; }
         public DetalleCaja detalleCaja { get; set; }
         public int IdExpositor { get; set; }
         public int TipoPago { get; set; }
