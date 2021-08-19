@@ -255,7 +255,7 @@ namespace AngularView.Controllers
                 return Redirect(Url.ActionLink("Expo", "Home"));
             }
             string id = HttpContext.Session.GetString("id");
-            Expositor expositor = await _context.Expositor.FindAsync(id);
+            Expositor expositor = await _context.Expositor.FindAsync(Convert.ToInt32(id));
             
             List<DetalleCaja> sds = await _context.DetalleCaja.Include(d => d.IdCajaNavigation).Where(d => d.IdExpositor == Convert.ToInt32(id)).ToListAsync();
             List<VentaEspacio> ventC = await _context.VentaEspacio.Include(d => d.IdCajonNavigation).Where(d => d.IdExpositor == Convert.ToInt32(id) && d.Estatus == 2).ToListAsync();

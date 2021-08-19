@@ -3,125 +3,113 @@
     ViewData["Title"] = "GoVenta";
     Layout = "~/Views/Shared/Expo_Layout.cshtml";
 }
+<div class=" container ">
+<h1 style="margin-left:5em">Información de pedido</h1>
+</div>
+        <div class=" container ">
+            <table class="table" border="1" style="width:50em">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align:center">Cliente</th>
+                    </tr>
+                </thead>
 
-<table class="defaul" border="1" style="width:30em">
-
-    <tr style="background-color: cornflowerblue">
-
-        <td style="text-align:center">Cliente</td>
-    </tr>
-
-    <tr>
-        <td>
-            Razón social: (Nombre del cliente)<br>
-            RFC: (RFC del cliente)<br>
-            Dirección: (Dirección del cliente)<br>
-            Teléfono: (Teléfono del cliente)<br>
-            Correo electrónico: (Correo electrónico del cliente
-        </td>
-    </tr>
-</table>
-<br>
-<table class="defaul" border="1" style="width:30em">
-    <tr style="background-color: cornflowerblue">
-
-        <td style="text-align:center">Proovedor</td>
-    </tr>
-
-    <tr>
-        <td>
-            Razón social:@Model.GetExpositor.Nombre
-            RFC: 
-            Dirección: 
-            Teléfono: @Model.GetExpositor.Celular
-            Correo electrónico: @Model.GetExpositor.Correo
-
-        </td>
-    </tr>
-</table>
-<br>
-<table class="defaul" border="1" style="width:30em">
-    <tr style="background-color: cornflowerblue">
-
-        <td style="width: 4em">Cantidad</td>
-        <td style="width:18em">Descripción del Servicio</td>
-        <td style=""> Precio Unitario</td>
-    </tr>
-
-    <tr>
-        <td>
-            @Model.listpro
-        </td>
-        <td>
-           
-        </td>
-        <td style="text-align:center">
-           
-        </td>
-    </tr>
-</table>
-<table class="defaul">
-    <tr>
-        <td style="width: 19em">
-        </td>
-        <td>
-            Subtotal
+                <tbody>
+                    <tr>
+                        <td>
+                            Razón social: (Nombre del cliente)<br>
+                            RFC: (RFC del cliente)<br>
+                            Dirección: (Dirección del cliente)<br>
+                            Teléfono: (Teléfono del cliente)<br>
+                            Correo electrónico: (Correo electrónico del cliente
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <br>
-            I.V.A.
+            <table class="table" border="1" style="width:50em">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align:center">Proovedor</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        Razón social:@Model.GetExpositor.Nombre<br>
+                        RFC: <br>
+                        Dirección: <br>
+                        Teléfono: @Model.GetExpositor.Celular<br>
+                        Correo electrónico: @Model.GetExpositor.Correo
+
+                    </td>
+                </tr>
+            </table>
             <br>
-            Total
-        </td>
-        <td style="text-align:center">
-            0.00
-            <br>
-            0.00
-            <br>
-            0.00
-        </td>
-    </tr>
-</table>
-<table class="defaul" border="1" style="width:30em">
+            <table class="table" border="1" style="width:50em">
+                <thead class="thead-dark">
+                    <tr>
 
-    <tr style="background-color: cornflowerblue">
+                        <th style="width: 4em">Cantidad</th>
+                        <th style="width:32em">Descripción del Servicio</th>
+                        <th style=""> Precio Unitario</th>
+                    </tr>
 
-        <td style="text-align:center">Observaciones</td>
-    </tr>
+                </thead>
+                <tr>
 
-    <tr>
-        <td>
-            (Cuestiones a considerar, tanto para el cliente como para el proveedor, como condiciones de pago <br>
-            y entrega, forma en que se proveerá el servicio, fecha y lugar, etcétera)
-        </td>
-    </tr>
-</table>
-<table class="defaul">
+                    @Html.Raw(Model.listpro.ToString())
 
-    <tr>
-        <td style="text-align:center">_________________________</td>
 
-        <td style="text-align:center">_________________________</td>
-    </tr>
+            </table>
+            <table class="table" border="1" style="width:50em">
+                <tr>
+                    <th style="width: 19em">
+                    </th>
+                    <td>
+                        Subtotal
+                        <br>
+                        I.V.A.
+                        <br>
+                        Total
+                    </td>
+                    <td style="text-align:center">
+                        0.00
+                        <br>
+                        0.00
+                        <br>
+                        0.00
+                    </td>
+                </tr>
+            </table>
 
-    <br>
-    <br>
+            <table class="table" border="1" style="width:50em">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align:center">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            (Cuestiones a considerar, tanto para el cliente como para el proveedor, como condiciones de pago <br>
+                            y entrega, forma en que se proveerá el servicio, fecha y lugar, etcétera)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table" style="width:50em">
 
-    <tr style="width:3em">
-        <td></td>
+                <tr>
+                    <th style="text-align:center"><button type="button" class="btn btn-danger" style="width:9em">Cancelar</button></th>
 
-        <td></td>
-    </tr>
+                    <th style="text-align:center"><button type="button" class="btn btn-info" style="width:9em">Solicitar</button></th>
+                </tr>
 
-    <tr>
-        <td style="text-align:center">
-            Cliente<br>
-            (Nombre y firma del cliente)
-        </td>
-        <td style="text-align:center">
-            Proveedor <br>
-            (Nombre y firma del proveedor)
+                <br />
+                <br />
 
-        </td>
-    </tr>
 
-</table>
 
+            </table>
+
+        </div>

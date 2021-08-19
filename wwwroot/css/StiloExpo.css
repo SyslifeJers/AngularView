@@ -147,3 +147,9 @@ a:hover {
     width: 100px;
     top: 64%
 }
+section#contact {
+    background-color: #212529;
+    background-image: url(../Img/map-image.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}

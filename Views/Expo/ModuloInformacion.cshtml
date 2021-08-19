@@ -1,242 +1,314 @@
-﻿
+﻿    <html>
 @{
     ViewData["Title"] = "Admin";
     Layout = "~/Views/Shared/Expo_Layout.cshtml";
 }
 
-<div class="container">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+<body>
+    <div class="container">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="first-slide" src="~/Img/Monterrey.jpg" alt="First slide">
-                <div class="container">
-                    <div class="carousel-caption text-left">
-                        <h1>Guia de navegación</h1>
-                        <h2>Angular View</h2>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="first-slide" src="~/Img/Monterrey.jpg" alt="First slide">
+                    <div class="container">
+                        <div class="carousel-caption text-left">
+                            <h1>Guia de navegación</h1>
+                            <h2>Angular View</h2>
+                        </div>
                     </div>
                 </div>
+
+            </div>
+        </div>
+
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h3>
+                    ¿Que es Angula View?
+                </h3>
+                <hr color="#F0CDA1" />
+                <p>
+                    Producto de ALDA Comp. Networks, es una aplicación de exposiciones,<br>
+                    cuyo propósito es concentrar diferentes giros de negocios  <br>
+                    relacionados con la temática de la exposición.
+                </p>
             </div>
 
-        </div>
-    </div>
-
-
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>
-                ¿Que es Angula View?
-            </h3>
-            <hr color="#F0CDA1" />
-            <p>
-                Producto de ALDA Comp. Networks, es una aplicación de exposiciones,<br>
-                cuyo propósito es concentrar diferentes giros de negocios  <br>
-                relacionados con la temática de la exposición.
-            </p>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto" style="width:11em" src="~/Img/angularView.png" data-holder-rendered="true">
+            </div>
         </div>
 
-        <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" style="width:11em" src="~/Img/angularView.png" data-holder-rendered="true">
-        </div>
-    </div>
 
-
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h3>
-                Lobby
-            </h3>
-            <hr color="#F0CDA1" />
-            <p class="lead">
-                Pagina que muestra  el espacio principal dela exposición.<br>
-                Cuenta con Modulo de información para los usuarios. <br>
-                Área de Registro de visitantes. <br>
-                Entrada a as Salas de exposición. <br>
-            </p>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img class="">
-        </div>
-    </div>
-
-
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>
-                Modulo de Información
-            </h3>
-            <hr color="#F0CDA1" />
-            <p>
-                Documento de apoyo para resolver dudas sobre el uso de la plataforma.
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img class="">
-        </div>
-    </div>
-
-
-    <hr class="featurette-divider" />
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h3>
-                Registro
-            </h3>
-            <hr color="#F0CDA1" />
-            <p class="lead">
-                En este lugar deberá de darse de alta para poder accesar a la expo en curso.<br>
-                Solo necesita escribir su correo y una contraseña, o bien podrá iniciar sesión por medio de facebook o Google.
-            </p>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img class="">
-        </div>
-    </div>
-
-
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>
-                Salas VIP
-            </h3>
-            <hr color="#F0CDA1" />
-            <p class="lead">
-                Área de Accesos a cada una de las salas.<br>
-                Una vez hecho el registro podrá ingresar a la sala de su preferencia, <br>
-                dentro de cada sala podrá cambiar de sala sin necesidad de salir a el Lobby.
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img class="">
-        </div>
-    </div>
-
-
-    <hr class="featurette-divider" />
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h3>
-                Pantalla Lobby
-            </h3>
-            <hr color="#F0CDA1" />
-            <p class="lead">
-                En La pantalla del Lobby podrá ver la publicidad del evento y de los participantes de la misma.<br>
-                En ciertos eventos podrá ingresar a el ¡Auditorio! Donde podrá ver “EN VIVO”, <br>
-                publicidad o Conferencias de nuestros participantes.
-            </p>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img class="">
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>
-                Contador Digital
-            </h3>
-            <hr color="#F0CDA1" />
-            <p class="lead">
-                Contador de visitantes.<br>
-                Podrá ver cuantas visitas se han hecho en el tiempo en curso de la expo.
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img class="">
-        </div>
-    </div>
-
-
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="first-slide" src="~/Img/Monterrey.jpg"S alt="First slide">
-                <div class="container">
-                    <div class="carousel-caption text-left">
-                        <h1>DENTRO DE  SALAS  VIP / SALA 1 / SALA 2</h1>
-                        <h2>Angular View</h2>
-                    </div>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h3>
+                    Lobby
+                </h3>
+                <hr color="#F0CDA1" />
+                <p class="lead">
+                    Pagina que muestra  el espacio principal dela exposición.<br>
+                    Cuenta con Modulo de información para los usuarios. <br>
+                    Área de Registro de visitantes. <br>
+                    Entrada a as Salas de exposición. <br>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="video-container" src="/Img/lobby.mp4" allowfullscreen></iframe>
                 </div>
             </div>
-
         </div>
+
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h3>
+                    Modulo de Información
+                </h3>
+                <hr color="#F0CDA1" />
+                <p>
+                    Documento de apoyo para resolver dudas sobre el uso de la plataforma.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="video-container" src="/Img/ModuloInformacion.mp4" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="featurette-divider" />
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h3>
+                    Registro
+                </h3>
+                <hr color="#F0CDA1" />
+                <p class="lead">
+                    En este lugar deberá de darse de alta para poder accesar a la expo en curso.<br>
+                    Solo necesita escribir su correo y una contraseña, o bien podrá iniciar sesión por medio de facebook o Google.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="video-container" src="/Img/Registro.mp4" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h3>
+                    Salas VIP
+                </h3>
+                <hr color="#F0CDA1" />
+                <p class="lead">
+                    Área de Accesos a cada una de las salas.<br>
+                    Una vez hecho el registro podrá ingresar a la sala de su preferencia, <br>
+                    dentro de cada sala podrá cambiar de sala sin necesidad de salir a el Lobby.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="video-container" src="/Img/SalaVip.mp4" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="featurette-divider" />
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h3>
+                    Pantalla Lobby
+                </h3>
+                <hr color="#F0CDA1" />
+                <p class="lead">
+                    En La pantalla del Lobby podrá ver la publicidad del evento y de los participantes de la misma.<br>
+                    En ciertos eventos podrá ingresar a el ¡Auditorio! Donde podrá ver “EN VIVO”, <br>
+                    publicidad o Conferencias de nuestros participantes.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="video-container" src="/Img/.mp4" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h3>
+                    Contador Digital
+                </h3>
+                <hr color="#F0CDA1" />
+                <p class="lead">
+                    Contador de visitantes.<br>
+                    Podrá ver cuantas visitas se han hecho en el tiempo en curso de la expo.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="video-container" src="/Img/ContadorDigital.mp4" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+
+            </ol>
+
+            <br />
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="first-slide" src="~/Img/Monterrey.jpg" S alt="First slide">
+                    <div class="container">
+                        <div class="carousel-caption text-left">
+                            <h1>DENTRO DE  SALAS  VIP / SALA 1 / SALA 2</h1>
+                            <h2>Angular View</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h3>
+                    Dinamica dentro de las Salas
+                </h3>
+                <hr color="#F0CDA1" />
+                <p class="lead">
+                    Una vez dentro de cualquier sala, podrás ver una cuadricula donde cada uno representa un negocio expositor.<br>
+                    En cada cuadro podrás ver el logo, el nombre y una breve descripción del negocio.<br>
+                    Al dar clic en la de tu elección, entraras a su local virtual.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="video-container" src="/Img/Dinamica.mp4" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="featurette-divider" />
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h3>
+                    En el Local Virtual
+                </h3>
+                <hr color="#F0CDA1" />
+                <p class="lead">
+                    Al estar dentro, podrás ver una imagen de un local y notaras que cuenta con botones de acción e iconos.<br>
+
+                    Nombre del negocio.<br>
+
+                    CATALOGO: Despliega el contenido del expositor , sus productos o servicios estarán allí., dentro de la ventana de catalogo,<br>
+                    podrás ver un botón que dice “ME INTERESA”, al dar clic , llenaras unos datos básicos, seleccionaras las opciones que vienen <br>
+                    y enviara por correo la “ORDEN DE COMPRA”, tanto al negocio como a tu correo.<br>
+                    Aquí se especifican los métodos de pago, y bases de entrega del producto o adquisición del servicio.<br>
+
+                    ICONOS : Solo da clic en los iconos de las redes sociales y te enviara a su pagina, si el negocio cuenta con pagina web, el icono<br>
+                    de ¡un mundito” te aparecerá , le das clic y te enviara directamente.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="video-container" src="/Img/NuevoLocal.mp4" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h3>
+                    ¿Tienes un negocio y quieres participar en nuestras expos?
+                </h3>
+                <hr color="#F0CDA1" />
+                <p class="lead">
+                    Solo da clic en “CONTACTO” (en la pagina principal de Angular View o en ALDAcomp)<br>
+                    o envía un WhatsApp al 8110042439 y con gusto te atenderemos.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="video-container" src="/Img/TIENES.mp4" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <br />
     </div>
+</body>
 
-
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>
-                Dinamica dentro de las Salas
-            </h3>
-            <hr color="#F0CDA1" />
-            <p class="lead">
-                Una vez dentro de cualquier sala, podrás ver una cuadricula donde cada uno representa un negocio expositor.<br>
-                En cada cuadro podrás ver el logo, el nombre y una breve descripción del negocio.<br>
-                Al dar clic en la de tu elección, entraras a su local virtual.
-            </p>
+<footer>
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase" style="color:aliceblue">Cont&aacute;ctanos</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+            </div>
         </div>
-        <div class="col-md-5">
-            <img class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--<form id="contactForm" name="sentMessage" novalidate="novalidate" method="POST" action="enviarContacto.php">-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" id="nombre_c" type="text" placeholder="Tu Nombre *" onkeyup='aMays(event, this)' onblur='aMays(event, this)'>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="email_c" type="email" placeholder="Tu Email *">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="tel_c" type="tel" placeholder="Tu Tel&eacute;fono *">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <textarea class="form-control" id="mensaje_c" placeholder="Tu Mensaje *" onkeyup='aMays(event, this)' onblur='aMays(event, this)'></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <!--<div id="success"></div>-->
+                            <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="button" onclick="contacto()">Enviar Mensaje</button>
+                        </div>
+                    </div>
+                    <!--</form>-->
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+</footer>
+    </html>
 
-
-    <hr class="featurette-divider" />
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-            <h3>
-                En el Local Virtual
-            </h3>
-            <hr color="#F0CDA1" />
-            <p class="lead">
-                Al estar dentro, podrás ver una imagen de un local y notaras que cuenta con botones de acción e iconos.<br>
-
-                Nombre del negocio.<br>
-
-                CATALOGO: Despliega el contenido del expositor , sus productos o servicios estarán allí., dentro de la ventana de catalogo,<br>
-                podrás ver un botón que dice “ME INTERESA”, al dar clic , llenaras unos datos básicos, seleccionaras las opciones que vienen <br>
-                y enviara por correo la “ORDEN DE COMPRA”, tanto al negocio como a tu correo.<br>
-                Aquí se especifican los métodos de pago, y bases de entrega del producto o adquisición del servicio.<br>
-
-                ICONOS : Solo da clic en los iconos de las redes sociales y te enviara a su pagina, si el negocio cuenta con pagina web, el icono<br>
-                de ¡un mundito” te aparecerá , le das clic y te enviara directamente.
-            </p>
-        </div>
-        <div class="col-md-5 order-md-1">
-            <img class="">
-        </div>
-    </div>
-
-
-
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>
-                ¿Tienes un negocio y quieres participar en nuestras expos?
-            </h3>
-            <hr color="#F0CDA1" />
-            <p class="lead">
-                Solo da clic en “CONTACTO” (en la pagina principal de Angular View o en ALDAcomp)<br>
-                o envía un WhatsApp al 8110042439 y con gusto te atenderemos.
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img class="">
-        </div>
-    </div>
-  
-</div>
