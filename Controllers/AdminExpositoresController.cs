@@ -44,20 +44,20 @@ namespace AngularView.Controllers
 
             return View(new ModelArchivo() { id_Producto = id });
         }
-        public async Task<IActionResult> SubirEnvio(string name)
+        public async Task<IActionResult> SubirEnvio(TipoEnvio model)
         {
             if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
             {
                 return Redirect(Url.ActionLink("Expo", "Home"));
             }
              var IdExpositor = Convert.ToInt32(HttpContext.Session.GetString("id"));
-            var list = await _context.Expositor.FindAsync(IdExpositor);
+            var list = await _context.Expositor.Include(d=>d.TipoEnvio).Where(d=>d.Id == IdExpositor).ToListAsync();
             if (list != null)
             {
                 bool agregar = true;
-                foreach (var item in list.TipoEnvio)
+                foreach (var item in list[0].TipoEnvio)
                 {
-                    if (!item.Nombre.Equals(name))
+                    if (item.Nombre.Equals(model.Nombre))
                     {
                         agregar = false;
                     }
@@ -68,28 +68,35 @@ namespace AngularView.Controllers
                     TipoEnvio tipoPago = new TipoEnvio()
                     {
                         IdExpo = IdExpositor,
-                        Nombre = name
+                        Nombre = model.Nombre
                     };
                     _context.TipoEnvio.Add(tipoPago);
                     await _context.SaveChangesAsync();
                 }
+                else
+                {
+                    var lis = _context.TipoEnvio.Where(d => d.IdExpo == IdExpositor && d.Nombre == model.Nombre).ToList();
+                    _context.TipoEnvio.Remove(lis[0]);
+                    await _context.SaveChangesAsync();
+                }
                 
             }
-            return View();
-        }        public async Task<IActionResult> SubirPago(string name)
+            return Redirect(Url.ActionLink("MisCajones"));
+        }     
+        public async Task<IActionResult> SubirPago(TipoPago model)
         {
             if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))
             {
                 return Redirect(Url.ActionLink("Expo", "Home"));
             }
              var IdExpositor = Convert.ToInt32(HttpContext.Session.GetString("id"));
-            var list = await _context.Expositor.FindAsync(IdExpositor);
+            var list = await _context.Expositor.Include(d => d.TipoPago).Where(d => d.Id == IdExpositor).ToListAsync();
             if (list != null)
             {
                 bool agregar = true;
-                foreach (var item in list.TipoPago)
+                foreach (var item in list[0].TipoPago)
                 {
-                    if (!item.Nombre.Equals(name))
+                    if (item.Nombre.Equals(model.Nombre))
                     {
                         agregar = false;
                     }
@@ -100,16 +107,21 @@ namespace AngularView.Controllers
                     TipoPago tipoPago = new TipoPago()
                     {
                         IdExpo = IdExpositor,
-                        Nombre = name
+                        Nombre = model.Nombre
                     };
                     _context.TipoPago.Add(tipoPago);
+                    await _context.SaveChangesAsync();
+                } else
+                {
+                    var lis = _context.TipoPago.Where(d => d.IdExpo == IdExpositor && d.Nombre == model.Nombre).ToList();
+                    _context.TipoPago.Remove(lis[0]);
                     await _context.SaveChangesAsync();
                 }
                 
             }
             return Redirect(Url.Action("MisCajones"));
         }
-
+        
         public IActionResult Registro()
         {
 
@@ -254,8 +266,9 @@ namespace AngularView.Controllers
             {
                 return Redirect(Url.ActionLink("Expo", "Home"));
             }
-            string id = HttpContext.Session.GetString("id");
-            Expositor expositor = await _context.Expositor.FindAsync(Convert.ToInt32(id));
+            int id = Convert.ToInt32(HttpContext.Session.GetString("id"));
+            var expos = await _context.Expositor.Include(d=>d.TipoPago).Include(d=>d.TipoEnvio).Where(d => d.Id == id).ToListAsync(); 
+            Expositor expositor = expos[0];
             
             List<DetalleCaja> sds = await _context.DetalleCaja.Include(d => d.IdCajaNavigation).Where(d => d.IdExpositor == Convert.ToInt32(id)).ToListAsync();
             List<VentaEspacio> ventC = await _context.VentaEspacio.Include(d => d.IdCajonNavigation).Where(d => d.IdExpositor == Convert.ToInt32(id) && d.Estatus == 2).ToListAsync();

@@ -121,12 +121,18 @@ namespace AngularView.Controllers
             {
                 return Redirect(Url.ActionLink("Login", "Expo"));
             }
+            var id =HttpContext.Session.GetInt32("Cliente");
+            model.GetClientes = _context.Clientes.Find(id);
+
             var detalleC = await _context.DetalleCaja.FindAsync(model.detalleCaja.Id);
-            var expositor = await _context.Expositor.Include(s=>s.ProductoServicio).Where(d=>d.Id == model.IdExpositor).FirstOrDefaultAsync();
+            var expositor = await _context.Expositor.Include(s=>s.ProductoServicio).Include(d=>d.TipoEnvio).Include(d=>d.TipoPago).Where(d=>d.Id == model.IdExpositor).FirstOrDefaultAsync();
+            ViewData["TipoEnvio"] = new SelectList(expositor.TipoEnvio, "Id", "Nombre");
+            ViewData["TipoPago"] = new SelectList(expositor.TipoPago, "Id", "Nombre");
             model.GetExpositor = expositor;
             var correo = HttpContext.Session.GetString("ClienteCorreo");
             string listpro = "";
             double sum =0;
+
             foreach (var item in model.listProductSelected)
             {
                 if (item.Selected)
@@ -134,7 +140,7 @@ namespace AngularView.Controllers
                     try
                     {
                         var res = expositor.ProductoServicio.Where(d => d.Id == item.IdProduct).FirstOrDefault();
-                        listpro += "<tr><td >"+item.Cant+" </td><td>"+res.Decripcion+"</td><td>"+res.PrecioNormal+"</td></tr> " ;
+                        listpro += "<tr><td >"+item.Cant+" </td><td>"+res.Decripcion+"</td><td>"+res.PrecioNormal.ToString() + "</td></tr> " ;
                        
 
                         if (res.Descuento == 1 && res.PrecioNormal !=null)
@@ -156,7 +162,9 @@ namespace AngularView.Controllers
 
                 }
             }
-            model.listpro = listpro;
+            model.Total = sum;
+            model.Iva = sum * .16;
+model.listpro = listpro;
             //            Herramientas.Correo(expositor.Correo, "Venta de AngularView", "<!DOCTYPE html> " +
             //"<html>" +
             //"<head>" +
@@ -441,7 +449,8 @@ namespace AngularView.Controllers
 
                             if (expos[0].Contrasena.Equals(model.Contrasena))
                             {
-                                HttpContext.Session.SetString("Cliente", expos[0].Id.ToString());
+                            var id = expos[0].Id.ToString();
+                                HttpContext.Session.SetInt32("Cliente", expos[0].Id);
                             HttpContext.Session.SetString("ClienteCorreo", expos[0].Correo.ToString());
                             return Redirect(Url.Action("IndexSucces"));
                             }

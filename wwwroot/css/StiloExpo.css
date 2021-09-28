@@ -34,8 +34,17 @@ a:hover {
 .number-container {
 /*    display: flex;*/
     position: absolute;
-    top: 45%;
-    left: 52%;
+    top: 20%;
+    left: 57%;
+/*    height: 15%;*/
+/*    width: 5%;*/
+
+}
+.number-succes {
+/*    display: flex;*/
+    position: absolute;
+    top: 32%;
+    left: 57%;
 /*    height: 15%;*/
 /*    width: 5%;*/
 
@@ -45,6 +54,15 @@ a:hover {
     display: flex;
     position: absolute;
     top: 18%;
+    left: 0%;
+    height: 25%;
+    width: 30%;
+    background-color: black;
+}
+.video-container-entrance-succes {
+    display: flex;
+    position: absolute;
+    top: 25%;
     left: 0%;
     height: 25%;
     width: 30%;
@@ -130,7 +148,10 @@ a:hover {
     margin: auto;
     overflow: hidden;
     height: 450px;
-    width: 100%;
+    width: 93%;
+    margin-top:13%;
+    margin-left:11%;
+    padding:8em;
 }
 
 .responsive-iframe {

@@ -80,8 +80,8 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
         <div class="col-1">
             <div class="container" style="position: inherit; top: 50%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
 
-                    @{string ruta = "http://angularviewexpo.com/Img/Logos/" + Model.detalleCaja.IdCaja + ".png";
-                    <img style="width:5em" src="@ruta" onerror="if(this.src != 'http://angularviewexpo.com//Img/angularView.png') this.src = 'http://angularviewexpo.com//Img/angularView.png'">
+                    @{string ruta = "/Img/Logos/" + Model.detalleCaja.IdCaja + ".png";
+                    <img style="width:5em" src="@ruta" onerror="if(this.src != 'http://angularviewexpo.com/Img/angularView.png') this.src = 'http://angularviewexpo.com/Img/angularView.png'">
                         }
             </div>
         </div>
@@ -96,30 +96,31 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                 </button>
             </div>
             <div class="container" style="position: inherit; top: 170%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
-                <button type="button" style="position: inherit; top: 33%; left: -15%;" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">
+                <button type="button" style="position: inherit; top: 33%; left: -15%;" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong2">
                     Nosotros
                 </button>
             </div>
         </div>
         <div class="col-4">
             <div class="video-container">
-                <iframe class="responsive-iframe"
+                @*<iframe class="responsive-iframe"
                         src="@Model.detalleCaja.VideoYoutube">
-                </iframe>
-                @*
+                </iframe>*@
+                
         @if (!string.IsNullOrEmpty(Model.detalleCaja.VideoYoutube))
-        {<iframe class="responsive-iframe"
-                 src="@Model.detalleCaja.VideoYoutube">
-            </iframe>
+                    {
+                        @Html.Raw(Model.detalleCaja.VideoYoutube)
+           
         }
-                *@
+
+
             </div>
         </div>
         <div class="col-4" style="display: inline-flex;">
             @if (!String.IsNullOrEmpty(Model.detalleCaja.RedFacebook))
-            {<div class="container linear-boxes">
+                {<div class="container linear-boxes">
 
-                    <a href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
+                    <a target="_blank" href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
 
                 </div>
             }
@@ -129,15 +130,15 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                 string link = "https://wa.me/52" + Model.detalleCaja.RedWhats;
                 <div class="container linear-boxes">
 
-                    <a href="@link" style="margin: auto 3% auto 3%; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px " /></a>
+                    <a target="_blank" href="@link" style="margin: auto 3% auto 3%; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px " /></a>
                     
 
                 </div>
             }
-                @if (!String.IsNullOrEmpty(Model.detalleCaja.RedInstagram))
+        @if (!String.IsNullOrEmpty(Model.detalleCaja.RedInstagram))
                 {<div class="container linear-boxes">
 
-                        <a href="https://www.instagram.com/@Model.detalleCaja.RedInstagram" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px; " /></a>
+                        <a target="_blank" href="https://www.instagram.com/@Model.detalleCaja.RedInstagram" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px; " /></a>
 
                     </div>
                 }
@@ -199,11 +200,11 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                                         <hr />
                                         @if (Model.listProductoServicios[i].Descuento == 1)
                                         {
-                                            <p style="font-size: 1.3em;">Costo: @Model.listProductoServicios[i].PrecioDescuento</p>
+                                            <p style="font-size: 1.3em;">Costo: $ @Model.listProductoServicios[i].PrecioDescuento MXN</p>
                                         }
                                         else
-                                        {
-                                            <p style="font-size: 1.3vw;">Costo: @Model.listProductoServicios[i].PrecioNormal</p>
+        {
+                                            <p style="font-size: 1.3vw;">Costo: $ @Model.listProductoServicios[i].PrecioNormal MXN</p>
                                         }
 
                                     </div>
@@ -211,7 +212,6 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                             }
                         </div>
                         <hr color="Black" width="700">
-                        <h4>Datos del cliente</h4>
                         <div class="container">
                             @*<div class="row">
                                 <div class="col-md-5">
@@ -239,14 +239,7 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                                 <label>Direccion </label>
                                 <input type="text" asp-for="@Model.Direccion" class="form-control" />
                             </div>*@
-                            <div class="form-group">
-                                <label asp-for="TipoEnvio" class="control-label"></label>
-                                <select asp-for="TipoEnvio" class="form-control" asp-items="ViewBag.TipoEnvio"></select>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="TipoPago" class="control-label"></label>
-                                <select asp-for="TipoPago" class="form-control" asp-items="ViewBag.TipoPago"></select>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -260,6 +253,23 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
 </div>
 
 
-
+<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLong2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              @Model.detalleCaja
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @*Modal*@

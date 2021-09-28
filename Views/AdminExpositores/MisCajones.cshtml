@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AngularView.Models.ViewModels.ModelDetalleCajon>
+﻿@model List<AngularView.Models.ViewModels.ModelDetalleCajon>
 @{
     ViewData["Title"] = "MisCajones";
     Layout = "~/Views/Shared/_LayoutExpositor.cshtml";
@@ -7,151 +7,234 @@
     int posi = 0;
     foreach (var item in Model)
     {
-        if(item.detalleCaja.IdCajaNavigation.IdSala==2)
+        if (item.detalleCaja.IdCajaNavigation.IdSala == 2)
         {
             sala.Add("VIP");
         }
         else
         {
-            sala.Add(" "+ item.detalleCaja.IdCajaNavigation.IdSala.ToString());
+            sala.Add(" " + item.detalleCaja.IdCajaNavigation.IdSala.ToString());
         }
-    }  
+    }
 }
 
 <h1>Mis Cajones </h1>
 <a class="btn btn-primary" asp-action="Salas" asp-route-id="1">Solicitud de nuevo espacio</a>
+<br />
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="SubirPago">
+
+            <div class="input-group">
+                <div class="col-md-8">
+                    <label for="exampleFormControlSelect1">Método de pago </label>
+                    <select class="form-control" id="Nombre" name="Nombre">
+                        <option>Tranferencia bancaria </option>
+                        <option>Pago contra entrega </option>
+                        <option>Deposito bancario</option>
+                        <option>Mercado pago</option>
+                        <option>Pago via PayPal</option>
+                        <option>Envio de dinero</option>
+                    </select><br />
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary mb-2">Agregar o quitar</button>
+                    </span>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+    <div class="col-md-6">
+        @if (Model.Count() > 0)
+        {
+            int folio = 0;
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Tipo
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model[0].listTipoPago)
+                    {
+                        folio++;
+                        <tr>
+                            <td>
+                                @folio
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        }
+    </div>
+</div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="SubirEnvio">
+
+                <div class="input-group">
+                    <div class="col-md-8">
+                        <label for="exampleFormControlSelect1">Método de entrega </label>
+                        <select class="form-control" id="Nombre" name="Nombre">
+                            <option>Entrega a domicilio</option>
+                            <option>Entrega en el local comercial</option>
+                            <option>Envío nacional</option>
+                        </select><br />
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary mb-2">Agregar o quitar</button>
+                        </span>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+        <div class="col-md-6">
+            @if (Model.Count() > 0)
+            {
+                int folio = 0;
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Tipo
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model[0].listTipoEnvio)
+                        {
+                            folio++;
+                            <tr>
+                                <td>
+                                    @folio
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            }
+        </div>
+    </div>
+
 @foreach (var item in Model)
 {
     if (item.SiDAtos)
     {
-      
 
 
-<div>
 
-    <div class="card mb-4 text-center" style="padding:1em">
-        <div class="row no-gutters">
+        <div>
 
-            <div class="card-header text-white col-12" style="background-color:#04c3ab">
-                <h2>@item.detalleCaja.Titulo</h2>
-                <h4>@item.detalleCaja.Resumen</h4>
-            </div>
-           
-            <div class="card-body row no-gutters">
-                <div class="col-md-4">
-                    <br />
-                    <h4>Logo del espacio</h4>
-                    @{string rut = "../Img/Logos/" + @item.detalleCaja.Id + ".png";}
-                    <img style="width:10em;margin:2em" src="@rut" onerror="if (this.src != @rut) this.src = '../Img/angularView.png';">
+            <div class="card mb-4 text-center" style="padding:1em">
+                <div class="row no-gutters">
+
+                    <div class="card-header text-white col-12" style="background-color:#04c3ab">
+                        <h2>@item.detalleCaja.Titulo</h2>
+                        <h4>@item.detalleCaja.Resumen</h4>
+                    </div>
+
+                    <div class="card-body row no-gutters">
+                        <div class="col-md-4">
+                            <br />
+                            <h4>Logo del espacio</h4>
+                            @{string rut = "../Img/Logos/" + @item.detalleCaja.Id + ".png";}
+                            <img style="width:10em;margin:2em" src="@rut" onerror="if (this.src != @rut) this.src = '../Img/angularView.png';">
 
 
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
 
-                        <h4>Redes Sociales</h4>
-                        <hr />
-                        @if (!string.IsNullOrEmpty(item.detalleCaja.RedFacebook))
-                        {<a target="_blank" class="h4" href="https://www.facebook.com/@item.detalleCaja.RedFacebook">Facebook</a>}
-                        <hr />
-                        @if (!string.IsNullOrEmpty(item.detalleCaja.RedWhats))
-                        {
-                            string link = "https://wa.me/52" + item.detalleCaja.RedWhats;
-                            <a target="_blank" class="h4" href="@link">Whatsapp</a>}
-                        <hr />
-                        @if (!string.IsNullOrEmpty(item.detalleCaja.RedInstagram))
-                        {<a target="_blank" class="h4" href="https://www.instagram.com/@item.detalleCaja.RedInstagram">Instagram</a>}
-                        <hr />
+                                <h4>Redes Sociales</h4>
+                                <hr />
+                                @if (!string.IsNullOrEmpty(item.detalleCaja.RedFacebook))
+                                {<a target="_blank" class="h4" href="https://www.facebook.com/@item.detalleCaja.RedFacebook">Facebook</a>}
+                                <hr />
+                                @if (!string.IsNullOrEmpty(item.detalleCaja.RedWhats))
+                                {
+                                    string link = "https://wa.me/52" + item.detalleCaja.RedWhats;
+                                    <a target="_blank" class="h4" href="@link">Whatsapp</a>}
+                                <hr />
+                                @if (!string.IsNullOrEmpty(item.detalleCaja.RedInstagram))
+                                {<a target="_blank" class="h4" href="https://www.instagram.com/@item.detalleCaja.RedInstagram">Instagram</a>}
+                                <hr />
+
+                            </div>
+                        </div>
+                        <hr class="col-12" />
+                        <div class="col-md-4">
+                            <a asp-action="CambiarLogo" asp-route-id="@item.detalleCaja.Id"> Cambiar Imagen</a>
+                        </div>
+                        <div class="col-md-8">
+                            <a asp-action="ActualizarCajonDatos" asp-route-id="@item.detalleCaja.Id" class="btn" style="background: #4DCBAE;">Actualizar</a>
+                        </div>
+                    </div>
+                    <br class="col-12" />
+                    <div class="card-footer bg-dark text-white col-12">
+                        <h5>Sala @sala[posi] Cajon @item.detalleCaja.IdCajaNavigation.Descripcion</h5>
+
+                        <i data-toggle="popover" title="EXPO TU VERANO 2021" data-content="En esta Expo podrás encontrar las mejores opciones de recreación para este verano 2021, Actividades de recreación para toda la  familia" class="bi bi-info-circle"></i>
 
                     </div>
                 </div>
-                <hr class="col-12" />
-                <div class="col-md-4">
-                    <a asp-action="CambiarLogo" asp-route-id="@item.detalleCaja.Id"> Cambiar Imagen</a>
-                </div>
-                <div class="col-md-8">
-                    <a asp-action="ActualizarCajonDatos" asp-route-id="@item.detalleCaja.Id" class="btn" style="background: #4DCBAE;">Actualizar</a>
-                </div>
             </div>
-            <br class="col-12" />
-            <div class="card-footer bg-dark text-white col-12">
-                <h5>Sala @sala[posi] Cajon @item.detalleCaja.IdCajaNavigation.Descripcion</h5>
 
-                <i data-toggle="popover" title="EXPO TU VERANO 2021" data-content="En esta Expo podrás encontrar las mejores opciones de recreación para este verano 2021, Actividades de recreación para toda la  familia" class="bi bi-info-circle"></i>
-
-            </div>
         </div>
-    </div>
-
-</div>
     }
     else
     {
 
-<div>
-    <br>
-    <form>
+        <div>
+            <br>
 
-        <div class="input-group">
-            <div class="col-md-4">
-                <label for="exampleFormControlSelect1">Método de pago </label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>Tranferencia bancaria </option>
-                    <option>Pago contra entrega </option>
-                    <option>Deposito bancario</option>
-                    <option>Mercado pago</option>
-                    <option>Pago via PayPal</option>
-                    <option>Envio de dinero</option>
-                </select><br/>
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary mb-2">Agregar</button>
-                </span>
-            </div>
+            <br />
+            <div class="card mb-3 text-center" style="max-width: 840px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        @{string rut = "../Img/angularView.png";}
+                        <img style="width:7em" src="@rut" onerror="if (this.src != '@rut') this.src = '@rut';">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2>Sala @sala[posi] Cajon @item.detalleCaja.IdCajaNavigation.Descripcion<br /><small>Falta a agregar información al cajón</small></h2>
 
-        </div>
-
-    </form>
-    <br/>
-    <form>
-
-        <div class="input-group">
-            <div class="col-md-4">
-                <label for="exampleFormControlSelect1">Método de envío </label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>Entrega a domicilio</option>
-                    <option>Entrega en el local comercial</option>
-                    <option>Envío nacional</option>
-                </select><br/>
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary mb-2">Agregar</button>
-                </span>
-            </div>
-            
-        </div>
-
-    </form>
-
-    <br />
-    <div class="card mb-3 text-center" style="max-width: 840px;">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                @{string rut = "../Img/angularView.png";}
-                <img style="width:7em" src="@rut" onerror="if (this.src != '@rut') this.src = '@rut';">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h2>Sala @sala[posi] Cajon @item.detalleCaja.IdCajaNavigation.Descripcion<br /><small>Falta a agregar información al cajón</small></h2>
-
-                    <hr />
-                    <a asp-action="ActualizarDatos" asp-route-id="@item.detalleCaja.IdCajaNavigation.Id" class="btn" style="background: #4DCBAE">Actualizar</a>
+                            <hr />
+                            <a asp-action="ActualizarDatos" asp-route-id="@item.detalleCaja.IdCajaNavigation.Id" class="btn" style="background: #4DCBAE">Actualizar</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-                        }
-                        posi++;
-                    }
+    }
+    posi++;
+}
 
 @*Modal*@

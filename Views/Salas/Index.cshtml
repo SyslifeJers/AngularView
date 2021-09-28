@@ -5,7 +5,7 @@
     Layout = "_LayoutVendedor";
 }
 
-<h1>Eventos actuales</h1>
+<h1>Calendario de eventos</h1>
 
 @foreach (var item in Model) {
        <div class="card col-12">
@@ -17,4 +17,5 @@
                <a class="btn btn-outline-info" asp-action="Salas" asp-controller="Salas" asp-route-id="@item.Id">Ver salas</a>
            </div>
        </div>
+       <br />
 }

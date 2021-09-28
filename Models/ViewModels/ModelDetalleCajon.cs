@@ -24,6 +24,9 @@ namespace AngularView.Models.ViewModels
         public  string Email { get; set; }
         public string listpro { get; set; }
         public Expositor GetExpositor { get; set; }
+        public Clientes GetClientes { get; set; }
+        public double Total { get; set; }
+        public double Iva { get; set; }
     }
     public class ModelSelect
     {

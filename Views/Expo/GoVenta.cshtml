@@ -2,114 +2,129 @@
 @{
     ViewData["Title"] = "GoVenta";
     Layout = "~/Views/Shared/Expo_Layout.cshtml";
+    double subtotal = Model.Total - Model.Iva;
+
 }
-<div class=" container ">
-<h1 style="margin-left:5em">Información de pedido</h1>
-</div>
-        <div class=" container ">
-            <table class="table" border="1" style="width:50em">
-                <thead class="thead-dark">
-                    <tr>
-                        <th style="text-align:center">Cliente</th>
-                    </tr>
-                </thead>
+<form action="/" method="post">
+    <div class=" container ">
+        <h1 style="margin-left:5em">Información de pedido</h1>
+    </div>
+    <div class=" container ">
+        <table class="table" border="1" style="width:50em">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="text-align:center">Cliente</th>
+                </tr>
+            </thead>
 
-                <tbody>
-                    <tr>
-                        <td>
-                            Razón social: (Nombre del cliente)<br>
-                            RFC: (RFC del cliente)<br>
-                            Dirección: (Dirección del cliente)<br>
-                            Teléfono: (Teléfono del cliente)<br>
-                            Correo electrónico: (Correo electrónico del cliente
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <table class="table" border="1" style="width:50em">
-                <thead class="thead-dark">
-                    <tr>
-                        <th style="text-align:center">Proovedor</th>
-                    </tr>
-                </thead>
+            <tbody>
                 <tr>
                     <td>
-                        Razón social:@Model.GetExpositor.Nombre<br>
-                        RFC: <br>
-                        Dirección: <br>
-                        Teléfono: @Model.GetExpositor.Celular<br>
-                        Correo electrónico: @Model.GetExpositor.Correo
-
+                        <div class="form-group"> Razón social:  <input class="" type="text" value="@Model.GetClientes.Nombre @Model.GetClientes.Apellidos" /> <br></div>
+                        <div class="form-group">  RFC: <input class="" type="text" /><br></div>
+                        <div class="form-group">  Dirección: <input class="" type="text" /><br></div>
+                        <div class="form-group">     Teléfono: <input class="" type="text" /> <br></div>
+                        <div class="form-group">   Correo electrónico:  <input class="" type="text" value="@Model.GetClientes.Correo" /> </div>
                     </td>
                 </tr>
-            </table>
-            <br>
-            <table class="table" border="1" style="width:50em">
-                <thead class="thead-dark">
-                    <tr>
+            </tbody>
+        </table>
+        <br>
+        <table class="table" border="1" style="width:50em">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="text-align:center">Proovedor</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>
+                    Razón social:@Model.GetExpositor.Nombre<br>
+                    RFC: <br>
+                    Dirección: <br>
+                    Teléfono: @Model.GetExpositor.Celular<br>
+                    Correo electrónico: @Model.GetExpositor.Correo
 
-                        <th style="width: 4em">Cantidad</th>
-                        <th style="width:32em">Descripción del Servicio</th>
-                        <th style=""> Precio Unitario</th>
-                    </tr>
-
-                </thead>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table class="table" border="1" style="width:50em">
+            <thead class="thead-dark">
                 <tr>
 
-                    @Html.Raw(Model.listpro.ToString())
+                    <th style="width: 4em">Cantidad</th>
+                    <th style="width:32em">Descripción del Servicio</th>
+                    <th style=""> Precio Unitario</th>
+                </tr>
+
+            </thead>
+            <tr>
+
+                @Html.Raw(Model.listpro.ToString())
 
 
-            </table>
-            <table class="table" border="1" style="width:50em">
+        </table>
+        <table class="table" border="1" style="width:50em">
+            <tr>
+                <th style="width: 19em">
+                </th>
+                <td>
+                    Subtotal
+                    <br>
+                    I.V.A.
+                    <br>
+                    Total
+                </td>
+                <td style="text-align:center">
+                    @subtotal.ToString("c")
+                    <br>
+                    @Model.Iva.ToString("c")
+                    <br>
+                    @Model.Total.ToString("c")
+                </td>
+            </tr>
+        </table>
+
+        <table class="table" border="1" style="width:50em">
+            <thead class="thead-dark">
                 <tr>
-                    <th style="width: 19em">
-                    </th>
+                    <th style="text-align:center">Observaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
                     <td>
-                        Subtotal
-                        <br>
-                        I.V.A.
-                        <br>
-                        Total
-                    </td>
-                    <td style="text-align:center">
-                        0.00
-                        <br>
-                        0.00
-                        <br>
-                        0.00
+                        <textarea style="width:100%" rows="4">
+
+</textarea>
                     </td>
                 </tr>
-            </table>
-
-            <table class="table" border="1" style="width:50em">
-                <thead class="thead-dark">
-                    <tr>
-                        <th style="text-align:center">Observaciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            (Cuestiones a considerar, tanto para el cliente como para el proveedor, como condiciones de pago <br>
-                            y entrega, forma en que se proveerá el servicio, fecha y lugar, etcétera)
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table" style="width:50em">
-
-                <tr>
-                    <th style="text-align:center"><button type="button" class="btn btn-danger" style="width:9em">Cancelar</button></th>
-
-                    <th style="text-align:center"><button type="button" class="btn btn-info" style="width:9em">Solicitar</button></th>
-                </tr>
-
-                <br />
-                <br />
-
-
-
-            </table>
-
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="TipoEnvio" class="control-label"></label>
+                    <select asp-for="TipoEnvio" class="form-control" asp-items="ViewBag.TipoEnvio"></select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="TipoPago" class="control-label"></label>
+                    <select asp-for="TipoPago" class="form-control" asp-items="ViewBag.TipoPago"></select>
+                </div>
+            </div>
         </div>
+        <input type="checkbox"  /><label> Angular view </label>
+        <table class="table" style="width:50em">
+
+            <tr>
+                <th style="text-align:center"><button type="button" class="btn btn-danger" style="width:9em">Cancelar</button></th>
+
+                <th style="text-align:center"><button type="button" class="btn btn-info" style="width:9em">Solicitar</button></th>
+            </tr>
+
+        </table>
+
+    </div>
+</form>

@@ -194,7 +194,7 @@ namespace AngularView.Controllers
            "       <P> Una vez realizado el pago deberá enviar el ticket de compra, al correo jorge.alvarado@aldacomp.com" +
                             "para su validación y activación a su perfil al expo. Recibirá un"+
 "correo donde se le dará acceso para dar de alta sus productos.</ P >"+
-"< BR >< BR > <P><a href=\"mailto:jorge.alvarado@aldacomp.com\" class=\"btn btn-info\" > ¿Requieres facturación?</ P > " +
+"<P><a href=\"mailto:jorge.alvarado@aldacomp.com\" class=\"btn btn-info\" > ¿Requieres facturación?</ P > " +
                 "</body>" +
                 "</html>";
             return cuper;
