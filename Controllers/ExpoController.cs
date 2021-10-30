@@ -375,7 +375,7 @@ model.listpro = listpro;
 
             Venta venta = new Venta()
             {
-                IdCliente = id,
+                IdCliente = 0,
                 Activo = 1,
             };
 
