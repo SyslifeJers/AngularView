@@ -22,6 +22,7 @@ namespace AngularView.Models
         public string RazonSocial { get; set; }
         public string Rfc { get; set; }
         public string Direccion { get; set; }
+        public string PaginaWeb { get; set; }
 
         public virtual Caja IdCajaNavigation { get; set; }
         public virtual Expositor IdExpositorNavigation { get; set; }

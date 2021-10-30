@@ -13,6 +13,7 @@ namespace AngularView.Models
         {
             ClickCajas = new HashSet<ClickCajas>();
             ClickProdcuto = new HashSet<ClickProdcuto>();
+            Venta = new HashSet<Venta>();
         }
 
         public int Id { get; set; }
@@ -26,5 +27,6 @@ namespace AngularView.Models
 
         public virtual ICollection<ClickCajas> ClickCajas { get; set; }
         public virtual ICollection<ClickProdcuto> ClickProdcuto { get; set; }
+        public virtual ICollection<Venta> Venta { get; set; }
     }
 }

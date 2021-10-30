@@ -18,6 +18,7 @@ namespace AngularView.Models.ViewModels
         public int TipoPago { get; set; }
         public int TipoEnvio { get; set; }
         public string razonSocial { get; set; }
+        public string observaciones { get; set; }
         public string RFC { get; set; }
         public  string Direccion  { get; set; }
         public string  Telefono { get; set; }
@@ -34,5 +35,23 @@ namespace AngularView.Models.ViewModels
         public int Cant { get; set; }
         public bool Selected { get; set; }
         public string Producto { get; set; }
+    }
+    public class ModelEnvioFinal
+    {
+        public List<ModelSelect> listProductSelected { get; set; }
+        public string listTipoPago { get; set; }
+        public string listTipoEnvio { get; set; }
+        public int idCajon { get; set; }
+        public int TipoPago { get; set; }
+        public int TipoEnvio { get; set; }
+        public string razonSocial { get; set; }
+        public string RFC { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
+        public string Email { get; set; }
+        public int idExpositor { get; set; }
+        public int idCliente { get; set; }
+        public double Total { get; set; }
+        public double Iva { get; set; }
     }
 }

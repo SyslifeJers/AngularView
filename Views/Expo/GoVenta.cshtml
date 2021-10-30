@@ -5,126 +5,147 @@
     double subtotal = Model.Total - Model.Iva;
 
 }
-<form action="/" method="post">
-    <div class=" container ">
-        <h1 style="margin-left:5em">Información de pedido</h1>
-    </div>
-    <div class=" container ">
-        <table class="table" border="1" style="width:50em">
-            <thead class="thead-dark">
-                <tr>
-                    <th style="text-align:center">Cliente</th>
-                </tr>
-            </thead>
+<div class="container ">
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="card">
+        <div class="card-header">
+            <h1 >Información de pedido</h1>
+        </div>
+        <form asp-action="CreateVenta" method="post">
+            <input type="hidden" asp-for="@Model.detalleCaja.Id" />
+            <input type="hidden" asp-for="@Model.IdExpositor" value="@Model.IdExpositor" />
+            @for (int i = 0; i < Model.listProductSelected.Count; i++)
+            {
 
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="form-group"> Razón social:  <input class="" type="text" value="@Model.GetClientes.Nombre @Model.GetClientes.Apellidos" /> <br></div>
-                        <div class="form-group">  RFC: <input class="" type="text" /><br></div>
-                        <div class="form-group">  Dirección: <input class="" type="text" /><br></div>
-                        <div class="form-group">     Teléfono: <input class="" type="text" /> <br></div>
-                        <div class="form-group">   Correo electrónico:  <input class="" type="text" value="@Model.GetClientes.Correo" /> </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <table class="table" border="1" style="width:50em">
-            <thead class="thead-dark">
-                <tr>
-                    <th style="text-align:center">Proovedor</th>
-                </tr>
-            </thead>
-            <tr>
-                <td>
-                    Razón social:@Model.GetExpositor.Nombre<br>
-                    RFC: <br>
-                    Dirección: <br>
-                    Teléfono: @Model.GetExpositor.Celular<br>
-                    Correo electrónico: @Model.GetExpositor.Correo
+                <input type="checkbox" asp-for="@Model.listProductSelected[i].Selected" hidden />
+                <input type="number" asp-for="@Model.listProductSelected[i].Cant" hidden />
+                <input  asp-for="@Model.listProductSelected[i].IdProduct" hidden />
 
-                </td>
-            </tr>
-        </table>
-        <br>
-        <table class="table" border="1" style="width:50em">
-            <thead class="thead-dark">
-                <tr>
+            }
+            <div class="card-body">
 
-                    <th style="width: 4em">Cantidad</th>
-                    <th style="width:32em">Descripción del Servicio</th>
-                    <th style=""> Precio Unitario</th>
-                </tr>
-
-            </thead>
-            <tr>
-
-                @Html.Raw(Model.listpro.ToString())
+                <div class=" container ">
 
 
-        </table>
-        <table class="table" border="1" style="width:50em">
-            <tr>
-                <th style="width: 19em">
-                </th>
-                <td>
-                    Subtotal
+                    <div class="card">
+                        <div class="card-header  bg-dark text-white">
+                            <label style="text-align:center">Cliente</label>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="form-group"> Razón social:  <input class="" type="text" value="@Model.GetClientes.Nombre @Model.GetClientes.Apellidos" asp-for="razonSocial" /> <br></div>
+                            <div class="form-group">  RFC: <input class="" type="text" asp-for="RFC" /><br></div>
+                            <div class="form-group">  Dirección: <input class="" type="text" asp-for="Direccion" /><br></div>
+                            <div class="form-group">     Teléfono: <input class="" type="text" asp-for="Telefono" /> <br></div>
+                            <div class="form-group">   Correo electrónico:  <input class="" asp-for="Email" type="text" value="@Model.GetClientes.Correo" /> </div>
+
+                        </div>
+                    </div>
                     <br>
-                    I.V.A.
-                    <br>
-                    Total
-                </td>
-                <td style="text-align:center">
-                    @subtotal.ToString("c")
-                    <br>
-                    @Model.Iva.ToString("c")
-                    <br>
-                    @Model.Total.ToString("c")
-                </td>
-            </tr>
-        </table>
+                    <div class="card">
+                        <div class="card-header  bg-dark text-white">
 
-        <table class="table" border="1" style="width:50em">
-            <thead class="thead-dark">
-                <tr>
-                    <th style="text-align:center">Observaciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <textarea style="width:100%" rows="4">
+                            <label style="text-align:center">Proovedor</label>
+
+                        </div>
+                        <div class="card-body">
+                            Razón social:@Model.detalleCaja.RazonSocial<br>
+                            RFC: @Model.detalleCaja.Rfc<br>
+                            Dirección: @Model.Direccion<br>
+                            Teléfono: @Model.GetExpositor.Celular<br>
+                            Correo electrónico: @Model.GetExpositor.Correo
+
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="table-responsive">
+                        <table class="table table-sm ">
+                            <thead class="thead-dark">
+                                <tr>
+
+                                    <th>Cantidad</th>
+                                    <th>Descripción del Servicio</th>
+                                    <th> Precio Unitario</th>
+                                </tr>
+
+                            </thead>
+
+                            @Html.Raw(Model.listpro.ToString())
+                            <tr>
+                                <th>
+                                </th>
+                                <td>
+                                    Subtotal
+                                    <br>
+                                    I.V.A.
+                                    <br>
+                                    Total
+                                </td>
+                                <td style="text-align:center">
+                                    @subtotal.ToString("c")
+                                    <br>
+                                    @Model.Iva.ToString("c")
+                                    <br>
+                                    @Model.Total.ToString("c")
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th style="text-align:center">Observaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <textarea asp-for="observaciones" style="width:100%" rows="4">
 
 </textarea>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label asp-for="TipoEnvio" class="control-label"></label>
-                    <select asp-for="TipoEnvio" class="form-control" asp-items="ViewBag.TipoEnvio"></select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label asp-for="TipoEnvio" class="control-label"></label>
+                                <select asp-for="TipoEnvio" class="form-control" asp-items="ViewBag.TipoEnvio"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label asp-for="TipoPago" class="control-label"></label>
+                                <select asp-for="TipoPago" class="form-control" asp-items="ViewBag.TipoPago"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="checkbox" /><label> Angular view </label>
+
+
                 </div>
+
             </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label asp-for="TipoPago" class="control-label"></label>
-                    <select asp-for="TipoPago" class="form-control" asp-items="ViewBag.TipoPago"></select>
-                </div>
+            <div class="card-footer">
+                <table class="table">
+
+                    <tr>
+                        <th style="text-align:center"><button type="button" class="btn btn-danger" style="width:9em">Cancelar</button></th>
+
+                        <th style="text-align:center"><button type="submit" class="btn btn-info" style="width:9em">Solicitar</button></th>
+                    </tr>
+
+                </table>
             </div>
-        </div>
-        <input type="checkbox"  /><label> Angular view </label>
-        <table class="table" style="width:50em">
-
-            <tr>
-                <th style="text-align:center"><button type="button" class="btn btn-danger" style="width:9em">Cancelar</button></th>
-
-                <th style="text-align:center"><button type="button" class="btn btn-info" style="width:9em">Solicitar</button></th>
-            </tr>
-
-        </table>
+        </form>
 
     </div>
-</form>
+</div>

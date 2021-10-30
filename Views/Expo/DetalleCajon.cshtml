@@ -17,125 +17,144 @@
     }
 
 }
-@{string rut = "../../Img/Logos/" + Model.detalleCaja.IdCaja + ".png";}
+@{string rut = "../../Img/Logos/" + Model.detalleCaja.IdCaja + ".png";
+    string ElemtoTitulo, ElementoLogo, ElmentoNosotros, ElementoCatalogo, ElementoPaginaWeb;}
 @if (Model.detalleCaja.IdCajaNavigation.Tipo == 1)
 {
+    if (Model.detalleCaja.IdCajaNavigation.IdSala == 1)
+    {
 
-    <img class="fondo-pantalla" src="~/Img/Espacios/stand1.png">
-    <div class="row">
-        <div class="col-8">
-            <div class="row" style="height: 50%">
-                <div class="col-6">
-                    @{string rutaL = "../Img/Logos/" + Model.detalleCaja.Id + ".png";}
-
-                    <img class="logo-stand" src="@rutaL" onerror="if (this.src != @rutaL) this.src = '../Img/angularView.png';" style="width: 25%; height: 33%; margin-top: 15%; margin-left: 14%">
-
-                </div>
-                <div class="col-6">
-                    <h1 style="margin-top: 25%; margin-left: 20%;">@Model.detalleCaja.Titulo</h1>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="container" style="width: 60%; height: 60%; max-height: 200px; padding-left: 11%;">
-                        <p style="text-align: justify; font-size: 1.3vw;">@Model.detalleCaja.Resumen</p>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="container" style="width: 60%; height: 60%; max-height: 200px; display: flex; padding-top: 6%; padding-left: 4%;">
-                        @if (!String.IsNullOrEmpty(Model.detalleCaja.RedFacebook))
-                        {
-                            <a href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
-                        }
-                        @if (!String.IsNullOrEmpty(Model.detalleCaja.RedWhats))
-                        {
-                            string link = "https://wa.me/52" + Model.detalleCaja.RedWhats;
-                            <a href="@link" style="margin: auto 3% auto 3%; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px " /></a>
-                        }
-                        @if (!String.IsNullOrEmpty(Model.detalleCaja.RedInstagram))
-                        {
-                            <a href="https://www.instagram.com/@Model.detalleCaja.RedInstagram" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px; " /></a>
-                        }
+        ElemtoTitulo = "style=\"top: 22%; left:20%; position:absolute; font-size: 2.5vw; \"";
+        ElementoLogo = "style=\"width: 8vw; position: absolute; z-index: 2; left: 22vw; top: 67%;\"";
+        ElmentoNosotros = "style=\"position: absolute; top: 27%; left: 66vw;    background-color: transparent; z-index: 3; transform: translate(-50%, -50%);border: none; min-width: 10vw; \"";
+        ElementoCatalogo = "style=\"position: absolute; top: 56%; left: 55vw;    background-color: transparent; z-index: 3; transform: translate(-50%, -50%);border: none; min-width: 10vw;\" ";
+        ElementoPaginaWeb = "style=\"position: absolute; top: 45%; left: 55vw;    background-color: transparent; z-index: 3; transform: translate(-50%, -50%);border: none; min-width: 10vw; \"";
+        <img class="fondo-pantalla" src="~/Img/Espacios/Stand1.png">
 
 
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-}
-else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
-{
-<div>
-    <img class="fondo-pantalla" src="~/Img/Espacios/standVip.png">
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <div class="container" style="height: 150px; width: 100%; position: inherit; top:60%; left:-15%;">
-                <center><h1 style="margin-top: 1%; font-size: 4vw; color: white;">@Model.detalleCaja.Titulo</h1></center>
-            </div>
-        </div>
-        <div class="col-1">
-            <div class="container" style="position: inherit; top: 50%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
-
-                    @{string ruta = "/Img/Logos/" + Model.detalleCaja.IdCaja + ".png";
-                    <img style="width:5em" src="@ruta" onerror="if(this.src != 'http://angularviewexpo.com/Img/angularView.png') this.src = 'http://angularviewexpo.com/Img/angularView.png'">
-                        }
-            </div>
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-2">
-            <div class="container" style="position: inherit; top: 70%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
-                <button type="button" style="position: inherit; top: 33%; left: -15%;" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">
-                    Catalogo
-                </button>
-            </div>
-            <div class="container" style="position: inherit; top: 170%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
-                <button type="button" style="position: inherit; top: 33%; left: -15%;" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong2">
-                    Nosotros
-                </button>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="video-container">
-                @*<iframe class="responsive-iframe"
-                        src="@Model.detalleCaja.VideoYoutube">
-                </iframe>*@
-                
-        @if (!string.IsNullOrEmpty(Model.detalleCaja.VideoYoutube))
-                    {
-                        @Html.Raw(Model.detalleCaja.VideoYoutube)
-           
-        }
-
-
-            </div>
-        </div>
-        <div class="col-4" style="display: inline-flex;">
             @if (!String.IsNullOrEmpty(Model.detalleCaja.RedFacebook))
-                {<div class="container linear-boxes">
+            {
+                    <a target="_blank" href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="background-color: white; border-radius: 5vw; z-index: 3; position: absolute; left: 30vw; top: 44%; "><img src="~/Img/Logos/fb-logo-64px.png" style=" width: 5vw; border-radius: 50px" /></a>
 
-                    <a target="_blank" href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
-
-                </div>
             }
             @if (!String.IsNullOrEmpty(Model.detalleCaja.RedWhats))
             {
+               string link = "https://wa.me/52" + Model.detalleCaja.RedWhats;
+                
+                <a target="_blank" href="@link" style="z-index: 3;position: absolute;left: 23vw;top:  44%;"><img src="~/Img/Logos/wa-logo-64px.png" style=" width: 5vw; border-radius: 50px " /></a>
+            }
 
-                string link = "https://wa.me/52" + Model.detalleCaja.RedWhats;
-                <div class="container linear-boxes">
+    }
+    else
+    {
+        ElemtoTitulo = "style=\"top: 19%; left:18%; position:absolute; font-size: 2.5vw; \"";
+        ElementoLogo = "style=\"width: 11vw; position: absolute; z-index: 2; left: 66vw; top: 64%;\"";
+        ElmentoNosotros = "style=\"position: absolute; top: 30%; left: 56vw;    background-color: transparent; z-index: 3; transform: translate(-50%, -50%);border: none; min-width: 12vw; \"";
+        ElementoCatalogo = "style=\"position: absolute; top: 40%; left: 56vw;    background-color: transparent; z-index: 3; transform: translate(-50%, -50%);border: none; min-width: 12vw;\" ";
+        ElementoPaginaWeb = "style=\"position: absolute; top: 42%; left: 56vw;    background-color: transparent; z-index: 3; transform: translate(-50%, -50%);border: none; min-width: 12vw; \"";
+        <img class="fondo-pantalla" src="~/Img/Espacios/stand2.png">
 
-                    <a target="_blank" href="@link" style="margin: auto 3% auto 3%; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px " /></a>
-                    
+        @if (!String.IsNullOrEmpty(Model.detalleCaja.RedFacebook))
+        {
+            <div style="position: absolute;left: 28vw;z-index: 5;top: 40%;">
+
+                <a target="_blank" href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style=""><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
+            </div>
+        }
+    }
+    string rutaL = "http://angularviewexpo.com/Img/Logos/" + Model.detalleCaja.IdCaja + ".png";
+    <img style="width:40%; margin-left:8%" src="@rut" onerror="if(this.src != 'http://angularviewexpo.com//Img/angularView.png') this.src = 'http://angularviewexpo.com//Img/angularView.png'">
+
+    <h1 @Html.Raw(ElemtoTitulo) class="col-3">@Model.detalleCaja.Titulo</h1>
+    <img @Html.Raw(ElementoLogo) src="@rutaL" onerror="if(this.src != 'http://angularviewexpo.com/Img/angularView.png') this.src = 'http://angularviewexpo.com/Img/angularView.png'">
+    <button type="button" @Html.Raw(ElmentoNosotros) class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong2">
+        <img class="img-fluid" style="min-width: 100%;" src="~/Img/Espacios/nostros.png" />
+    </button>
+    <button @Html.Raw(ElementoCatalogo) class="btn btn-light" type="button" data-toggle="modal" data-target="#exampleModalLong">
+        <img class="img-fluid" style="min-width: 100%;" src="~/Img/Espacios/Catalogo.png" />
+    </button>
+
+    if (!string.IsNullOrEmpty(Model.detalleCaja.PaginaWeb))
+    {
+        <a target="_blank" @Html.Raw(ElementoPaginaWeb) type="button" class="btn btn-light" href="@Model.detalleCaja.PaginaWeb">
+            <img class="img-fluid" style="min-width: 100%;" src="~/Img/Espacios/PAginaweb.png" />
+        </a>
+    }
+
+}
+else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
+{
+    <div>
+        <img class="fondo-pantalla" src="~/Img/Espacios/standVip.png">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="container" style="height: 150px; width: 100%; position: inherit; top:60%; left:-15%;">
+                    <center><h1 style="margin-top: 1%; font-size: 4vw; color: white;">@Model.detalleCaja.Titulo</h1></center>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="container" style="position: inherit; top: 55%;   width: 200px;">
+                    @*<button type="button" style="position: inherit; top: 33%; left: -15%;" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong2">
+                        Nosotros
+                    </button>*@
+                    <button style="background-color: transparent;border-block-color: transparent;border-color: transparent;" type="button" class=" " data-toggle="modal" data-target="#exampleModalLong2">
+                        <img class="img-fluid" style="min-width: 100%;" src="~/Img/Espacios/nostros.png" />
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-2">
+                <div class="container" style="position: inherit; top: 130%; left: 30%; width: 200px;">
+                    <button style="background-color: transparent;border-block-color: transparent;border-color: transparent;" class="btn btn-light" type="button" data-toggle="modal" data-target="#exampleModalLong">
+                        <img class="img-fluid" style="min-width: 100%;" src="~/Img/Espacios/Catalogo.png" />
+                    </button>
+                </div>
+                <div class="container" style="position: inherit; top: 240%; left: 30%; height: 100px; width: 100px; border-radius: 50px; background-color: white;">
+                    @{string ruta = "/Img/Logos/" + Model.detalleCaja.IdCaja + ".png";
+                        <img style="width:5em" src="@ruta" onerror="if(this.src != 'http://angularviewexpo.com/Img/angularView.png') this.src = 'http://angularviewexpo.com/Img/angularView.png'">
+                    }
 
                 </div>
-            }
-        @if (!String.IsNullOrEmpty(Model.detalleCaja.RedInstagram))
+            </div>
+            <div class="col-4">
+                <div class="video-container">
+                    @*<iframe class="responsive-iframe"
+                                src="@Model.detalleCaja.VideoYoutube">
+                        </iframe>*@
+
+                    @if (!string.IsNullOrEmpty(Model.detalleCaja.VideoYoutube))
+                    {
+                        @Html.Raw(Model.detalleCaja.VideoYoutube)
+
+                    }
+
+
+                </div>
+            </div>
+            <div class="col-4" style="display: inline-flex; top: 25%;">
+                @if (!String.IsNullOrEmpty(Model.detalleCaja.RedFacebook))
+                {<div class="container linear-boxes">
+
+                        <a target="_blank" href="https://www.facebook.com/@Model.detalleCaja.RedFacebook" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/fb-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px" /></a>
+
+                    </div>
+                }
+                @if (!String.IsNullOrEmpty(Model.detalleCaja.RedWhats))
+                {
+
+                    string link = "https://wa.me/52" + Model.detalleCaja.RedWhats;
+                    <div class="container linear-boxes">
+
+                        <a target="_blank" href="@link" style="margin: auto 3% auto 3%; border-radius: 50px"><img src="~/Img/Logos/wa-logo-64px.png" style="height: 72px; width: 72px; border-radius: 50px " /></a>
+
+
+                    </div>
+                }
+                @if (!String.IsNullOrEmpty(Model.detalleCaja.RedInstagram))
                 {<div class="container linear-boxes">
 
                         <a target="_blank" href="https://www.instagram.com/@Model.detalleCaja.RedInstagram" style="margin: auto 0 auto 0; border-radius: 50px"><img src="~/Img/Logos/ig-logo-64px.png" style="height: 72px; width: 72px; " /></a>
@@ -143,8 +162,8 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                     </div>
                 }
             </div>
+        </div>
     </div>
-</div>
 }
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -171,7 +190,7 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                                     <div class="col-md-4 col-sm-12">
                                         <div class="container" style="display: flex; justify-content: center;">
                                             @{string ruta = "../Img/angularView.png";}
-                                            <img style="width:8em" src="@Url.Content(String.Format("http://angularviewexpo.com/Product/" + Model.listProductSelected[i].IdProduct + ".png"))" onerror="if (this.src != '@ruta') this.src = '';">
+                                            <img style="width:8em" src="@Url.Content(String.Format("http://angularviewexpo.com/Product/" + Model.listProductSelected[i].IdProduct + ".png"))" onerror="if (this.src != '') this.src = '';">
 
                                         </div>
                                         <hr />
@@ -203,7 +222,7 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                                             <p style="font-size: 1.3em;">Costo: $ @Model.listProductoServicios[i].PrecioDescuento MXN</p>
                                         }
                                         else
-        {
+                                        {
                                             <p style="font-size: 1.3vw;">Costo: $ @Model.listProductoServicios[i].PrecioNormal MXN</p>
                                         }
 
@@ -214,31 +233,31 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
                         <hr color="Black" width="700">
                         <div class="container">
                             @*<div class="row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Razon Social</label>
-                                        <input type="text" asp-for="@Model.razonSocial" class="form-control" />
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Razon Social</label>
+                                            <input type="text" asp-for="@Model.razonSocial" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>RFC</label>
+                                            <input type="text" asp-for="@Model.RFC" class="form-control" />
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>RFC</label>
-                                        <input type="text" asp-for="@Model.RFC" class="form-control" />
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Telefono</label>
+                                            <input type="text" asp-for="@Model.Telefono" class="form-control" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Telefono</label>
-                                        <input type="text" asp-for="@Model.Telefono" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Direccion </label>
-                                <input type="text" asp-for="@Model.Direccion" class="form-control" />
-                            </div>*@
+                                <div class="form-group">
+                                    <label>Direccion </label>
+                                    <input type="text" asp-for="@Model.Direccion" class="form-control" />
+                                </div>*@
 
                         </div>
                     </div>
@@ -257,13 +276,13 @@ else if (Model.detalleCaja.IdCajaNavigation.Tipo == 2)
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel2">@Model.detalleCaja.Titulo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-              @Model.detalleCaja
+                @Model.detalleCaja.Resumen.ToString()
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>

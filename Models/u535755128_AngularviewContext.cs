@@ -45,6 +45,7 @@ namespace AngularView.Models
         public virtual DbSet<TipoPago> TipoPago { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Vendedores> Vendedores { get; set; }
+        public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaEspacio> VentaEspacio { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -52,7 +53,7 @@ namespace AngularView.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=31.170.160.103;database=u535755128_Angularview;user=u535755128_jers;password=Rtx2080_", x => x.ServerVersion("10.4.17-mariadb"));
+                optionsBuilder.UseMySql("server=31.170.160.103;database=u535755128_Angularview;user=u535755128_jers;password=Rtx2080_", x => x.ServerVersion("10.5.12-mariadb"));
             }
         }
 
@@ -518,6 +519,11 @@ namespace AngularView.Models
 
                 entity.Property(e => e.Modificado).HasColumnType("datetime");
 
+                entity.Property(e => e.PaginaWeb)
+                    .HasColumnType("mediumtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
                 entity.Property(e => e.RazonSocial)
                     .HasColumnType("mediumtext")
                     .HasCharSet("utf8mb4")
@@ -925,6 +931,87 @@ namespace AngularView.Models
                     .HasColumnType("longtext")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
+            });
+
+            modelBuilder.Entity<Venta>(entity =>
+            {
+                entity.HasIndex(e => e.IdCliente)
+                    .HasName("RleacionCLienteVenta");
+
+                entity.HasIndex(e => e.IdExpositor)
+                    .HasName("RelacionExpositorVenta");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Activo).HasColumnType("int(11)");
+
+                entity.Property(e => e.DireccionClient)
+                    .IsRequired()
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.IdCliente).HasColumnType("int(11)");
+
+                entity.Property(e => e.IdExpositor).HasColumnType("int(11)");
+
+                entity.Property(e => e.Observaciones)
+                    .IsRequired()
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Rfccliente)
+                    .IsRequired()
+                    .HasColumnName("RFCcliente")
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Rzcliente)
+                    .IsRequired()
+                    .HasColumnName("RZcliente")
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Telefono)
+                    .IsRequired()
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.TipoEnvio)
+                    .IsRequired()
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.TipoPago)
+                    .IsRequired()
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Total)
+                    .IsRequired()
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.IdClienteNavigation)
+                    .WithMany(p => p.Venta)
+                    .HasForeignKey(d => d.IdCliente)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("RleacionCLienteVenta");
+
+                entity.HasOne(d => d.IdExpositorNavigation)
+                    .WithMany(p => p.Venta)
+                    .HasForeignKey(d => d.IdExpositor)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("RelacionExpositorVenta");
             });
 
             modelBuilder.Entity<VentaEspacio>(entity =>
