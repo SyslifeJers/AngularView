@@ -32,6 +32,7 @@ namespace AngularView.Models
         public virtual DbSet<ClickProdcuto> ClickProdcuto { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<DetalleCaja> DetalleCaja { get; set; }
+        public virtual DbSet<DetalleVenta> DetalleVenta { get; set; }
         public virtual DbSet<EfmigrationsHistory> EfmigrationsHistory { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<Expositor> Expositor { get; set; }
@@ -577,6 +578,36 @@ namespace AngularView.Models
                     .HasConstraintName("RelacionCajaExpositor");
             });
 
+            modelBuilder.Entity<DetalleVenta>(entity =>
+            {
+                entity.HasIndex(e => e.IdOrden)
+                    .HasName("RelacionOrdenVenta");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Cant).HasColumnType("int(11)");
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasColumnType("mediumtext")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.IdOrden).HasColumnType("int(11)");
+
+                entity.Property(e => e.Subtotal)
+                    .IsRequired()
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.HasOne(d => d.IdOrdenNavigation)
+                    .WithMany(p => p.DetalleVenta)
+                    .HasForeignKey(d => d.IdOrden)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("RelacionOrdenVenta");
+            });
+
             modelBuilder.Entity<EfmigrationsHistory>(entity =>
             {
                 entity.HasKey(e => e.MigrationId)
@@ -946,7 +977,33 @@ namespace AngularView.Models
                 entity.Property(e => e.Activo).HasColumnType("int(11)");
 
                 entity.Property(e => e.DireccionClient)
-                    .IsRequired()
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ExpoCelular)
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ExpoCorreo)
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ExpoDireccion)
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ExpoRfc)
+                    .HasColumnName("ExpoRFC")
+                    .HasColumnType("text")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.ExpoRz)
+                    .HasColumnName("ExpoRZ")
                     .HasColumnType("text")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
@@ -958,27 +1015,23 @@ namespace AngularView.Models
                 entity.Property(e => e.IdExpositor).HasColumnType("int(11)");
 
                 entity.Property(e => e.Observaciones)
-                    .IsRequired()
                     .HasColumnType("text")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.Rfccliente)
-                    .IsRequired()
                     .HasColumnName("RFCcliente")
                     .HasColumnType("text")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.Rzcliente)
-                    .IsRequired()
                     .HasColumnName("RZcliente")
                     .HasColumnType("text")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");
 
                 entity.Property(e => e.Telefono)
-                    .IsRequired()
                     .HasColumnType("text")
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_unicode_ci");

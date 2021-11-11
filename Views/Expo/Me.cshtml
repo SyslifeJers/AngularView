@@ -1,0 +1,97 @@
+﻿@model AngularView.Models.ViewModels.MeModel
+
+@{
+    ViewData["Title"] = "Me";
+    Layout = "~/Views/Shared/Expo_Layout.cshtml";
+}
+
+
+<div class="container " style="margin-top:6em">
+    <div class="card">
+        <div class="card-header">
+            <h3>@Model.clientes.Nombre </h3> 
+        </div>
+        <div class="card-body">
+            Correo: @Model.clientes.Correo
+        </div>
+    </div>
+</div>
+    <div class="container bg-light table-responsive" style="margin-top:2em">
+
+        <h1>Ventas</h1>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        Fecha
+                    </th>
+                    <th>
+                        Razon Social
+                    </th>
+                    <th>
+                        Rfc
+                    </th>
+                    <th>
+                        Direccion
+                    </th>
+                    <th>
+                        Telefono
+                    </th>
+                    <th>
+                        Total
+                    </th>
+                    <th>
+                        Tipo de Envio
+                    </th>
+                    <th>
+                        Tipo de pago
+                    </th>
+                    <th>
+                        Observaciones
+                    </th>
+
+                    <th>Detalle</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ventas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rzcliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rfccliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DireccionClient)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoEnvio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoPago)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Observaciones)
+                        </td>
+                        <td colspan="2">
+                            <a asp-action="Detalleventa" asp-route-id="@item.Id" class="btn btn-outline-info">Saber mas</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

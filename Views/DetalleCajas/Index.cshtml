@@ -5,11 +5,6 @@
     Layout = "~/Views/Shared/_Administrador.cshtml";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -71,7 +66,7 @@
                 @Html.DisplayFor(modelItem => item.IdCajaNavigation.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Id)
+                @Html.DisplayFor(modelItem => item.IdExpositorNavigation.Nombre)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

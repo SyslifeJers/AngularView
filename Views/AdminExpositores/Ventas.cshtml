@@ -1,0 +1,89 @@
+﻿@model IEnumerable<AngularView.Models.Venta>
+
+@{
+    ViewData["Title"] = "Ventas";
+    Layout = "~/Views/Shared/_LayoutExpositor.cshtml";
+}
+
+<h1>Ventas</h1>
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th>
+
+                  Razon Social Cliente
+                </th>
+                <th>
+                    RFC Cliente
+                </th>
+                <th>
+                    Direccion Cliente
+                </th>
+                <th>
+                    Telefono Cliente
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoEnvio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoPago)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Observaciones)
+                </th>
+                <th>
+                    Cliente
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rzcliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rfccliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DireccionClient)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoEnvio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoPago)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Observaciones)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
+                    </td>
+                    <td>
+                        <a asp-action="Detalleventa" asp-route-id="@item.Id" class="btn btn-outline-info">Saber mas</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

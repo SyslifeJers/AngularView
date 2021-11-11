@@ -16,6 +16,10 @@
         </div>
         <form asp-action="CreateVenta" method="post">
             <input type="hidden" asp-for="@Model.detalleCaja.Id" />
+            <input type="hidden" asp-for="@Model.detalleCaja.RazonSocial" />
+            <input type="hidden" asp-for="@Model.detalleCaja.Rfc" />
+            <input type="hidden" asp-for="@Model.detalleCaja.Direccion" />
+
             <input type="hidden" asp-for="@Model.IdExpositor" value="@Model.IdExpositor" />
             @for (int i = 0; i < Model.listProductSelected.Count; i++)
             {
@@ -55,7 +59,7 @@
                         <div class="card-body">
                             Razón social:@Model.detalleCaja.RazonSocial<br>
                             RFC: @Model.detalleCaja.Rfc<br>
-                            Dirección: @Model.Direccion<br>
+                            Dirección: @Model.detalleCaja.Direccion<br>
                             Teléfono: @Model.GetExpositor.Celular<br>
                             Correo electrónico: @Model.GetExpositor.Correo
 

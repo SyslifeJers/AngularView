@@ -44,6 +44,25 @@ namespace AngularView.Controllers
 
             return View(new ModelArchivo() { id_Producto = id });
         }
+        public async Task<ActionResult> Detalleventa(int id)
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("id")))
+            {
+                return Redirect(Url.ActionLink("Login", "Expo"));
+            }
+            var idclien = HttpContext.Session.GetString("id");
+            return View(await _context.Venta.Include(d => d.DetalleVenta).Include(d => d.IdExpositorNavigation).Where(d => d.IdExpositor == Convert.ToInt32(idclien) && d.Id == id).FirstOrDefaultAsync());
+        }       
+        public async Task<ActionResult> Ventas()
+        {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("id")))
+            {
+                return Redirect(Url.ActionLink("Login", "Expo"));
+            }
+            var id = HttpContext.Session.GetString("id");
+            List<Venta> lis = await _context.Venta.Include(d => d.DetalleVenta).Where(d => d.IdExpositor == Convert.ToInt32(id)).ToListAsync();
+            return View(lis);
+        }
         public async Task<IActionResult> SubirEnvio(TipoEnvio model)
         {
             if (String.IsNullOrEmpty(HttpContext.Session.GetString("tipo")))

@@ -1,0 +1,148 @@
+﻿@model AngularView.Models.Venta
+
+@{
+    ViewData["Title"] = "Detalleventa";
+    Layout = "~/Views/Shared/_LayoutExpositor.cshtml";
+}
+
+<div class="card container" style="margin-top:7em">
+    <div class="card-header"> <h4>Venta</h4></div>
+    <hr />
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Fecha)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Fecha)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Rzcliente)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Rzcliente)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Rfccliente)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Rfccliente)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DireccionClient)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DireccionClient)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Telefono)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Telefono)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Total)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Total)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TipoEnvio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TipoEnvio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TipoPago)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TipoPago)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Observaciones)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Activo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Activo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ExpoRz)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ExpoRz)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ExpoRfc)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ExpoRfc)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ExpoDireccion)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ExpoDireccion)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ExpoCelular)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ExpoCelular)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ExpoCorreo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ExpoCorreo)
+            </dd>
+        </dl>
+        <hr />
+        @{int id = 0;}
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        Num
+                    </th>
+                    <th>
+                        Producto o Servicio
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Subtotal
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.DetalleVenta)
+                {
+                    id++;
+                    <tr>
+                        <td>
+                            @id
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cant)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subtotal)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
