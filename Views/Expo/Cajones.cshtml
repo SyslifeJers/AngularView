@@ -33,15 +33,17 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-action="cajones" asp-route-id="1">Sala 1</a>
+                            <a class="nav-link text-white" asp-action="cajones" asp-route-id="1">Sala Rubí</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-action="cajones" asp-route-id="2">Sala Vip</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-action="cajones" asp-route-id="3">Sala 2</a>
+                            <a class="nav-link text-white" asp-action="cajones" asp-route-id="3">Sala Esmeralda</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-action="Me">Mi cuenta</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -56,7 +58,7 @@
                 string sala = "";
                 if (Model[0].caja.IdSala == 1)
                 {
-                    sala = "1";
+                    sala = "Rubí";
                 }
 
                 if (Model[0].caja.IdSala == 2)
@@ -66,11 +68,12 @@
 
                 if (Model[0].caja.IdSala == 3)
                 {
-                    sala = "2";
+                    sala = "Esmeralda";
                 }
 
             }
-            <h1 style="        background-color: #17bba0;
+            <h1 style="  margin-top: 2em;
+        ;
         text-align: center;
         color: white">
                 Sala @sala

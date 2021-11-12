@@ -764,6 +764,10 @@ listpro +
         {
             return View();
         }
+        public async Task<ActionResult> Terminos()
+        {
+            return View();
+        }
         public async Task<ActionResult> Registro()
         {
             return View();
